@@ -1,41 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>James' Music</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 30px;
-            text-align: center;
+        body{ 
+            max-width:900px;
+            margin:0 auto;
+            padding:30px;
+            text-align:center;
             font-family: "Georgia", "Microsoft YaHei", serif;
-            background-color: #f0f8ff;
+            background-color: #f0f8ff; 
             position: relative;
         }
-        /* 装饰元素 */
-        .pattern {
-            position: absolute;
-            font-size: 35px;
-            opacity: 0.5;
-            z-index: 1;
-        }
-        .cloud1 { top: 100px; left: 50px; color: #b0c4de; }
-        .note1 { top: 300px; right: 80px; color: #8b4513; }
-        .snow1 { bottom: 150px; left: 80px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
-        .branch1 { bottom: 80px; right: 100px; color: #8b4513; transform: rotate(15deg); }
-
-        /* 标题海报 */
         .james-poster {
             max-width: 700px;
             margin: 0 auto 40px;
-            background: #fff;
+            background-color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -67,13 +48,11 @@
         .deco2 { bottom: 20px; right: 50px; color: #e74c3c; }
         .deco3 { top: 50px; right: 40px; color: #f39c12; }
         .deco4 { bottom: 30px; left: 40px; color: #27ae60; }
-
-        /* 曲目列表 */
-        .tracklist {
-            text-align: left;
-            margin: 20px auto;
-            max-width: 500px;
-            background: rgba(255,255,255,0.8);
+        .tracklist { 
+            text-align:left;
+            margin:20px auto;
+            max-width:500px;
+            background-color: rgba(255,255,255,0.8); 
             padding: 20px 30px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.08);
@@ -82,7 +61,7 @@
         }
         .section-title {
             font-size: 24px;
-            color: #1a5276;
+            color: #1a5276; 
             text-decoration: underline wavy #3498db;
             margin: 30px 0 15px;
             position: relative;
@@ -93,22 +72,20 @@
             margin: 10px 0;
             padding: 5px 10px;
             border-radius: 4px;
-            transition: background 0.3s;
+            transition: background-color 0.3s;
             font-family: "Comic Sans MS", cursive;
             color: #2c3e50;
         }
         .tracklist li:hover {
-            background: #e3f2fd;
+            background-color: #e3f2fd;
         }
         .hint-text {
-            font-size: 16px;
-            color: #2c3e50;
-            margin: 20px 0;
+            font-size:16px; 
+            color:#2c3e50;
             position: relative;
             z-index: 2;
+            margin: 20px 0;
         }
-
-        /* 按钮区域 */
         .entry-buttons {
             display: flex;
             justify-content: center;
@@ -119,24 +96,22 @@
         }
         .entry-btn {
             padding: 15px 30px;
-            background: #4a6fa5;
+            background-color: #4a6fa5;
             color: white;
             border: none;
             border-radius: 8px;
             font-size: 18px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background-color 0.3s;
         }
         .entry-btn:hover {
-            background: #2c3e50;
+            background-color: #2c3e50;
         }
-
-        /* 内容区域 */
         .content-area {
             max-width: 600px;
             margin: 20px auto;
             padding: 30px;
-            background: rgba(255,255,255,0.9);
+            background-color: rgba(255,255,255,0.9);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             position: relative;
@@ -160,24 +135,17 @@
         }
         .content-area ul {
             padding-left: 20px;
-            margin-bottom: 20px;
         }
-        /* CD照片 */
-        .cd-photo {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        .pattern {
+            position: absolute;
+            font-size: 35px;
+            opacity: 0.5;
+            z-index: 1;
         }
-        .cd-photo img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* 歌词云 */
+        .cloud1 { top: 100px; left: 50px; color: #b0c4de; }
+        .note1 { top: 300px; right: 80px; color: #8b4513; }
+        .snow1 { bottom: 150px; left: 80px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
+        .branch1 { bottom: 80px; right: 100px; color: #8b4513; transform: rotate(15deg); }
         .lyric-clouds {
             margin: 30px 0;
             position: relative;
@@ -190,7 +158,7 @@
             position: relative;
             width: 200px;
             height: 120px;
-            background: rgba(255,255,255,0.9);
+            background-color: rgba(255,255,255,0.9);
             border-radius: 100px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
             display: flex;
@@ -202,15 +170,18 @@
             color: #2c3e50;
             line-height: 1.5;
         }
-        .lyric-cloud:nth-child(odd) { margin-right: 5px; }
-        .lyric-cloud:nth-child(even) { margin-left: 5px; }
-
-        /* 粉丝留言墙 */
+        .lyric-cloud:nth-child(odd) {
+            margin-right: 5px;
+        }
+        .lyric-cloud:nth-child(even) {
+            margin-left: 5px;
+        }
+        /* 重新设计的粉丝留言墙 */
         .fan-wall {
             max-width: 700px;
             margin: 40px auto 30px;
             padding: 25px;
-            background: rgba(255,255,255,0.95);
+            background-color: rgba(255,255,255,0.95);
             border-radius: 12px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.06);
             position: relative;
@@ -232,7 +203,7 @@
         }
         .fan-comment {
             padding: 16px;
-            background: #f8fafc;
+            background-color: #f8fafc;
             border-radius: 8px;
             border-left: 3px solid #4a6fa5;
         }
@@ -260,6 +231,7 @@
             border: 1px solid #e2e8f0;
             border-radius: 8px;
             font-family: "Georgia", sans-serif;
+            box-sizing: border-box;
             font-size: 14px;
             transition: border-color 0.3s;
         }
@@ -275,7 +247,7 @@
         }
         .comment-btn {
             padding: 12px 25px;
-            background: #4a6fa5;
+            background-color: #4a6fa5;
             color: white;
             border: none;
             border-radius: 8px;
@@ -286,10 +258,11 @@
             align-self: flex-start;
         }
         .comment-btn:hover {
-            background: #2c3e50;
+            background-color: #2c3e50;
             transform: translateY(-1px);
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="pattern cloud1">☁️</div>
@@ -297,10 +270,13 @@
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <!-- 标题海报 -->
     <div class="james-poster">
         <div class="poster-title">
-            <span>J</span><span>a</span><span>m</span><span>e</span><span>s</span>
+            <span>J</span>
+            <span>a</span>
+            <span>m</span>
+            <span>e</span>
+            <span>s</span>
         </div>
         <div class="poster-deco deco1">△</div>
         <div class="poster-deco deco2">○</div>
@@ -308,75 +284,68 @@
         <div class="poster-deco deco4">□</div>
     </div>
 
-    <!-- 曲目列表 -->
     <div class="tracklist">
         <h3 class="section-title">Album (James)</h3>
         <ol>
-            <li>Little progress</li>
+            <li>Little Progress</li>
             <li>No More Hurry</li>
             <li>Chase Stars</li>
             <li>Everything I want</li>
             <li>Slow Days</li>
             <li>Winter is coming</li>
-            <li>Run with You</li>
+            <li>Run With You</li>
             <li>We Will See It To The End</li>
         </ol>
     </div>
+
     <div class="tracklist">
-        <h3 class="section-title">Featured Singles (James & Jessica)</h3>
+        <h3 class="section-title">Featured Singles (James and Jessica)</h3>
         <ol start="9">
-            <li><a href="" target="_blank">Brighter Days (feat. Jessica)</a ></li>
-            <li>Swinging Bells (feat. Jessica) New Song!!!</li>
+            <li>Brighter Days (feat. Jessica)</li>
+            <li>Swinging Bells (feat. Jessica)</li>
         </ol>
     </div>
+
     <p class="hint-text">More new songs are on the way - Wait and see!</p >
 
-    <!-- 功能按钮 -->
     <div class="entry-buttons">
         <button class="entry-btn" onclick="toggleContent('cd-info')">CD information</button>
         <button class="entry-btn" onclick="toggleContent('james-thanks')">James</button>
         <button class="entry-btn" onclick="toggleContent('contact')">Contact</button>
     </div>
 
-    <!-- CD信息（含照片） -->
     <div id="cd-info" class="content-area">
         <h3>CD Information</h3>
-        <p><strong>Debut Album of James</strong></p >
-        <p><strong>Album Price</strong>: 50 HKD</p >
-        <p><strong>Singles (Each)</strong>: 50 HKD</p >
+        <p><strong>Album《James》</strong></p >
+        <p><strong>Album Price</strong>: 35 HKD</p >
+        <p><strong>Singles (Each)</strong>: 35 HKD</p >
         <ul>
             <li>Brighter Days (feat. Jessica)</li>
             <li>Swinging Bells (feat. Jessica)</li>
         </ul>
-        <div class="cd-photo">
-            < img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc_gen_image/31aa15ac8f28415bb15ec2bf5e68d768.jpeg~tplv-a9rns2rl98-image_dld_watermark_1_5.png?rcl=202512141936525FBC82A60A0B5B6D6053&rk3s=8e244e95&rrcfp=827586d3&x-expires=2081072225&x-signature=4m69fevwlggn5hVlPeGomeLFCxg%3D" alt="James CD Poster">
-        </div>
     </div>
 
-    <!-- James留言 -->
     <div id="james-thanks" class="content-area">
         <h3>Message from James</h3>
         <p>This debut album has 8 tracks. It implies betrayal from workplace villains, people who gossip too much, and also touches on themes of friendship, perseverance, plus a song about seasons. Also thank you to my best companion, Jessica, we made two singles together.</p >
     </div>
 
-    <!-- 联系方式 -->
     <div id="contact" class="content-area">
         <h3>Contact James</h3>
-        <p><strong>Email</strong>: JAMES03010@icloud.com</p >
+        <p><strong>Email</strong>: James03010@icloud.com</p >
     </div>
 
-    <!-- 歌词云 -->
     <div class="lyric-clouds">
-        <div class="lyric-cloud">no noise around can pull us apart</div>
-        <div class="lyric-cloud">life small things they make the sense</div>
+        <div class="lyric-cloud">No noise around can pull us apart</div>
+        <div class="lyric-cloud">Life small things they make the sense</div>
         <div class="lyric-cloud">Haters talking noise, but I don't give a damn</div>
-        <div class="lyric-cloud">I wanna have a break from the noises all around</div>
+        <div class="lyric-cloud">I wanna have a break, from the noises all around</div>
         <div class="lyric-cloud">Don't be afraid of the nights coming</div>
-        <div class="lyric-cloud">the things that I want to, the things that I like to</div>
+        <div class="lyric-cloud">The things that I want to, the things that I like to</div>
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
     </div>
 
-    <!-- 粉丝留言墙 -->
+    <!-- 重新设计的粉丝留言互动墙（英文） -->
     <div class="fan-wall">
         <h3>Fan Message Wall</h3>
         <div class="fan-comments">
@@ -402,12 +371,13 @@
 
     <script>
         function toggleContent(id) {
-            const target = document.getElementById(id);
-            if (target.classList.contains('active')) {
-                target.classList.remove('active');
+            const targetContent = document.getElementById(id);
+            if (targetContent.classList.contains('active')) {
+                targetContent.classList.remove('active');
             } else {
-                document.querySelectorAll('.content-area').forEach(area => area.classList.remove('active'));
-                target.classList.add('active');
+                const allContents = document.querySelectorAll('.content-area');
+                allContents.forEach(content => content.classList.remove('active'));
+                targetContent.classList.add('active');
             }
         }
     </script>
