@@ -261,8 +261,22 @@
             background-color: #2c3e50;
             transform: translateY(-1px);
         }
+        /* 新增底部文字样式：两个不同字体 */
+        .footer-james {
+            font-family: "Montserrat", sans-serif; /* 粗体无衬线字体，与标题呼应 */
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 10px 0 5px;
+        }
+        .footer-copyright {
+            font-family: "Georgia", serif; /* 衬线字体，更显优雅 */
+            font-size: 16px;
+            color: #475569;
+            margin: 0 0 20px;
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="pattern cloud1">☁️</div>
@@ -308,26 +322,24 @@
 
     <p class="hint-text">More new songs are on the way - Wait and see!</p >
 
-    <!-- 调整后的第一行入口：Shop（原CD info）、Info（原James）、Contact -->
+    <!-- 入口按钮 -->
     <div class="entry-buttons">
         <button class="entry-btn" onclick="toggleContent('shop')">Shop</button>
         <button class="entry-btn" onclick="toggleContent('info')">Info</button>
         <button class="entry-btn" onclick="toggleContent('contact')">Contact</button>
     </div>
-    <!-- 调整后的第二行入口：About（原新增Shop）、Videos、Tour（原News） -->
     <div class="entry-buttons">
         <button class="entry-btn" onclick="toggleContent('about')">About</button>
         <button class="entry-btn" onclick="toggleContent('videos')">Videos</button>
         <button class="entry-btn" onclick="toggleContent('tour')">Tour</button>
     </div>
 
-    <!-- 各入口对应内容 -->
-    <!-- Shop（原CD info内容） -->
+    <!-- 内容区域 -->
     <div id="shop" class="content-area">
         <h3>James' Music Shop</h3>
         <p><strong>Debut Album of James</strong></p >
-        <p><strong>Album Price</strong>: 50 HKD</p >
-        <p><strong>Singles (Each)</strong>: 50 HKD</p >
+        <p><strong>Album Price</strong>: 35 HKD</p >
+        <p><strong>Singles (Each)</strong>: 35 HKD</p >
         <ul>
             <li>Brighter Days (feat. Jessica)</li>
             <li>Swinging Bells (feat. Jessica)</li>
@@ -335,38 +347,34 @@
         <p>Order via email: James03010@icloud.com (please note product name and quantity)</p >
     </div>
 
-    <!-- Info（原James留言内容） -->
     <div id="info" class="content-area">
         <h3>Message from James</h3>
         <p>This debut album has 8 tracks. It implies betrayal from workplace villains, people who gossip too much, and also touches on themes of friendship, perseverance, plus a song about seasons. Also thank you to my best companion, Jessica, we made two singles together.</p >
     </div>
 
-    <!-- Contact（内容不变） -->
     <div id="contact" class="content-area">
         <h3>Contact James</h3>
         <p><strong>Email</strong>: James03010@icloud.com</p >
     </div>
 
-    <!-- About（小清新甜歌风格英文介绍） -->
+    <!-- 调整后的 About 内容：突出“联系+放松” -->
     <div id="about" class="content-area">
         <h3>About</h3>
         <p>Welcome to Jimmy Land.</p >
         <p>Inhabited by James.</p >
-        <p>James is a singer-songwriter who specializes in soft, fresh "sweet songs"—the kind that feel like a warm breeze on a sunny day. His music is filled with gentle melodies and heartfelt lyrics, often talking about small, lovely moments in life: morning coffee, walking under cherry blossoms, or quiet chats with friends.</p >
-        <p>He hopes his songs can be a little comfort for you, turning ordinary days into something sweet and memorable. Thank you for stepping into Jimmy Land and sharing the joy of music together.</p >
+        <p>Jimmy Land isn’t just a space for my songs—it’s a place where you can connect deeply with the music, and a cozy corner to slow down and relax. Whether you’re listening to "Slow Days" while sipping morning coffee, or letting "Brighter Days" ease your evening tiredness, I hope these melodies become a gentle bridge between us.</p >
+        <p>Here, you don’t need to rush. Just let the music wrap around you, share small feelings with the songs, and find a little peace in the busy days. Thank you for stepping into this warm spot with me.</p >
     </div>
 
-    <!-- Videos（英文提示无内容） -->
     <div id="videos" class="content-area">
         <h3>Videos</h3>
         <p>Currently, there are no music videos or performance clips available here. We’re working on filming new content, and will update this section as soon as the videos are ready. Stay tuned!</p >
     </div>
 
-    <!-- Tour（James Live 2025英文介绍） -->
     <div id="tour" class="content-area">
         <h3>James Live 2025</h3>
-        <p>Get ready for James’ exclusive live shows in 2025! This tour will bring you intimate performances of his sweet hits, including "Slow Days" and "Brighter Days," plus never-before-heard new tracks.</p >
-        <p>Details like city stops and ticket sales will be announced soon. Follow James via email to get the latest updates on James Live 2025—don’t miss the chance to experience his soft music live!</p >
+        <p>Get ready for James’ exclusive livestream in 2025! "Slow Days" and "Brighter Days," plus never-before-heard new tracks.</p >
+        <p>Waiting to get the latest updates on James Live 2025 — Don’t miss the chance to experience the soft music live!</p >
     </div>
 
     <div class="lyric-clouds">
@@ -402,17 +410,16 @@
         </div>
     </div>
 
+    <!-- 新增官网底部中间文字：不同字体 -->
+    <div class="footer-james">James</div>
+    <div class="footer-copyright">© 2025 James</div>
+
     <script>
-        // 点击切换内容，再次点击同一按钮可隐藏（退出）
         function toggleContent(id) {
             const targetContent = document.getElementById(id);
             const isActive = targetContent.classList.contains('active');
-            
-            // 先隐藏所有内容区
             const allContents = document.querySelectorAll('.content-area');
             allContents.forEach(content => content.classList.remove('active'));
-            
-            // 若目标原本未激活，则激活；若已激活，则保持隐藏（实现“点一下显示，再点一下退出”）
             if (!isActive) {
                 targetContent.classList.add('active');
             }
