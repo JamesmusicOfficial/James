@@ -26,12 +26,51 @@
             position: relative;
             z-index: 2;
         }
-        /* 入口按钮样式 */
+        /* 歌曲列表样式 */
+        .tracklist { 
+            text-align:left;
+            margin:20px auto;
+            max-width:500px;
+            background-color: rgba(255,255,255,0.8); 
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 2;
+        }
+        .section-title {
+            font-size: 24px;
+            color: #1a5276; 
+            text-decoration: underline wavy #3498db;
+            margin: 30px 0 15px;
+            position: relative;
+            z-index: 2;
+        }
+        .tracklist li {
+            font-size: 18px;
+            margin: 10px 0;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            font-family: "Comic Sans MS", cursive;
+            color: #2c3e50;
+        }
+        .tracklist li:hover {
+            background-color: #e3f2fd;
+        }
+        .hint-text {
+            font-size:16px; 
+            color:#2c3e50;
+            position: relative;
+            z-index: 2;
+            margin: 20px 0;
+        }
+        /* 三个入口按钮 */
         .entry-buttons {
             display: flex;
             justify-content: center;
             gap: 30px;
-            margin: 30px 0;
+            margin: 40px 0 20px;
             position: relative;
             z-index: 2;
         }
@@ -44,15 +83,14 @@
             font-size: 18px;
             cursor: pointer;
             transition: background-color 0.3s;
-            text-decoration: none;
         }
         .entry-btn:hover {
             background-color: #2c3e50;
         }
-        /* 内容显示区域 */
+        /* 内容区域（默认隐藏，点击按钮显示） */
         .content-area {
             max-width: 600px;
-            margin: 40px auto;
+            margin: 20px auto;
             padding: 30px;
             background-color: rgba(255,255,255,0.9);
             border-radius: 10px;
@@ -60,6 +98,10 @@
             position: relative;
             z-index: 2;
             text-align: left;
+            display: none; /* 默认隐藏 */
+        }
+        .content-area.active {
+            display: block; /* 点击后显示 */
         }
         .content-area h3 {
             color: #1a5276;
@@ -75,7 +117,7 @@
         .content-area ul {
             padding-left: 20px;
         }
-        /* 图案样式 */
+        /* 背景图案 */
         .pattern {
             position: absolute;
             font-size: 35px;
@@ -83,7 +125,7 @@
             z-index: 1;
         }
         .cloud1 { top: 100px; left: 50px; color: #b0c4de; }
-        .note1 { top: 200px; right: 80px; color: #8b4513; }
+        .note1 { top: 300px; right: 80px; color: #8b4513; }
         .snow1 { bottom: 150px; left: 80px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
         .branch1 { bottom: 80px; right: 100px; color: #8b4513; transform: rotate(15deg); }
     </style>
@@ -95,21 +137,46 @@
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <!-- 标题 -->
+    <!-- 开头标题 -->
     <h1 class="color-title">James' Music</h1>
 
-    <!-- 三个入口按钮 -->
-    <div class="entry-buttons">
-        <a href=" " class="entry-btn">CD information</a >
-        <a href="#james-thanks" class="entry-btn">James</a >
-        <a href="#contact" class="entry-btn">contact</a >
+    <!-- 开头歌曲列表（恢复原样） -->
+    <div class="tracklist">
+        <h3 class="section-title">Album (James)</h3>
+        <ol>
+            <li>Little progress</li>
+            <li>No More Hurry</li>
+            <li>Chase Stars</li>
+            <li>Everything I want</li>
+            <li>Slow Days</li>
+            <li>Winter is coming</li>
+            <li>Run with You</li>
+            <li>We Will See It To The End</li>
+        </ol>
     </div>
 
-    <!-- 1. CD information 内容 -->
+    <div class="tracklist">
+        <h3 class="section-title">Featured Singles (James and Jessica)</h3>
+        <ol start="9">
+            <li><a href="" target="_blank">Brighter Days (feat. Jessica)</a ></li>
+            <li>Swinging Bells (feat. Jessica) New Song!!!</li>
+        </ol>
+    </div>
+
+    <p class="hint-text">More new songs are on the way - Wait and see!</p >
+
+    <!-- 三个入口按钮（放在歌曲列表下方） -->
+    <div class="entry-buttons">
+        <button class="entry-btn" onclick="showContent('cd-info')">CD information</button>
+        <button class="entry-btn" onclick="showContent('james-thanks')">James</button>
+        <button class="entry-btn" onclick="showContent('contact')">contact</button>
+    </div>
+
+    <!-- 1. CD information 内容（默认隐藏） -->
     <div id="cd-info" class="content-area">
         <h3>CD Information</h3>
         <p><strong>Debut Album of James</strong></p >
-        <p><strong>Price</strong>: 50 港币</p >
+        <p><strong>Price</strong>: 50 HKD</p >
         <p><strong>Singles</strong>:</p >
         <ul>
             <li>Brighter Days (feat. Jessica)</li>
@@ -117,16 +184,27 @@
         </ul>
     </div>
 
-    <!-- 2. James 内容 -->
+    <!-- 2. James 内容（默认隐藏） -->
     <div id="james-thanks" class="content-area">
         <h3>Message from James</h3>
         <p>Thank you for supporting my songs. Thank you for supporting my music job.</p >
     </div>
 
-    <!-- 3. contact 内容 -->
+    <!-- 3. contact 内容（默认隐藏） -->
     <div id="contact" class="content-area">
         <h3>Contact James</h3>
         <p><strong>Email</strong>: JAMES03010@icloud.com</p >
     </div>
+
+    <!-- 控制内容显示/隐藏的代码 -->
+    <script>
+        function showContent(id) {
+            // 先隐藏所有内容
+            const allContents = document.querySelectorAll('.content-area');
+            allContents.forEach(content => content.classList.remove('active'));
+            // 再显示点击的内容
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
 </body>
 </html>
