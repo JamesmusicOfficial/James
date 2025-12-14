@@ -13,6 +13,7 @@
             background-color: #f0f8ff; 
             position: relative;
         }
+        /* 统一James标题字体 */
         .james-poster {
             max-width: 700px;
             margin: 0 auto 40px;
@@ -25,30 +26,17 @@
         }
         .poster-title {
             font-size: 60px;
-            font-weight: bold;
-            letter-spacing: 2px;
+            font-weight: 800;
+            letter-spacing: 3px;
             display: inline-block;
+            font-family: "Montserrat", "Arial Black", sans-serif; /* 统一简约字体 */
         }
-        .poster-title span:nth-child(1) {
-            font-family: "Times New Roman", serif;
-            color: #4a6fa5;
-        }
-        .poster-title span:nth-child(2) {
-            font-family: "Arial Black", sans-serif;
-            color: #e74c3c;
-        }
-        .poster-title span:nth-child(3) {
-            font-family: "Georgia", serif;
-            color: #f39c12;
-        }
-        .poster-title span:nth-child(4) {
-            font-family: "Verdana", sans-serif;
-            color: #27ae60;
-        }
-        .poster-title span:nth-child(5) {
-            font-family: "Courier New", monospace;
-            color: #9b59b6;
-        }
+        /* 保留分色但字体统一 */
+        .poster-title span:nth-child(1) { color: #4a6fa5; }
+        .poster-title span:nth-child(2) { color: #e74c3c; }
+        .poster-title span:nth-child(3) { color: #f39c12; }
+        .poster-title span:nth-child(4) { color: #27ae60; }
+        .poster-title span:nth-child(5) { color: #9b59b6; }
         .poster-deco {
             position: absolute;
             opacity: 0.7;
@@ -168,6 +156,8 @@
             border-radius: 10px;
         }
     </style>
+    <!-- 引入外部字体（可选，增强显示效果） -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="pattern cloud1">☁️</div>
@@ -240,7 +230,7 @@
     </div>
 
     <div class="bottom-photo">
-        < img src="这里替换为你第一张照片的链接" alt="James poster">
+        < img src="https://github.com/JamesmusicOfficial/James/blob/main/43f8deec7ed2450936187449c9908229的副本.jpg" alt="James poster">
     </div>
 
     <script>
