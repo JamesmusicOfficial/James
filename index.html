@@ -1,451 +1,385 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>James' Music</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 30px;
-            text-align: center;
-            font-family: "Georgia", "Microsoft YaHei", serif;
-            background-color: #f0f8ff;
-            position: relative;
-        }
-        /* 装饰元素（保留原设计） */
-        .pattern {
-            position: absolute;
-            font-size: 35px;
-            opacity: 0.5;
-            z-index: 1;
-        }
-        .cloud1 { top: 100px; left: 50px; color: #b0c4de; }
-        .note1 { top: 300px; right: 80px; color: #8b4513; }
-        .snow1 { bottom: 150px; left: 80px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
-        .branch1 { bottom: 80px; right: 100px; color: #8b4513; transform: rotate(15deg); }
-        /* 标题海报（保留原设计） */
-        .james-poster {
-            max-width: 700px;
-            margin: 0 auto 40px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-        }
-        .poster-title {
-            font-size: 60px;
-            font-weight: 800;
-            letter-spacing: 3px;
-            display: inline-block;
-            font-family: "Montserrat", "Arial Black", sans-serif;
-            position: relative;
-            z-index: 2;
-        }
-        .poster-title span:nth-child(1) { color: #4a6fa5; }
-        .poster-title span:nth-child(2) { color: #e74c3c; }
-        .poster-title span:nth-child(3) { color: #f39c12; }
-        .poster-title span:nth-child(4) { color: #27ae60; }
-        .poster-title span:nth-child(5) { color: #9b59b6; }
-        .poster-deco {
-            position: absolute;
-            opacity: 0.5;
-            font-size: 30px;
-            z-index: 1;
-        }
-        .deco1 { top: 20px; left: 30px; color: #4a6fa5; }
-        .deco2 { bottom: 20px; right: 50px; color: #e74c3c; }
-        .deco3 { top: 50px; right: 40px; color: #f39c12; }
-        .deco4 { bottom: 30px; left: 40px; color: #27ae60; }
-        /* 曲目列表（保留原设计） */
-        .tracklist {
-            text-align: left;
-            margin: 20px auto;
-            max-width: 500px;
-            background: rgba(255,255,255,0.8);
-            padding: 20px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-            position: relative;
-            z-index: 2;
-        }
-        .section-title {
-            font-size: 24px;
-            color: #1a5276;
-            text-decoration: underline wavy #3498db;
-            margin: 30px 0 15px;
-            position: relative;
-            z-index: 2;
-        }
-        .tracklist li {
-            font-size: 18px;
-            margin: 10px 0;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background 0.3s;
-            font-family: "Comic Sans MS", cursive;
-            color: #2c3e50;
-        }
-        .tracklist li:hover {
-            background: #e3f2fd;
-        }
-        .hint-text {
-            font-size: 16px;
-            color: #2c3e50;
-            margin: 20px 0;
-            position: relative;
-            z-index: 2;
-        }
-        /* 按钮区域（恢复原样式：间距、颜色、大小） */
-        .entry-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 40px 0 20px;
-            position: relative;
-            z-index: 2;
-            flex-wrap: wrap;
-        }
-        .entry-btn {
-            padding: 15px 30px;
-            background: #4a6fa5;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .entry-btn:hover {
-            background: #2c3e50;
-        }
-        /* 内容区域（恢复原样式：显示逻辑、阴影、内边距） */
-        .content-area {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 30px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 2;
-            text-align: left;
-            display: none;
-        }
-        .content-area.active {
-            display: block;
-        }
-        .content-area h3 {
-            color: #1a5276;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #e3f2fd;
-            padding-bottom: 10px;
-        }
-        .content-area p, .content-area li {
-            font-size: 16px;
-            color: #2c3e50;
-            line-height: 1.6;
-        }
-        .content-area ul {
-            padding-left: 20px;
-        }
-        /* 歌词云（保留原设计） */
-        .lyric-clouds {
-            margin: 30px 0;
-            position: relative;
-            z-index: 2;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .lyric-cloud {
-            position: relative;
-            width: 200px;
-            height: 120px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 100px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 10px auto;
-            padding: 15px;
-            font-size: 14px;
-            color: #2c3e50;
-            line-height: 1.5;
-        }
-        .lyric-cloud:nth-child(odd) { margin-right: 5px; }
-        .lyric-cloud:nth-child(even) { margin-left: 5px; }
-        /* Live 2025 模块（适配原风格：背景、阴影、间距） */
-        .live-2025 {
-            max-width: 700px;
-            margin: 30px auto;
-            padding: 25px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 2;
-        }
-        .live-2025 h2 {
-            font-size: 28px;
-            color: #1a5276;
-            margin-bottom: 15px;
-            font-family: "Montserrat", sans-serif;
-            border-bottom: 2px solid #e3f2fd;
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-        .live-2025 p {
-            color: #2c3e50;
-            line-height: 1.6;
-            font-size: 16px;
-            margin-top: 15px;
-        }
-        /* 粉丝留言墙（保留原设计） */
-        .fan-wall {
-            max-width: 700px;
-            margin: 30px auto;
-            padding: 25px;
-            background: rgba(255,255,255,0.95);
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-            position: relative;
-            z-index: 2;
-        }
-        .fan-wall h3 {
-            color: #1a5276;
-            font-size: 22px;
-            margin-bottom: 22px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        .fan-comments {
-            text-align: left;
-            margin-bottom: 28px;
-            gap: 18px;
-            display: flex;
-            flex-direction: column;
-        }
-        .fan-comment {
-            padding: 16px;
-            background: #f8fafc;
-            border-radius: 8px;
-            border-left: 3px solid #4a6fa5;
-        }
-        .fan-name {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 6px;
-            font-size: 15px;
-        }
-        .fan-text {
-            font-size: 14.5px;
-            color: #475569;
-            line-height: 1.6;
-        }
-        .comment-input {
-            margin-top: 10px;
-            gap: 12px;
-            display: flex;
-            flex-direction: column;
-        }
-        .comment-input input,
-        .comment-input textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-family: "Georgia", sans-serif;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-        .comment-input input:focus,
-        .comment-input textarea:focus {
-            outline: none;
-            border-color: #4a6fa5;
-        }
-        .comment-input textarea {
-            height: 110px;
-            resize: none;
-            line-height: 1.5;
-        }
-        .comment-btn {
-            padding: 12px 25px;
-            background: #4a6fa5;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 15px;
-            font-weight: 500;
-            align-self: flex-start;
-        }
-        .comment-btn:hover {
-            background: #2c3e50;
-            transform: translateY(-1px);
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>James' Music</title>
+    <style>
+        body{ 
+            max-width:900px;
+            margin:0 auto;
+            padding:30px;
+            text-align:center;
+            font-family: "Georgia", "Microsoft YaHei", serif;
+            background-color: #f0f8ff; 
+            position: relative;
+        }
+        .james-poster {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+        .poster-title {
+            font-size: 60px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            display: inline-block;
+            font-family: "Montserrat", "Arial Black", sans-serif;
+            position: relative;
+            z-index: 2;
+        }
+        .poster-title span:nth-child(1) { color: #4a6fa5; }
+        .poster-title span:nth-child(2) { color: #e74c3c; }
+        .poster-title span:nth-child(3) { color: #f39c12; }
+        .poster-title span:nth-child(4) { color: #27ae60; }
+        .poster-title span:nth-child(5) { color: #9b59b6; }
+        .poster-deco {
+            position: absolute;
+            opacity: 0.5;
+            font-size: 30px;
+            z-index: 1;
+        }
+        .deco1 { top: 20px; left: 30px; color: #4a6fa5; }
+        .deco2 { bottom: 20px; right: 50px; color: #e74c3c; }
+        .deco3 { top: 50px; right: 40px; color: #f39c12; }
+        .deco4 { bottom: 30px; left: 40px; color: #27ae60; }
+        .tracklist { 
+            text-align:left;
+            margin:20px auto;
+            max-width:500px;
+            background-color: rgba(255,255,255,0.8); 
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 2;
+        }
+        .section-title {
+            font-size: 24px;
+            color: #1a5276; 
+            text-decoration: underline wavy #3498db;
+            margin: 30px 0 15px;
+            position: relative;
+            z-index: 2;
+        }
+        .tracklist li {
+            font-size: 18px;
+            margin: 10px 0;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            font-family: "Comic Sans MS", cursive;
+            color: #2c3e50;
+        }
+        .tracklist li:hover {
+            background-color: #e3f2fd;
+        }
+        .hint-text {
+            font-size:16px; 
+            color:#2c3e50;
+            position: relative;
+            z-index: 2;
+            margin: 20px 0;
+        }
+        .entry-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        .entry-btn {
+            padding: 15px 30px;
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .entry-btn:hover {
+            background-color: #2c3e50;
+        }
+        .content-area {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+            text-align: left;
+            display: none;
+        }
+        .content-area.active {
+            display: block;
+        }
+        .content-area h3 {
+            color: #1a5276;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e3f2fd;
+            padding-bottom: 10px;
+        }
+        .content-area p, .content-area li {
+            font-size: 16px;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        .content-area ul {
+            padding-left: 20px;
+        }
+        .pattern {
+            position: absolute;
+            font-size: 35px;
+            opacity: 0.5;
+            z-index: 1;
+        }
+        .cloud1 { top: 100px; left: 50px; color: #b0c4de; }
+        .note1 { top: 300px; right: 80px; color: #8b4513; }
+        .snow1 { bottom: 150px; left: 80px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
+        .branch1 { bottom: 80px; right: 100px; color: #8b4513; transform: rotate(15deg); }
+        .lyric-clouds {
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .lyric-cloud {
+            position: relative;
+            width: 200px;
+            height: 120px;
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 100px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+            padding: 15px;
+            font-size: 14px;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        .lyric-cloud:nth-child(odd) {
+            margin-right: 5px;
+        }
+        .lyric-cloud:nth-child(even) {
+            margin-left: 5px;
+        }
+        /* 重新设计的粉丝留言墙 */
+        .fan-wall {
+            max-width: 700px;
+            margin: 40px auto 30px;
+            padding: 25px;
+            background-color: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+            position: relative;
+            z-index: 2;
+        }
+        .fan-wall h3 {
+            color: #1a5276;
+            font-size: 22px;
+            margin-bottom: 22px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .fan-comments {
+            text-align: left;
+            margin-bottom: 28px;
+            gap: 18px;
+            display: flex;
+            flex-direction: column;
+        }
+        .fan-comment {
+            padding: 16px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border-left: 3px solid #4a6fa5;
+        }
+        .fan-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+        .fan-text {
+            font-size: 14.5px;
+            color: #475569;
+            line-height: 1.6;
+        }
+        .comment-input {
+            margin-top: 10px;
+            gap: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+        .comment-input input,
+        .comment-input textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: "Georgia", sans-serif;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        .comment-input input:focus,
+        .comment-input textarea:focus {
+            outline: none;
+            border-color: #4a6fa5;
+        }
+        .comment-input textarea {
+            height: 110px;
+            resize: none;
+            line-height: 1.5;
+        }
+        .comment-btn {
+            padding: 12px 25px;
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 15px;
+            font-weight: 500;
+            align-self: flex-start;
+        }
+        .comment-btn:hover {
+            background-color: #2c3e50;
+            transform: translateY(-1px);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="pattern cloud1">☁️</div>
-    <div class="pattern note1">🎵</div>
-    <div class="pattern snow1">❄️</div>
-    <div class="pattern branch1">🌿</div>
+    <div class="pattern cloud1">☁️</div>
+    <div class="pattern note1">🎵</div>
+    <div class="pattern snow1">❄️</div>
+    <div class="pattern branch1">🌿</div>
 
-    <!-- 标题海报 -->
-    <div class="james-poster">
-        <div class="poster-title">
-            <span>J</span><span>a</span><span>m</span><span>e</span><span>s</span>
-        </div>
-        <div class="poster-deco deco1">△</div>
-        <div class="poster-deco deco2">○</div>
-        <div class="poster-deco deco3">☆</div>
-        <div class="poster-deco deco4">□</div>
-    </div>
+    <div class="james-poster">
+        <div class="poster-title">
+            <span>J</span>
+            <span>a</span>
+            <span>m</span>
+            <span>e</span>
+            <span>s</span>
+        </div>
+        <div class="poster-deco deco1">△</div>
+        <div class="poster-deco deco2">○</div>
+        <div class="poster-deco deco3">☆</div>
+        <div class="poster-deco deco4">□</div>
+    </div>
 
-    <!-- 曲目列表 -->
-    <div class="tracklist">
-        <h3 class="section-title">Album (James)</h3>
-        <ol>
-            <li>Little Progress</li>
-            <li>No More Hurry</li>
-            <li>Chase Stars</li>
-            <li>Everything I want</li>
-            <li>Slow Days</li>
-            <li>Winter is Coming</li>
-            <li>Run With You</li>
-            <li>We Will See It To The End</li>
-        </ol>
-    </div>
-    <div class="tracklist">
-        <h3 class="section-title">Featured Singles (James & Jessica)</h3>
-        <ol start="9">
-            <li>Brighter Days (feat. Jessica)</li>
-            <li>Swinging Bells (feat. Jessica)</li>
-        </ol>
-    </div>
-    <p class="hint-text">More new songs are on the way - Wait and see!</p>
+    <div class="tracklist">
+        <h3 class="section-title">Album (James)</h3>
+        <ol>
+            <li>Little Progress</li>
+            <li>No More Hurry</li>
+            <li>Chase Stars</li>
+            <li>Everything I Want</li>
+            <li>Slow Days</li>
+            <li>Winter is Coming</li>
+            <li>Run With You</li>
+            <li>We Will See It To The End</li>
+        </ol>
+    </div>
 
-    <!-- 按钮区域（上：Music、Info、Contact） -->
-    <div class="entry-buttons">
-        <button class="entry-btn" onclick="toggleContent('music')">Music</button>
-        <button class="entry-btn" onclick="toggleContent('info')">Info</button>
-        <button class="entry-btn" onclick="toggleContent('contact')">Contact</button>
-    </div>
-    <!-- 按钮区域（下：About、Videos、News） -->
-    <div class="entry-buttons">
-        <button class="entry-btn" onclick="toggleContent('about')">About</button>
-        <button class="entry-btn" onclick="toggleContent('videos')">Videos</button>
-        <button class="entry-btn" onclick="toggleContent('news')">News</button>
-    </div>
+    <div class="tracklist">
+        <h3 class="section-title">Featured Singles (James and Jessica)</h3>
+        <ol start="9">
+            <li>Brighter Days (feat. Jessica)</li>
+            <li>Swinging Bells (feat. Jessica)</li>
+        </ol>
+    </div>
 
-    <!-- 各入口对应内容（确保ID与按钮onclick参数一致，修复点击问题） -->
-    <!-- Music -->
-    <div id="music" class="content-area">
-        <h3>Music Information</h3>
-        <p><strong>Debut Album of James</strong></p>
-        <p><strong>Album Price</strong>: 50 HKD</p>
-        <p><strong>Singles (Each)</strong>: 50 HKD</p>
-        <ul>
-            <li>Brighter Days (feat. Jessica)</li>
-            <li>Swinging Bells (feat. Jessica)</li>
-        </ul>
-    </div>
-    <!-- Info -->
-    <div id="info" class="content-area">
-        <h3>Message from James</h3>
-        <p>This debut album has 8 tracks. It implies betrayal from workplace villains, people who gossip too much, and also touches on themes of friendship, perseverance, plus a song about seasons. Also thank you to my best companion, Jessica, we made two singles together.</p>
-    </div>
-    <!-- Contact -->
-    <div id="contact" class="content-area">
-        <h3>Contact James</h3>
-        <p><strong>Email</strong>: James03010@icloud.com</p>
-    </div>
-    <!-- About（保留调整后文案，适配原风格） -->
-    <div id="about" class="content-area">
-        <h3>About</h3>
-        <p>Welcome to Jimmyland.</p>
-        <p>Inhabited by singer and songwriter James, this space is more than just a music website—it’s a collection of stories, emotions, and melodies that James has crafted over time.</p>
-        <p>Here, you’ll find not only his official discography but also glimpses into the inspiration behind each song, from quiet morning thoughts to moments of life’s big realizations.</p>
-        <p>Whether you’re a long-time fan or just discovering James’ music, Jimmyland is where you can connect with the heart of his songs.</p>
-    </div>
-    <!-- Videos -->
-    <div id="videos" class="content-area">
-        <h3>Videos</h3>
-        <p>No music videos or live performance clips have been uploaded yet. Please stay tuned for updates.</p>
-    </div>
-    <!-- News -->
-    <div id="news" class="content-area">
-        <h3>Latest News</h3>
-        <p>There is no latest news available at the moment. Follow James' social media or check back later for updates.</p>
-    </div>
+    <p class="hint-text">More new songs are on the way - Wait and see!</p >
 
-    <!-- 歌词云 -->
-    <div class="lyric-clouds">
-        <div class="lyric-cloud">No noise around can pull us apart</div>
-        <div class="lyric-cloud">Life small things they make the sense</div>
-        <div class="lyric-cloud">Haters talking noise, but I don't give a damn</div>
-        <div class="lyric-cloud">I wanna have a break, from the noises all around</div>
-        <div class="lyric-cloud">Don't be afraid of the nights coming</div>
-        <div class="lyric-cloud">The things that I want to, the things that I like to</div>
-        <div class="lyric-cloud">I will hit repeat on the good days we made</div>
-    </div>
+    <div class="entry-buttons">
+        <button class="entry-btn" onclick="toggleContent('cd-info')">CD information</button>
+        <button class="entry-btn" onclick="toggleContent('james-thanks')">James</button>
+        <button class="entry-btn" onclick="toggleContent('contact')">Contact</button>
+    </div>
 
-    <!-- Live 2025 模块 -->
-    <div class="live-2025">
-        <h2>James Live 2025</h2>
-        <p>James will bring exclusive live performances in 2025, featuring classic tracks and new song premieres. Stay tuned for updates on live stream schedules and offline concert cities—never miss a chance to experience James' music live!</p>
-    </div>
+    <div id="cd-info" class="content-area">
+        <h3>CD Information</h3>
+        <p><strong>Debut Album of James</strong></p >
+        <p><strong>Album Price</strong>: 50 HKD</p >
+        <p><strong>Singles (Each)</strong>: 50 HKD</p >
+        <ul>
+            <li>Brighter Days (feat. Jessica)</li>
+            <li>Swinging Bells (feat. Jessica)</li>
+        </ul>
+    </div>
 
-    <!-- 粉丝留言墙 -->
-    <div class="fan-wall">
-        <h3>Fan Message Wall</h3>
-        <div class="fan-comments">
-            <div class="fan-comment">
-                <div class="fan-name">Sophia L.</div>
-                <div class="fan-text">"I will hit repeat on the good days we made" — this line stuck with me the second I heard it. Your music turns ordinary moments into something special. Thank you for sharing your voice!</div>
-            </div>
-            <div class="fan-comment">
-                <div class="fan-name">Jack M.</div>
-                <div class="fan-text">Been listening to "Slow Days" every morning while I make coffee. It’s so calm and warm—exactly what I need to start my day right. Any chance you’ll release a live version someday?</div>
-            </div>
-            <div class="fan-comment">
-                <div class="fan-name">Olivia T.</div>
-                <div class="fan-text">The collab with Jessica on "Brighter Days" is *chef’s kiss*! Your voices blend so well. I’ve been recommending it to all my friends—they love it too. Can’t wait for what’s next!</div>
-            </div>
-        </div>
-        <div class="comment-input">
-            <input type="text" placeholder="Your Name" required>
-            <textarea placeholder="What do my songs mean to you? Share your story here..." required></textarea>
-            <button class="comment-btn">Post Your Message</button>
-        </div>
-    </div>
+    <div id="james-thanks" class="content-area">
+        <h3>Message from James</h3>
+        <p>This debut album has 8 tracks. It implies betrayal from workplace villains, people who gossip too much, and also touches on themes of friendship, perseverance, plus a song about seasons. Also thank you to my best companion, Jessica, we made two singles together.</p >
+    </div>
 
-    <!-- 修复点击逻辑：确保切换时正确显示/隐藏内容 -->
-    <script>
-        function toggleContent(id) {
-            // 先隐藏所有内容区
-            const allContent = document.querySelectorAll('.content-area');
-            allContent.forEach(area => {
-                area.classList.remove('active');
-            });
-            // 再显示目标内容区
-            const targetContent = document.getElementById(id);
-            if (targetContent) {
-                targetContent.classList.add('active');
-            }
-        }
-    </script>
+    <div id="contact" class="content-area">
+        <h3>Contact James</h3>
+        <p><strong>Email</strong>: James03010@icloud.com</p >
+    </div>
+
+    <div class="lyric-clouds">
+        <div class="lyric-cloud">No noise around can pull us apart</div>
+        <div class="lyric-cloud">Life small things they make the sense</div>
+        <div class="lyric-cloud">Haters talking noise, but I don't give a damn</div>
+        <div class="lyric-cloud">I wanna have a break, from the noises all around</div>
+        <div class="lyric-cloud">Don't be afraid of the nights coming</div>
+        <div class="lyric-cloud">The things that I want to, the things that I like to</div>
+        <div class="lyric-cloud">I will hit repeat on the good days we made</div>
+    </div>
+
+    <!-- 重新设计的粉丝留言互动墙（英文） -->
+    <div class="fan-wall">
+        <h3>Fan Message Wall</h3>
+        <div class="fan-comments">
+            <div class="fan-comment">
+                <div class="fan-name">Sophia L.</div>
+                <div class="fan-text">"I will hit repeat on the good days we made" — this line stuck with me the second I heard it. Your music turns ordinary moments into something special. Thank you for sharing your voice!</div>
+            </div>
+            <div class="fan-comment">
+                <div class="fan-name">Jack M.</div>
+                <div class="fan-text">Been listening to "Slow Days" every morning while I make coffee. It’s so calm and warm—exactly what I need to start my day right. Any chance you’ll release a live version someday?</div>
+            </div>
+            <div class="fan-comment">
+                <div class="fan-name">Olivia T.</div>
+                <div class="fan-text">The collab with Jessica on "Brighter Days" is *chef’s kiss*! Your voices blend so well. I’ve been recommending it to all my friends—they love it too. Can’t wait for what’s next!</div>
+            </div>
+        </div>
+        <div class="comment-input">
+            <input type="text" placeholder="Your Name" required>
+            <textarea placeholder="What do my songs mean to you? Share your story here..." required></textarea>
+            <button class="comment-btn">Post Your Message</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleContent(id) {
+            const targetContent = document.getElementById(id);
+            if (targetContent.classList.contains('active')) {
+                targetContent.classList.remove('active');
+            } else {
+                const allContents = document.querySelectorAll('.content-area');
+                allContents.forEach(content => content.classList.remove('active'));
+                targetContent.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
