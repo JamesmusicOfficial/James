@@ -13,7 +13,6 @@
             background-color: #f0f8ff; 
             position: relative;
         }
-        /* 统一James标题字体 */
         .james-poster {
             max-width: 700px;
             margin: 0 auto 40px;
@@ -23,15 +22,17 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             position: relative;
             z-index: 2;
+            overflow: hidden;
         }
         .poster-title {
             font-size: 60px;
             font-weight: 800;
             letter-spacing: 3px;
             display: inline-block;
-            font-family: "Montserrat", "Arial Black", sans-serif; /* 统一简约字体 */
+            font-family: "Montserrat", "Arial Black", sans-serif;
+            position: relative;
+            z-index: 2;
         }
-        /* 保留分色但字体统一 */
         .poster-title span:nth-child(1) { color: #4a6fa5; }
         .poster-title span:nth-child(2) { color: #e74c3c; }
         .poster-title span:nth-child(3) { color: #f39c12; }
@@ -39,12 +40,14 @@
         .poster-title span:nth-child(5) { color: #9b59b6; }
         .poster-deco {
             position: absolute;
-            opacity: 0.7;
+            opacity: 0.5;
             font-size: 30px;
+            z-index: 1;
         }
         .deco1 { top: 20px; left: 30px; color: #4a6fa5; }
         .deco2 { bottom: 20px; right: 50px; color: #e74c3c; }
         .deco3 { top: 50px; right: 40px; color: #f39c12; }
+        .deco4 { bottom: 30px; left: 40px; color: #27ae60; }
         .tracklist { 
             text-align:left;
             margin:20px auto;
@@ -143,6 +146,33 @@
         .note1 { top: 300px; right: 80px; color: #8b4513; }
         .snow1 { bottom: 150px; left: 80px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
         .branch1 { bottom: 80px; right: 100px; color: #8b4513; transform: rotate(15deg); }
+        .lyric-clouds {
+            margin: 50px 0;
+            position: relative;
+            z-index: 2;
+        }
+        .lyric-cloud {
+            position: relative;
+            width: 200px;
+            height: 120px;
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 100px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            padding: 15px;
+            font-size: 14px;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        .lyric-cloud:nth-child(odd) {
+            margin-right: 100px;
+        }
+        .lyric-cloud:nth-child(even) {
+            margin-left: 100px;
+        }
         .bottom-photo {
             max-width: 700px;
             margin: 40px auto 20px;
@@ -156,7 +186,6 @@
             border-radius: 10px;
         }
     </style>
-    <!-- 引入外部字体（可选，增强显示效果） -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -176,18 +205,19 @@
         <div class="poster-deco deco1">△</div>
         <div class="poster-deco deco2">○</div>
         <div class="poster-deco deco3">☆</div>
+        <div class="poster-deco deco4">□</div>
     </div>
 
     <div class="tracklist">
         <h3 class="section-title">Album (James)</h3>
         <ol>
-            <li>Little progress</li>
+            <li>Little Progress</li>
             <li>No More Hurry</li>
             <li>Chase Stars</li>
-            <li>Everything I want</li>
+            <li>Everything I Want</li>
             <li>Slow Days</li>
-            <li>Winter is coming</li>
-            <li>Run with You</li>
+            <li>Winter Is Coming</li>
+            <li>Run With You</li>
             <li>We Will See It To The End</li>
         </ol>
     </div>
@@ -203,9 +233,9 @@
     <p class="hint-text">More new songs are on the way - Wait and see!</p >
 
     <div class="entry-buttons">
-        <button class="entry-btn" onclick="showContent('cd-info')">CD information</button>
-        <button class="entry-btn" onclick="showContent('james-thanks')">James</button>
-        <button class="entry-btn" onclick="showContent('contact')">Contact</button>
+        <button class="entry-btn" onclick="toggleContent('cd-info')">CD information</button>
+        <button class="entry-btn" onclick="toggleContent('james-thanks')">James</button>
+        <button class="entry-btn" onclick="toggleContent('contact')">Contact</button>
     </div>
 
     <div id="cd-info" class="content-area">
@@ -229,15 +259,30 @@
         <p><strong>Email</strong>: JAMES03010@icloud.com</p >
     </div>
 
-    <div class="bottom-photo">
-        < img src="https://github.com/JamesmusicOfficial/James/blob/main/43f8deec7ed2450936187449c9908229的副本.jpg" alt="James poster">
+    <div class="lyric-clouds">
+        <div class="lyric-cloud">no noise around can pull us apart</div>
+        <div class="lyric-cloud">life small things they make the sense</div>
+        <div class="lyric-cloud">Haters talking noise, but I don't give a damn</div>
+        <div class="lyric-cloud">I wanna have a break from the noises all around</div>
+        <div class="lyric-cloud">Don't be afraid of the nights coming</div>
+        <div class="lyric-cloud">the things that I want to, the things that I like to</div>
+        <div class="lyric-cloud">I will hit repeat on the good days we made</div>
     </div>
 
+
     <script>
-        function showContent(id) {
-            const allContents = document.querySelectorAll('.content-area');
-            allContents.forEach(content => content.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+        // 切换显示/隐藏（点一下开，再点一下关）
+        function toggleContent(id) {
+            const targetContent = document.getElementById(id);
+            // 如果当前是显示状态，就隐藏；否则显示
+            if (targetContent.classList.contains('active')) {
+                targetContent.classList.remove('active');
+            } else {
+                // 先隐藏其他内容，再显示当前
+                const allContents = document.querySelectorAll('.content-area');
+                allContents.forEach(content => content.classList.remove('active'));
+                targetContent.classList.add('active');
+            }
         }
     </script>
 </body>
