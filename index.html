@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>James Music</title>
+    <title>James' Music</title>
     <style>
         body{ 
             max-width:900px;
@@ -167,24 +167,12 @@
             color: #2c3e50;
             line-height: 1.5;
         }
-        /* 缩小左右间距，让云离得更近 */
+        /* 大幅缩小左右间距，让云紧凑排列 */
         .lyric-cloud:nth-child(odd) {
-            margin-right: 30px;
+            margin-right: 10px;
         }
         .lyric-cloud:nth-child(even) {
-            margin-left: 30px;
-        }
-        .bottom-photo {
-            max-width: 700px;
-            margin: 40px auto 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 2;
-        }
-        .bottom-photo img {
-            width: 100%;
-            border-radius: 10px;
+            margin-left: 10px;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
@@ -242,8 +230,8 @@
     <div id="cd-info" class="content-area">
         <h3>CD Information</h3>
         <p><strong>Debut Album of James</strong></p >
-        <p><strong>Album Price</strong>: 50 HKD</p >
-        <p><strong>Singles (Each)</strong>: 50 HKD</p >
+        <p><strong>Album Price</strong>: 30 HKD</p >
+        <p><strong>Singles (Each)</strong>: 30 HKD</p >
         <ul>
             <li>Brighter Days (feat. Jessica)</li>
             <li>Swinging Bells (feat. Jessica)</li>
@@ -257,20 +245,18 @@
 
     <div id="contact" class="content-area">
         <h3>Contact James</h3>
-        <p><strong>Email</strong>: JAMES03010@icloud.com</p >
+        <p><strong>Email</strong>: James03010@icloud.com</p >
     </div>
 
+    <!-- 歌词云区域（紧凑排列，已删除底部照片） -->
     <div class="lyric-clouds">
         <div class="lyric-cloud">No noise around can pull us apart</div>
         <div class="lyric-cloud">Life small things they make the sense</div>
         <div class="lyric-cloud">Haters talking noise, but I don't give a damn</div>
         <div class="lyric-cloud">I wanna have a break, from the noises all around</div>
         <div class="lyric-cloud">Don't be afraid of the nights coming</div>
-        <div class="lyric-cloud">The things that I want to, the things that I like to</div>
+        <div class="lyric-cloud">the things that I want to, the things that I like to</div>
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
-    </div>
-
-  
     </div>
 
     <script>
