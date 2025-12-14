@@ -150,7 +150,7 @@
             margin: 30px 0;
             position: relative;
             z-index: 2;
-            max-width: 500px; /* 限制云区域宽度，让左右更紧凑 */
+            max-width: 500px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -164,18 +164,102 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 10px auto; /* 缩小上下间距 */
+            margin: 10px auto;
             padding: 15px;
             font-size: 14px;
             color: #2c3e50;
             line-height: 1.5;
         }
-        /* 左右间距最小化，几乎贴近中间线 */
         .lyric-cloud:nth-child(odd) {
             margin-right: 5px;
         }
         .lyric-cloud:nth-child(even) {
             margin-left: 5px;
+        }
+        /* 重新设计的粉丝留言墙 */
+        .fan-wall {
+            max-width: 700px;
+            margin: 40px auto 30px;
+            padding: 25px;
+            background-color: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+            position: relative;
+            z-index: 2;
+        }
+        .fan-wall h3 {
+            color: #1a5276;
+            font-size: 22px;
+            margin-bottom: 22px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .fan-comments {
+            text-align: left;
+            margin-bottom: 28px;
+            gap: 18px;
+            display: flex;
+            flex-direction: column;
+        }
+        .fan-comment {
+            padding: 16px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border-left: 3px solid #4a6fa5;
+        }
+        .fan-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+        .fan-text {
+            font-size: 14.5px;
+            color: #475569;
+            line-height: 1.6;
+        }
+        .comment-input {
+            margin-top: 10px;
+            gap: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+        .comment-input input,
+        .comment-input textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: "Georgia", sans-serif;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        .comment-input input:focus,
+        .comment-input textarea:focus {
+            outline: none;
+            border-color: #4a6fa5;
+        }
+        .comment-input textarea {
+            height: 110px;
+            resize: none;
+            line-height: 1.5;
+        }
+        .comment-btn {
+            padding: 12px 25px;
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 15px;
+            font-weight: 500;
+            align-self: flex-start;
+        }
+        .comment-btn:hover {
+            background-color: #2c3e50;
+            transform: translateY(-1px);
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
@@ -255,10 +339,34 @@
         <div class="lyric-cloud">No noise around can pull us apart</div>
         <div class="lyric-cloud">Life small things they make the sense</div>
         <div class="lyric-cloud">Haters talking noise, but I don't give a damn</div>
-        <div class="lyric-cloud">I wanna have a break from the noises all around</div>
+        <div class="lyric-cloud">I wanna have a break, from the noises all around</div>
         <div class="lyric-cloud">Don't be afraid of the nights coming</div>
-        <div class="lyric-cloud">the things that I want to, the things that I like to</div>
+        <div class="lyric-cloud">The things that I want to, the things that I like to</div>
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
+    </div>
+
+    <!-- 重新设计的粉丝留言互动墙（英文） -->
+    <div class="fan-wall">
+        <h3>Fan Message Wall</h3>
+        <div class="fan-comments">
+            <div class="fan-comment">
+                <div class="fan-name">Sophia L.</div>
+                <div class="fan-text">"I will hit repeat on the good days we made" — this line stuck with me the second I heard it. Your music turns ordinary moments into something special. Thank you for sharing your voice!</div>
+            </div>
+            <div class="fan-comment">
+                <div class="fan-name">Jack M.</div>
+                <div class="fan-text">Been listening to "Slow Days" every morning while I make coffee. It’s so calm and warm—exactly what I need to start my day right. Any chance you’ll release a live version someday?</div>
+            </div>
+            <div class="fan-comment">
+                <div class="fan-name">Olivia T.</div>
+                <div class="fan-text">The collab with Jessica on "Brighter Days" is *chef’s kiss*! Your voices blend so well. I’ve been recommending it to all my friends—they love it too. Can’t wait for what’s next!</div>
+            </div>
+        </div>
+        <div class="comment-input">
+            <input type="text" placeholder="Your Name" required>
+            <textarea placeholder="What do my songs mean to you? Share your story here..." required></textarea>
+            <button class="comment-btn">Post Your Message</button>
+        </div>
     </div>
 
     <script>
