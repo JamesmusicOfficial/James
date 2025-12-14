@@ -10,13 +10,14 @@
             padding:30px;
             text-align:center;
             font-family: "Georgia", "Microsoft YaHei", serif;
-            background-color: #f9f9f9;
-            position: relative; /* 作为图案的父容器 */
+            /* 新增柔和的冬季背景色 */
+            background-color: #f0f8ff; 
+            position: relative;
         }
         /* 放大多彩标题 */
         .color-title {
             font-size: 48px;
-            background: linear-gradient(90deg, #4a6fa5, #6b8e23, #8a2be2, #cd853f);
+            background: linear-gradient(90deg, #2c3e50, #4a6fa5, #8a2be2, #cd853f);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -24,26 +25,28 @@
             margin-bottom: 40px;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
             position: relative;
-            z-index: 2; /* 文字在图案上方 */
+            z-index: 2;
         }
         /* 标题样式 */
         .section-title {
             font-size: 24px;
-            color: #2f4f4f;
-            text-decoration: underline wavy #4a6fa5;
+            /* 标题配色适配背景 */
+            color: #1a5276; 
+            text-decoration: underline wavy #3498db;
             margin: 30px 0 15px;
             position: relative;
             z-index: 2;
         }
-        /* 歌曲列表（文字层级更高） */
+        /* 歌曲列表（调整背景色增加层次感） */
         .tracklist { 
             text-align:left;
             margin:20px auto;
             max-width:500px;
-            background-color: #fff;
+            /* 列表背景色改为半透明白色 */
+            background-color: rgba(255,255,255,0.8); 
             padding: 20px 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
             position: relative;
             z-index: 2;
         }
@@ -54,37 +57,39 @@
             border-radius: 4px;
             transition: background-color 0.3s;
             font-family: "Comic Sans MS", cursive;
+            /* 歌曲文字配色加深 */
+            color: #2c3e50;
         }
         .tracklist li:hover {
-            background-color: #f0f8ff;
+            background-color: #e3f2fd;
         }
         /* 提示文字层级 */
         .hint-text {
             font-size:16px; 
-            color:#555;
+            color:#2c3e50;
             position: relative;
             z-index: 2;
         }
-        /* 图案（全部放在文字下方/周边） */
+        /* 图案（调整颜色适配背景） */
         .pattern {
             position: absolute;
             font-size: 35px;
-            opacity: 0.6;
-            z-index: 1; /* 图案在文字下方 */
+            opacity: 0.5;
+            z-index: 1;
         }
-        /* 分散排版的图案位置 */
+        /* 分散排版的图案位置+配色调整 */
         .cloud1 { top: 100px; left: 50px; color: #b0c4de; }
         .note1 { top: 200px; right: 80px; color: #8b4513; }
-        .snow1 { bottom: 150px; left: 80px; color: #ffffff; text-shadow: 1px 1px 2px #ccc; }
+        .snow1 { bottom: 150px; left: 80px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
         .branch1 { bottom: 80px; right: 100px; color: #8b4513; transform: rotate(15deg); }
         .cloud2 { top: 300px; left: 120px; color: #b0c4de; }
         .note2 { top: 400px; right: 150px; color: #800080; }
-        .snow2 { bottom: 50px; left: 200px; color: #ffffff; text-shadow: 1px 1px 2px #ccc; }
+        .snow2 { bottom: 50px; left: 200px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
         .branch2 { top: 250px; left: 250px; color: #8b4513; transform: rotate(-20deg); }
     </style>
 </head>
 <body>
-    <!-- 图案（放在最外层，作为背景） -->
+    <!-- 图案 -->
     <div class="pattern cloud1">☁️</div>
     <div class="pattern note1">🎵</div>
     <div class="pattern snow1">❄️</div>
@@ -94,7 +99,7 @@
     <div class="pattern snow2">❄️</div>
     <div class="pattern branch2">🌿</div>
 
-    <!-- 文字内容（层级更高，覆盖在图案上方） -->
+    <!-- 文字内容 -->
     <h1 class="color-title">James' Music</h1>
 
     <div class="tracklist">
