@@ -38,10 +38,38 @@
         <!-- 单独的“拭目以待”提示 -->
         <p>More new songs are on the way - Wait and see!</p >
     </div>
-
-    <!-- 插入你提供的1张图片 -->
-    <h3>相关素材</h3>
+        <!-- 带趣味图案的代码（可直接复制） -->
+<div class="fun-patterns">
+  <!-- 1. 云朵图案 -->
+  <div class="pattern cloud" style="top: 20px; left: 50px;">☁️</div>
   
-< img src="https://https://e9877ebf9577ea9662287b155ce455e1%202.jpg" alt="相关素材" class="added-img">
+  <!-- 2. 星星图案 -->
+  <div class="pattern star" style="top: 80px; right: 80px;">⭐</div>
+  
+  <!-- 3. 小太阳图案 -->
+  <div class="pattern sun" style="bottom: 50px; left: 200px;">☀️</div>
+
+  <!-- （可选）你的核心内容，比如之前的图片/文字 -->
+</div>
+
+<!-- 图案样式：控制大小、位置等 -->
+<style>
+.fun-patterns {
+  position: relative; /* 让图案能自由定位 */
+  width: 100%;
+  padding: 20px 0;
+}
+.pattern {
+  position: absolute; /* 图案可随意摆放 */
+  font-size: 30px; /* 图案大小，可改（比如20px更小） */
+  z-index: 1; /* 确保图案在背景层，不遮挡核心内容 */
+}
+.main-content {
+  position: relative;
+  z-index: 2; /* 核心内容在图案上方，不被遮挡 */
+  max-width: 600px;
+  margin: 0 auto;
+}
+</style>
 </body>
 </html>
