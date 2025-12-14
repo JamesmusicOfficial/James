@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>James</title>
+    <title>James' Music</title>
     <style>
         body{ 
             max-width:900px;
@@ -10,11 +10,10 @@
             padding:30px;
             text-align:center;
             font-family: "Georgia", "Microsoft YaHei", serif;
-            /* 新增柔和的冬季背景色 */
             background-color: #f0f8ff; 
             position: relative;
         }
-        /* 放大多彩标题 */
+        /* 标题样式 */
         .color-title {
             font-size: 48px;
             background: linear-gradient(90deg, #2c3e50, #4a6fa5, #8a2be2, #cd853f);
@@ -27,103 +26,107 @@
             position: relative;
             z-index: 2;
         }
-        /* 标题样式 */
-        .section-title {
-            font-size: 24px;
-            /* 标题配色适配背景 */
-            color: #1a5276; 
-            text-decoration: underline wavy #3498db;
-            margin: 30px 0 15px;
+        /* 入口按钮样式 */
+        .entry-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
             position: relative;
             z-index: 2;
         }
-        /* 歌曲列表（调整背景色增加层次感） */
-        .tracklist { 
-            text-align:left;
-            margin:20px auto;
-            max-width:500px;
-            /* 列表背景色改为半透明白色 */
-            background-color: rgba(255,255,255,0.8); 
-            padding: 20px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-            position: relative;
-            z-index: 2;
-        }
-        .tracklist li {
+        .entry-btn {
+            padding: 15px 30px;
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            border-radius: 8px;
             font-size: 18px;
-            margin: 10px 0;
-            padding: 5px 10px;
-            border-radius: 4px;
+            cursor: pointer;
             transition: background-color 0.3s;
-            font-family: "Comic Sans MS", cursive;
-            /* 歌曲文字配色加深 */
-            color: #2c3e50;
+            text-decoration: none;
         }
-        .tracklist li:hover {
-            background-color: #e3f2fd;
+        .entry-btn:hover {
+            background-color: #2c3e50;
         }
-        /* 提示文字层级 */
-        .hint-text {
-            font-size:16px; 
-            color:#2c3e50;
+        /* 内容显示区域 */
+        .content-area {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             position: relative;
             z-index: 2;
+            text-align: left;
         }
-        /* 图案（调整颜色适配背景） */
+        .content-area h3 {
+            color: #1a5276;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e3f2fd;
+            padding-bottom: 10px;
+        }
+        .content-area p, .content-area li {
+            font-size: 16px;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        .content-area ul {
+            padding-left: 20px;
+        }
+        /* 图案样式 */
         .pattern {
             position: absolute;
             font-size: 35px;
             opacity: 0.5;
             z-index: 1;
         }
-        /* 分散排版的图案位置+配色调整 */
         .cloud1 { top: 100px; left: 50px; color: #b0c4de; }
         .note1 { top: 200px; right: 80px; color: #8b4513; }
         .snow1 { bottom: 150px; left: 80px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
         .branch1 { bottom: 80px; right: 100px; color: #8b4513; transform: rotate(15deg); }
-        .cloud2 { top: 300px; left: 120px; color: #b0c4de; }
-        .note2 { top: 400px; right: 150px; color: #800080; }
-        .snow2 { bottom: 50px; left: 200px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
-        .branch2 { top: 250px; left: 250px; color: #8b4513; transform: rotate(-20deg); }
     </style>
 </head>
 <body>
-    <!-- 图案 -->
+    <!-- 背景图案 -->
     <div class="pattern cloud1">☁️</div>
     <div class="pattern note1">🎵</div>
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
-    <div class="pattern cloud2">☁️</div>
-    <div class="pattern note2">🎶</div>
-    <div class="pattern snow2">❄️</div>
-    <div class="pattern branch2">🌿</div>
 
-    <!-- 文字内容 -->
+    <!-- 标题 -->
     <h1 class="color-title">James' Music</h1>
 
-    <div class="tracklist">
-        <h3 class="section-title">Album (James)</h3>
-        <ol>
-            <li>Little progress</li>
-            <li>No More Hurry</li>
-            <li>Chase Stars</li>
-            <li>Everything I want</li>
-            <li>Slow Days</li>
-            <li>Winter is coming</li>
-            <li>Run with You</li>
-            <li>We Will See It To The End</li>
-        </ol>
+    <!-- 三个入口按钮 -->
+    <div class="entry-buttons">
+        <a href=" " class="entry-btn">CD information</a >
+        <a href="#james-thanks" class="entry-btn">James</a >
+        <a href="#contact" class="entry-btn">contact</a >
     </div>
 
-    <div class="tracklist">
-        <h3 class="section-title">Featured Singles (James and Jessica)</h3>
-        <ol start="9">
-            <li><a href="" target="_blank">Brighter Days (feat. Jessica)</a ></li>
-            <li>Swinging Bells (feat. Jessica) New Song!!!</li>
-        </ol>
+    <!-- 1. CD information 内容 -->
+    <div id="cd-info" class="content-area">
+        <h3>CD Information</h3>
+        <p><strong>Debut Album of James</strong></p >
+        <p><strong>Price</strong>: 50 港币</p >
+        <p><strong>Singles</strong>:</p >
+        <ul>
+            <li>Brighter Days (feat. Jessica)</li>
+            <li>Swinging Bells (feat. Jessica)</li>
+        </ul>
     </div>
 
-    <p class="hint-text">More new songs are on the way - Wait and see!</p >
+    <!-- 2. James 内容 -->
+    <div id="james-thanks" class="content-area">
+        <h3>Message from James</h3>
+        <p>Thank you for supporting my songs. Thank you for supporting my music job.</p >
+    </div>
+
+    <!-- 3. contact 内容 -->
+    <div id="contact" class="content-area">
+        <h3>Contact James</h3>
+        <p><strong>Email</strong>: JAMES03010@icloud.com</p >
+    </div>
 </body>
 </html>
