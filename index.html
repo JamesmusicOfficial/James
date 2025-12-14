@@ -19,7 +19,7 @@
             background-color: #f0f8ff;
             position: relative;
         }
-        /* 装饰元素 */
+        /* 装饰元素（保留原设计） */
         .pattern {
             position: absolute;
             font-size: 35px;
@@ -30,7 +30,7 @@
         .note1 { top: 300px; right: 80px; color: #8b4513; }
         .snow1 { bottom: 150px; left: 80px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
         .branch1 { bottom: 80px; right: 100px; color: #8b4513; transform: rotate(15deg); }
-        /* 标题海报 */
+        /* 标题海报（保留原设计） */
         .james-poster {
             max-width: 700px;
             margin: 0 auto 40px;
@@ -66,7 +66,7 @@
         .deco2 { bottom: 20px; right: 50px; color: #e74c3c; }
         .deco3 { top: 50px; right: 40px; color: #f39c12; }
         .deco4 { bottom: 30px; left: 40px; color: #27ae60; }
-        /* 曲目列表 */
+        /* 曲目列表（保留原设计） */
         .tracklist {
             text-align: left;
             margin: 20px auto;
@@ -105,30 +105,30 @@
             position: relative;
             z-index: 2;
         }
-        /* 按钮区域（分上下两行：上3个+下3个） */
+        /* 按钮区域（恢复原样式：间距、颜色、大小） */
         .entry-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 15px 0;
+            gap: 30px;
+            margin: 40px 0 20px;
             position: relative;
             z-index: 2;
             flex-wrap: wrap;
         }
         .entry-btn {
-            padding: 12px 25px;
+            padding: 15px 30px;
             background: #4a6fa5;
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 18px;
             cursor: pointer;
             transition: background 0.3s;
         }
         .entry-btn:hover {
             background: #2c3e50;
         }
-        /* 内容区域 */
+        /* 内容区域（恢复原样式：显示逻辑、阴影、内边距） */
         .content-area {
             max-width: 600px;
             margin: 20px auto;
@@ -158,16 +158,7 @@
         .content-area ul {
             padding-left: 20px;
         }
-        /* About 模块专属装饰 */
-        .about-deco {
-            position: absolute;
-            font-size: 24px;
-            opacity: 0.3;
-            z-index: 1;
-        }
-        .about-note1 { top: 30px; right: 40px; color: #4a6fa5; }
-        .about-note2 { bottom: 20px; left: 30px; color: #e74c3c; }
-        /* 歌词云 */
+        /* 歌词云（保留原设计） */
         .lyric-clouds {
             margin: 30px 0;
             position: relative;
@@ -194,7 +185,7 @@
         }
         .lyric-cloud:nth-child(odd) { margin-right: 5px; }
         .lyric-cloud:nth-child(even) { margin-left: 5px; }
-        /* Live 2025 模块（歌词云下方） */
+        /* Live 2025 模块（适配原风格：背景、阴影、间距） */
         .live-2025 {
             max-width: 700px;
             margin: 30px auto;
@@ -207,16 +198,20 @@
         }
         .live-2025 h2 {
             font-size: 28px;
-            color: #2c3e50;
+            color: #1a5276;
             margin-bottom: 15px;
             font-family: "Montserrat", sans-serif;
+            border-bottom: 2px solid #e3f2fd;
+            padding-bottom: 10px;
+            display: inline-block;
         }
         .live-2025 p {
-            color: #475569;
+            color: #2c3e50;
             line-height: 1.6;
             font-size: 16px;
+            margin-top: 15px;
         }
-        /* 粉丝留言墙 */
+        /* 粉丝留言墙（保留原设计） */
         .fan-wall {
             max-width: 700px;
             margin: 30px auto;
@@ -323,21 +318,21 @@
     <div class="tracklist">
         <h3 class="section-title">Album (James)</h3>
         <ol>
-            <li>Little progress</li>
+            <li>Little Progress</li>
             <li>No More Hurry</li>
             <li>Chase Stars</li>
             <li>Everything I want</li>
             <li>Slow Days</li>
-            <li>Winter is coming</li>
-            <li>Run with You</li>
+            <li>Winter is Coming</li>
+            <li>Run With You</li>
             <li>We Will See It To The End</li>
         </ol>
     </div>
     <div class="tracklist">
         <h3 class="section-title">Featured Singles (James & Jessica)</h3>
         <ol start="9">
-            <li><a href="" target="_blank">Brighter Days (feat. Jessica)</a></li>
-            <li>Swinging Bells (feat. Jessica) New Song!!!</li>
+            <li>Brighter Days (feat. Jessica)</li>
+            <li>Swinging Bells (feat. Jessica)</li>
         </ol>
     </div>
     <p class="hint-text">More new songs are on the way - Wait and see!</p>
@@ -355,8 +350,8 @@
         <button class="entry-btn" onclick="toggleContent('news')">News</button>
     </div>
 
-    <!-- 各入口对应内容 -->
-    <!-- Music（原CD信息） -->
+    <!-- 各入口对应内容（确保ID与按钮onclick参数一致，修复点击问题） -->
+    <!-- Music -->
     <div id="music" class="content-area">
         <h3>Music Information</h3>
         <p><strong>Debut Album of James</strong></p>
@@ -367,7 +362,7 @@
             <li>Swinging Bells (feat. Jessica)</li>
         </ul>
     </div>
-    <!-- Info（原James留言） -->
+    <!-- Info -->
     <div id="info" class="content-area">
         <h3>Message from James</h3>
         <p>This debut album has 8 tracks. It implies betrayal from workplace villains, people who gossip too much, and also touches on themes of friendship, perseverance, plus a song about seasons. Also thank you to my best companion, Jessica, we made two singles together.</p>
@@ -375,17 +370,15 @@
     <!-- Contact -->
     <div id="contact" class="content-area">
         <h3>Contact James</h3>
-        <p><strong>Email</strong>: JAMES03010@icloud.com</p>
+        <p><strong>Email</strong>: James03010@icloud.com</p>
     </div>
-    <!-- 调整后的 About 内容 -->
-    <div id="about" class="content-area" style="position: relative;">
-        <div class="about-deco about-note1">🎵</div>
-        <div class="about-deco about-note2">🎶</div>
+    <!-- About（保留调整后文案，适配原风格） -->
+    <div id="about" class="content-area">
         <h3>About</h3>
-        <p>Welcome to Jimmy Land.</p>
+        <p>Welcome to Jimmyland.</p>
         <p>Inhabited by singer and songwriter James, this space is more than just a music website—it’s a collection of stories, emotions, and melodies that James has crafted over time.</p>
         <p>Here, you’ll find not only his official discography but also glimpses into the inspiration behind each song, from quiet morning thoughts to moments of life’s big realizations.</p>
-        <p>Whether you’re a long-time fan or just discovering James’ music, Jimmy Land is where you can connect with the heart of his work.</p>
+        <p>Whether you’re a long-time fan or just discovering James’ music, Jimmyland is where you can connect with the heart of his songs.</p>
     </div>
     <!-- Videos -->
     <div id="videos" class="content-area">
@@ -400,12 +393,12 @@
 
     <!-- 歌词云 -->
     <div class="lyric-clouds">
-        <div class="lyric-cloud">no noise around can pull us apart</div>
-        <div class="lyric-cloud">life small things they make the sense</div>
+        <div class="lyric-cloud">No noise around can pull us apart</div>
+        <div class="lyric-cloud">Life small things they make the sense</div>
         <div class="lyric-cloud">Haters talking noise, but I don't give a damn</div>
-        <div class="lyric-cloud">I wanna have a break from the noises all around</div>
+        <div class="lyric-cloud">I wanna have a break, from the noises all around</div>
         <div class="lyric-cloud">Don't be afraid of the nights coming</div>
-        <div class="lyric-cloud">the things that I want to, the things that I like to</div>
+        <div class="lyric-cloud">The things that I want to, the things that I like to</div>
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
     </div>
 
@@ -439,14 +432,18 @@
         </div>
     </div>
 
+    <!-- 修复点击逻辑：确保切换时正确显示/隐藏内容 -->
     <script>
         function toggleContent(id) {
-            const target = document.getElementById(id);
-            if (target.classList.contains('active')) {
-                target.classList.remove('active');
-            } else {
-                document.querySelectorAll('.content-area').forEach(area => area.classList.remove('active'));
-                target.classList.add('active');
+            // 先隐藏所有内容区
+            const allContent = document.querySelectorAll('.content-area');
+            allContent.forEach(area => {
+                area.classList.remove('active');
+            });
+            // 再显示目标内容区
+            const targetContent = document.getElementById(id);
+            if (targetContent) {
+                targetContent.classList.add('active');
             }
         }
     </script>
