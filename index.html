@@ -4,19 +4,101 @@
     <meta charset="UTF-8">
     <title>James</title>
     <style>
-        body{ max-width:800px;margin:0 auto;padding:20px;text-align:center;}
-        .album-cover{ width:300px;border-radius:8px;margin:20px 0;}
-        .tracklist{ text-align:left;margin:30px auto;max-width:400px;}
-        /* 给图片加一点间距 */
-        .added-img { width:400px; margin:20px 0; border-radius:8px; }
+        body{ 
+            max-width:900px;
+            margin:0 auto;
+            padding:30px;
+            text-align:center;
+            font-family: "Georgia", "Microsoft YaHei", serif;
+            background-color: #f9f9f9;
+            position: relative; /* 作为图案的父容器 */
+        }
+        /* 放大多彩标题 */
+        .color-title {
+            font-size: 48px;
+            background: linear-gradient(90deg, #4a6fa5, #6b8e23, #8a2be2, #cd853f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2; /* 文字在图案上方 */
+        }
+        /* 标题样式 */
+        .section-title {
+            font-size: 24px;
+            color: #2f4f4f;
+            text-decoration: underline wavy #4a6fa5;
+            margin: 30px 0 15px;
+            position: relative;
+            z-index: 2;
+        }
+        /* 歌曲列表（文字层级更高） */
+        .tracklist { 
+            text-align:left;
+            margin:20px auto;
+            max-width:500px;
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 2;
+        }
+        .tracklist li {
+            font-size: 18px;
+            margin: 10px 0;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            font-family: "Comic Sans MS", cursive;
+        }
+        .tracklist li:hover {
+            background-color: #f0f8ff;
+        }
+        /* 提示文字层级 */
+        .hint-text {
+            font-size:16px; 
+            color:#555;
+            position: relative;
+            z-index: 2;
+        }
+        /* 图案（全部放在文字下方/周边） */
+        .pattern {
+            position: absolute;
+            font-size: 35px;
+            opacity: 0.6;
+            z-index: 1; /* 图案在文字下方 */
+        }
+        /* 分散排版的图案位置 */
+        .cloud1 { top: 100px; left: 50px; color: #b0c4de; }
+        .note1 { top: 200px; right: 80px; color: #8b4513; }
+        .snow1 { bottom: 150px; left: 80px; color: #ffffff; text-shadow: 1px 1px 2px #ccc; }
+        .branch1 { bottom: 80px; right: 100px; color: #8b4513; transform: rotate(15deg); }
+        .cloud2 { top: 300px; left: 120px; color: #b0c4de; }
+        .note2 { top: 400px; right: 150px; color: #800080; }
+        .snow2 { bottom: 50px; left: 200px; color: #ffffff; text-shadow: 1px 1px 2px #ccc; }
+        .branch2 { top: 250px; left: 250px; color: #8b4513; transform: rotate(-20deg); }
     </style>
 </head>
 <body>
-    <h1>James Music</h1>
+    <!-- 图案（放在最外层，作为背景） -->
+    <div class="pattern cloud1">☁️</div>
+    <div class="pattern note1">🎵</div>
+    <div class="pattern snow1">❄️</div>
+    <div class="pattern branch1">🌿</div>
+    <div class="pattern cloud2">☁️</div>
+    <div class="pattern note2">🎶</div>
+    <div class="pattern snow2">❄️</div>
+    <div class="pattern branch2">🌿</div>
+
+    <!-- 文字内容（层级更高，覆盖在图案上方） -->
+    <h1 class="color-title">James' Music</h1>
 
     <div class="tracklist">
-        <!-- 第一个标题：专辑歌曲 -->
-        <h3>Album (James)</h3>
+        <h3 class="section-title">Album (James)</h3>
         <ol>
             <li>Little progress</li>
             <li>No More Hurry</li>
@@ -27,49 +109,16 @@
             <li>Run with You</li>
             <li>We Will See It To The End</li>
         </ol>
+    </div>
 
-        <!-- 第二个标题：合作单曲 -->
-        <h3>Featured Singles (James and Jessica)</h3>
+    <div class="tracklist">
+        <h3 class="section-title">Featured Singles (James and Jessica)</h3>
         <ol start="9">
-            <li><a href=" " target="_blank">Brighter Days (feat. Jessica)</a ></li>
+            <li><a href="" target="_blank">Brighter Days (feat. Jessica)</a ></li>
             <li>Swinging Bells (feat. Jessica) New Song!!!</li>
         </ol>
-
-        <!-- 单独的“拭目以待”提示 -->
-        <p>More new songs are on the way - Wait and see!</p >
     </div>
-        <!-- 带趣味图案的代码（可直接复制） -->
-<div class="fun-patterns">
-  <!-- 1. 云朵图案 -->
-  <div class="pattern cloud" style="top: 20px; left: 50px;">☁️</div>
-  
-  <!-- 2. 星星图案 -->
-  <div class="pattern star" style="top: 80px; right: 80px;">⭐</div>
-  
-  <!-- 3. 小太阳图案 -->
-  <div class="pattern sun" style="bottom: 50px; left: 200px;">☀️</div>
 
-  <!-- （可选）你的核心内容，比如之前的图片/文字 -->
-</div>
-
-<!-- 图案样式：控制大小、位置等 -->
-<style>
-.fun-patterns {
-  position: relative; /* 让图案能自由定位 */
-  width: 100%;
-  padding: 20px 0;
-}
-.pattern {
-  position: absolute; /* 图案可随意摆放 */
-  font-size: 30px; /* 图案大小，可改（比如20px更小） */
-  z-index: 1; /* 确保图案在背景层，不遮挡核心内容 */
-}
-.main-content {
-  position: relative;
-  z-index: 2; /* 核心内容在图案上方，不被遮挡 */
-  max-width: 600px;
-  margin: 0 auto;
-}
-</style>
+    <p class="hint-text">More new songs are on the way - Wait and see!</p >
 </body>
 </html>
