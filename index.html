@@ -147,9 +147,12 @@
         .snow1 { bottom: 150px; left: 80px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
         .branch1 { bottom: 80px; right: 100px; color: #8b4513; transform: rotate(15deg); }
         .lyric-clouds {
-            margin: 50px 0;
+            margin: 30px 0;
             position: relative;
             z-index: 2;
+            max-width: 500px; /* 限制云区域宽度，让左右更紧凑 */
+            margin-left: auto;
+            margin-right: auto;
         }
         .lyric-cloud {
             position: relative;
@@ -161,18 +164,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px auto;
+            margin: 10px auto; /* 缩小上下间距 */
             padding: 15px;
             font-size: 14px;
             color: #2c3e50;
             line-height: 1.5;
         }
-        /* 大幅缩小左右间距，让云紧凑排列 */
+        /* 左右间距最小化，几乎贴近中间线 */
         .lyric-cloud:nth-child(odd) {
-            margin-right: 10px;
+            margin-right: 5px;
         }
         .lyric-cloud:nth-child(even) {
-            margin-left: 10px;
+            margin-left: 5px;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
@@ -230,8 +233,8 @@
     <div id="cd-info" class="content-area">
         <h3>CD Information</h3>
         <p><strong>Debut Album of James</strong></p >
-        <p><strong>Album Price</strong>: 30 HKD</p >
-        <p><strong>Singles (Each)</strong>: 30 HKD</p >
+        <p><strong>Album Price</strong>: 50 HKD</p >
+        <p><strong>Singles (Each)</strong>: 50 HKD</p >
         <ul>
             <li>Brighter Days (feat. Jessica)</li>
             <li>Swinging Bells (feat. Jessica)</li>
@@ -248,12 +251,11 @@
         <p><strong>Email</strong>: James03010@icloud.com</p >
     </div>
 
-    <!-- 歌词云区域（紧凑排列，已删除底部照片） -->
     <div class="lyric-clouds">
         <div class="lyric-cloud">No noise around can pull us apart</div>
         <div class="lyric-cloud">Life small things they make the sense</div>
         <div class="lyric-cloud">Haters talking noise, but I don't give a damn</div>
-        <div class="lyric-cloud">I wanna have a break, from the noises all around</div>
+        <div class="lyric-cloud">I wanna have a break from the noises all around</div>
         <div class="lyric-cloud">Don't be afraid of the nights coming</div>
         <div class="lyric-cloud">the things that I want to, the things that I like to</div>
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
