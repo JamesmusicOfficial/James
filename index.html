@@ -13,22 +13,9 @@
             background-color: #f0f8ff; 
             position: relative;
         }
-        .color-title {
-            font-size: 48px;
-            background: linear-gradient(90deg, #2c3e50, #4a6fa5, #8a2be2, #cd853f);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: bold;
-            margin-bottom: 40px;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 2;
-        }
-        /* James大海报样式 */
         .james-poster {
             max-width: 700px;
-            margin: 30px auto;
+            margin: 0 auto 40px;
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -39,27 +26,29 @@
         .poster-title {
             font-size: 60px;
             font-weight: bold;
-            color: #2c3e50;
             letter-spacing: 2px;
-            /* 分色字体（简洁版） */
             display: inline-block;
         }
-        .poster-title span {
+        .poster-title span:nth-child(1) {
+            font-family: "Times New Roman", serif;
             color: #4a6fa5;
         }
         .poster-title span:nth-child(2) {
+            font-family: "Arial Black", sans-serif;
             color: #e74c3c;
         }
         .poster-title span:nth-child(3) {
+            font-family: "Georgia", serif;
             color: #f39c12;
         }
         .poster-title span:nth-child(4) {
+            font-family: "Verdana", sans-serif;
             color: #27ae60;
         }
         .poster-title span:nth-child(5) {
+            font-family: "Courier New", monospace;
             color: #9b59b6;
         }
-        /* 海报装饰元素 */
         .poster-deco {
             position: absolute;
             opacity: 0.7;
@@ -166,6 +155,18 @@
         .note1 { top: 300px; right: 80px; color: #8b4513; }
         .snow1 { bottom: 150px; left: 80px; color: #d5dbdb; text-shadow: 1px 1px 2px #fff; }
         .branch1 { bottom: 80px; right: 100px; color: #8b4513; transform: rotate(15deg); }
+        .bottom-photo {
+            max-width: 700px;
+            margin: 40px auto 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+        .bottom-photo img {
+            width: 100%;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -174,9 +175,6 @@
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <h1 class="color-title">James' Music</h1>
-
-    <!-- James大海报（简洁分色风格） -->
     <div class="james-poster">
         <div class="poster-title">
             <span>J</span>
@@ -217,7 +215,7 @@
     <div class="entry-buttons">
         <button class="entry-btn" onclick="showContent('cd-info')">CD information</button>
         <button class="entry-btn" onclick="showContent('james-thanks')">James</button>
-        <button class="entry-btn" onclick="showContent('contact')">contact</button>
+        <button class="entry-btn" onclick="showContent('contact')">Contact</button>
     </div>
 
     <div id="cd-info" class="content-area">
@@ -233,13 +231,16 @@
 
     <div id="james-thanks" class="content-area">
         <h3>Message from James</h3>
-        <p>Thank you for supporting my songs and my music career.</p >
-        <p>This debut album has 8 tracks. It implies betrayal from workplace villains, people who gossip too much, and also touches on themes of friendship, perseverance, plus a song about seasons.</p >
+        <p>This debut album has 8 tracks. It implies betrayal from workplace villains, people who gossip too much, and also touches on themes of friendship, perseverance, plus a song about seasons. Also thank you to my best companion, Jessica, we made two singles together.</p >
     </div>
 
     <div id="contact" class="content-area">
         <h3>Contact James</h3>
         <p><strong>Email</strong>: JAMES03010@icloud.com</p >
+    </div>
+
+    <div class="bottom-photo">
+        < img src="这里替换为你第一张照片的链接" alt="James poster">
     </div>
 
     <script>
