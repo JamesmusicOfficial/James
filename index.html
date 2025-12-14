@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>James' Music</title>
+    <title>James Music</title>
     <style>
         body{ 
             max-width:900px;
@@ -167,11 +167,12 @@
             color: #2c3e50;
             line-height: 1.5;
         }
+        /* 缩小左右间距，让云离得更近 */
         .lyric-cloud:nth-child(odd) {
-            margin-right: 100px;
+            margin-right: 30px;
         }
         .lyric-cloud:nth-child(even) {
-            margin-left: 100px;
+            margin-left: 30px;
         }
         .bottom-photo {
             max-width: 700px;
@@ -211,13 +212,13 @@
     <div class="tracklist">
         <h3 class="section-title">Album (James)</h3>
         <ol>
-            <li>Little Progress</li>
+            <li>Little progress</li>
             <li>No More Hurry</li>
             <li>Chase Stars</li>
-            <li>Everything I Want</li>
+            <li>Everything I want</li>
             <li>Slow Days</li>
-            <li>Winter Is Coming</li>
-            <li>Run With You</li>
+            <li>Winter is coming</li>
+            <li>Run with You</li>
             <li>We Will See It To The End</li>
         </ol>
     </div>
@@ -260,25 +261,24 @@
     </div>
 
     <div class="lyric-clouds">
-        <div class="lyric-cloud">no noise around can pull us apart</div>
-        <div class="lyric-cloud">life small things they make the sense</div>
+        <div class="lyric-cloud">No noise around can pull us apart</div>
+        <div class="lyric-cloud">Life small things they make the sense</div>
         <div class="lyric-cloud">Haters talking noise, but I don't give a damn</div>
-        <div class="lyric-cloud">I wanna have a break from the noises all around</div>
+        <div class="lyric-cloud">I wanna have a break, from the noises all around</div>
         <div class="lyric-cloud">Don't be afraid of the nights coming</div>
-        <div class="lyric-cloud">the things that I want to, the things that I like to</div>
+        <div class="lyric-cloud">The things that I want to, the things that I like to</div>
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
     </div>
 
+  
+    </div>
 
     <script>
-        // 切换显示/隐藏（点一下开，再点一下关）
         function toggleContent(id) {
             const targetContent = document.getElementById(id);
-            // 如果当前是显示状态，就隐藏；否则显示
             if (targetContent.classList.contains('active')) {
                 targetContent.classList.remove('active');
             } else {
-                // 先隐藏其他内容，再显示当前
                 const allContents = document.querySelectorAll('.content-area');
                 allContents.forEach(content => content.classList.remove('active'));
                 targetContent.classList.add('active');
