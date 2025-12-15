@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>James' Music World</title>
     <style>
-        /* 基础样式重置与全局设置 */
+        /* 全局样式重置 */
         * {
             margin: 0;
             padding: 0;
@@ -18,11 +18,11 @@
             text-align: center;
             font-family: "Georgia", "Microsoft YaHei", serif;
             background-color: #f0f8ff;
-            position: relative;
             color: #2c3e50;
+            position: relative;
         }
 
-        /* 顶部标题海报 - 标题色调改为平静的蓝色系，贴合整体风格 */
+        /* James标题海报 */
         .james-poster {
             max-width: 700px;
             margin: 0 auto 20px;
@@ -31,7 +31,6 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             position: relative;
-            z-index: 2;
         }
         .poster-title {
             font-size: 65px;
@@ -39,7 +38,7 @@
             letter-spacing: 4px;
             display: inline-block;
             font-family: "Montserrat", "Arial Black", sans-serif;
-            color: #4a6fa5; /* 主标题统一为平静的蓝色，不再多彩 */
+            color: #4a6fa5;
         }
         .poster-title span {
             display: inline-block;
@@ -47,22 +46,56 @@
         }
         .poster-title span:hover {
             transform: scale(1.1);
-            color: #1a5276; /* hover时加深蓝色，保留互动感 */
+            color: #1a5276;
         }
-        /* 移除原标题多彩配色，统一为蓝色系 */
         .poster-deco {
             position: absolute;
             opacity: 0.4;
             font-size: 32px;
-            z-index: 1;
-            color: #4a6fa5; /* 装饰元素也统一为蓝色，增强协调感 */
+            color: #4a6fa5;
         }
         .deco1 { top: 15px; left: 25px; }
         .deco2 { bottom: 15px; right: 35px; }
         .deco3 { top: 45px; right: 30px; }
         .deco4 { bottom: 25px; left: 30px; }
 
-        /* 核心：入口按钮 - 颜色贴近背景，风格统一平静 */
+        /* 核心：James标题下的轮播图（中等尺寸+6秒切换） */
+        .james-slider {
+            width: 100%;
+            max-width: 700px; /* 中等宽度，适配页面 */
+            height: 350px; /* 中等高度，不遮挡内容 */
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto 20px; /* 上下留白，与标题/按钮区分 */
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .slider-wrapper {
+            display: flex;
+            width: 500%; /* 5张图 → 宽度500% */
+            /* 动画：30秒一轮（5张×6秒），ease让切换更丝滑 */
+            animation: slide 30s infinite ease-in-out;
+        }
+        .slider-wrapper img {
+            width: 20%; /* 单张图占20%宽度 */
+            height: 100%;
+            object-fit: cover; /* 保持图片比例，避免变形 */
+        }
+        /* 左右切换动画关键帧：每张停留6秒 */
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(0); }   /* 第1张停留6秒 */
+            20% { transform: translateX(-20%); }
+            40% { transform: translateX(-20%); } /* 第2张停留6秒 */
+            40% { transform: translateX(-40%); }
+            60% { transform: translateX(-40%); } /* 第3张停留6秒 */
+            60% { transform: translateX(-60%); }
+            80% { transform: translateX(-60%); } /* 第4张停留6秒 */
+            80% { transform: translateX(-80%); }
+            100% { transform: translateX(-80%); } /* 第5张停留6秒 */
+        }
+
+        /* 入口按钮区域 */
         .entry-buttons {
             display: flex;
             justify-content: center;
@@ -70,35 +103,29 @@
             margin: 0 auto 35px;
             flex-wrap: wrap;
             max-width: 700px;
-            position: relative;
-            z-index: 2;
         }
         .entry-btn {
             padding: 10px 18px;
-            border: 1px solid #4a6fa5; /* 蓝色边框，贴合整体色调 */
-            border-radius: 6px; /* 小圆角，更柔和 */
+            border: 1px solid #4a6fa5;
+            border-radius: 6px;
             font-size: 15px;
             cursor: pointer;
             transition: all 0.2s;
-            /* 颜色贴近背景：浅蓝底色+深蓝文字，不突兀且协调 */
             color: #1a5276;
             background-color: #e3f2fd;
             font-family: "Montserrat", sans-serif;
             font-weight: 600;
-            letter-spacing: 0.5px;
         }
-        /* 按钮active状态：点击显示内容时，按钮色调加深，提示当前选中 */
         .entry-btn.active {
             background-color: #4a6fa5;
             color: #fff;
         }
-        /* hover效果弱化，保持平静感 */
         .entry-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 3px 6px rgba(74,111,165,0.15);
         }
 
-        /* 歌曲列表区域 */
+        /* 歌曲列表 */
         .tracklist {
             text-align: left;
             max-width: 550px;
@@ -107,8 +134,6 @@
             padding: 22px 30px;
             border-radius: 10px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-            position: relative;
-            z-index: 2;
         }
         .section-title {
             font-size: 24px;
@@ -138,11 +163,9 @@
             font-size: 16px;
             margin: 20px 0 30px;
             color: #2c3e50;
-            position: relative;
-            z-index: 2;
         }
 
-        /* 内容显示区域 */
+        /* 内容显示区 */
         .content-area {
             max-width: 620px;
             margin: 0 auto 30px;
@@ -152,9 +175,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             text-align: left;
             display: none;
-            position: relative;
-            z-index: 2;
-            border-top: 3px solid #4a6fa5; /* 顶部边框贴合主色调 */
+            border-top: 3px solid #4a6fa5;
         }
         .content-area.active {
             display: block;
@@ -170,7 +191,6 @@
             margin-bottom: 20px;
             border-bottom: 2px solid #e3f2fd;
             padding-bottom: 10px;
-            font-weight: 600;
         }
         .content-area p, .content-area li {
             font-size: 16px;
@@ -181,21 +201,20 @@
             padding-left: 22px;
         }
 
-        /* 装饰性图案（背景）- 统一为蓝色系，更协调 */
+        /* 背景装饰 */
         .pattern {
             position: absolute;
             font-size: 38px;
             opacity: 0.3;
-            z-index: 1;
             pointer-events: none;
-            color: #b0c4de; /* 浅蓝装饰，贴合背景 */
+            color: #b0c4de;
         }
         .cloud1 { top: 120px; left: 40px; }
         .note1 { top: 320px; right: 60px; }
         .snow1 { bottom: 200px; left: 70px; }
         .branch1 { bottom: 100px; right: 80px; transform: rotate(18deg); }
 
-        /* 歌词云区域 */
+        /* 歌词云 */
         .lyric-clouds {
             max-width: 550px;
             margin: 35px auto;
@@ -203,8 +222,6 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
-            position: relative;
-            z-index: 2;
         }
         .lyric-cloud {
             width: 180px;
@@ -219,7 +236,7 @@
             line-height: 1.5;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             transition: transform 0.3s;
-            border: 1px solid #e3f2fd; /* 浅蓝边框，贴合整体 */
+            border: 1px solid #e3f2fd;
         }
         .lyric-cloud:hover {
             transform: scale(1.05);
@@ -234,8 +251,6 @@
             background: rgba(255,255,255,0.95);
             border-radius: 12px;
             box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-            position: relative;
-            z-index: 2;
         }
         .fan-wall h3 {
             color: #1a5276;
@@ -254,7 +269,7 @@
             padding: 18px;
             background: #f8fafc;
             border-radius: 8px;
-            border-left: 3px solid #4a6fa5; /* 左边框贴合主色调 */
+            border-left: 3px solid #4a6fa5;
         }
         .fan-name {
             font-weight: 600;
@@ -285,61 +300,55 @@
         .comment-input input:focus,
         .comment-input textarea:focus {
             outline: none;
-            border-color: #4a6fa5; /* 聚焦时边框变主色调 */
+            border-color: #4a6fa5;
             box-shadow: 0 0 0 2px rgba(74,111,165,0.1);
         }
         .comment-input textarea {
             height: 120px;
             resize: none;
-            line-height: 1.5;
         }
         .comment-btn {
             align-self: flex-start;
             padding: 12px 28px;
-            background: #4a6fa5; /* 按钮贴合主色调 */
+            background: #4a6fa5;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
             font-size: 15px;
-            font-weight: 500;
         }
         .comment-btn:hover {
-            background: #1a5276; /* hover加深，保持协调 */
+            background: #1a5276;
             transform: translateY(-2px);
         }
 
-        /* 底部文字 - 色调贴合主风格 */
+        /* 底部文字 */
         .footer-james {
             font-family: "Montserrat", sans-serif;
             font-size: 26px;
             font-weight: 700;
-            color: #4a6fa5; /* 底部标题用主色调 */
+            color: #4a6fa5;
             margin: 15px 0 8px;
-            position: relative;
-            z-index: 2;
         }
         .footer-copyright {
             font-family: "Georgia", serif;
             font-size: 16px;
             color: #475569;
             margin-bottom: 25px;
-            position: relative;
-            z-index: 2;
         }
     </style>
     <!-- 引入外部字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Georgia:wght@400;500;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Georgia:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 背景装饰元素 -->
+    <!-- 背景装饰 -->
     <div class="pattern cloud1">☁️</div>
     <div class="pattern note1">🎵</div>
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <!-- 顶部标题海报 -->
+    <!-- James标题海报 -->
     <div class="james-poster">
         <div class="poster-title">
             <span>J</span><span>a</span><span>m</span><span>e</span><span>s</span>
@@ -350,7 +359,19 @@
         <div class="poster-deco deco4">□</div>
     </div>
 
-    <!-- 标题下方一排入口按钮 -->
+    <!-- James标题下的轮播图（5张图+6秒切换） -->
+    <div class="james-slider">
+        <div class="slider-wrapper">
+            <!-- 替换为你的5张图片实际地址 -->
+            <img src="https://github.com/JamesmusicOfficial/James/blob/main/43f8deec7ed2450936187449c9908229.jpg" alt="James Photo 1">
+            <img src="https://github.com/JamesmusicOfficial/James/blob/main/beauty_1764055366000.JPG" alt="James Photo 2">
+            <img src="https://github.com/JamesmusicOfficial/James/blob/main/IMG_8648%202.jpg" alt="James Photo 3">
+            <img src="https://github.com/JamesmusicOfficial/James/blob/main/e9877ebf9577ea9662287b155ce455e1%202.jpg" alt="James Photo 4">
+            <img src="https://github.com/JamesmusicOfficial/James/blob/main/080563ed95424e4869b1162df7939504.jpg" alt="James Photo 5">
+        </div>
+    </div>
+
+    <!-- 入口按钮 -->
     <div class="entry-buttons">
         <button class="entry-btn" data-target="shop">Shop</button>
         <button class="entry-btn" data-target="info">Info</button>
@@ -360,7 +381,7 @@
         <button class="entry-btn" data-target="tour">Tour</button>
     </div>
 
-    <!-- 歌曲列表区域 -->
+    <!-- 歌曲列表 -->
     <div class="tracklist">
         <h3 class="section-title">Album (James)</h3>
         <ol>
@@ -385,7 +406,7 @@
 
     <p class="hint-text">More new songs are on the way — Wait and see!</p>
 
-    <!-- 各入口对应内容区域 -->
+    <!-- 各内容区 -->
     <div id="shop" class="content-area">
         <h3>James' Music Shop</h3>
         <p><strong>Debut Album of James</strong></p>
@@ -434,7 +455,7 @@
         <p>This live stream will be interesting! Just like Jimmyland — So don’t miss the chance to experience the music live with me!</p>
     </div>
 
-    <!-- 歌词云区域 -->
+    <!-- 歌词云 -->
     <div class="lyric-clouds">
         <div class="lyric-cloud">No noise around can pull us apart</div>
         <div class="lyric-cloud">Life small things they make the sense</div>
@@ -469,34 +490,30 @@
         </div>
     </div>
 
-    <!-- 底部文字 -->
+    <!-- 底部 -->
     <div class="footer-james">James</div>
     <div class="footer-copyright">© 2025 James. All Rights Reserved.</div>
 
-    <!-- 交互脚本 - 实现“点击显示/再点隐藏”，并同步按钮active状态 -->
+    <!-- 按钮交互脚本 -->
     <script>
-        // 获取所有按钮和内容区
         const buttons = document.querySelectorAll('.entry-btn');
         const contents = document.querySelectorAll('.content-area');
 
-        // 给每个按钮添加点击事件
         buttons.forEach(button => {
             button.addEventListener('click', () => {
-                // 获取按钮对应的目标内容ID
                 const targetId = button.getAttribute('data-target');
                 const targetContent = document.getElementById(targetId);
-                const isContentActive = targetContent.classList.contains('active');
+                const isActive = targetContent.classList.contains('active');
 
-                // 1. 先隐藏所有内容区，移除所有按钮的active状态
-                contents.forEach(content => content.classList.remove('active'));
-                buttons.forEach(btn => btn.classList.remove('active'));
+                // 隐藏所有内容+移除按钮active
+                contents.forEach(c => c.classList.remove('active'));
+                buttons.forEach(b => b.classList.remove('active'));
 
-                // 2. 如果目标内容原本未显示，则显示它，并给按钮加active状态；否则保持隐藏
-                if (!isContentActive) {
+                // 显示目标内容+添加按钮active
+                if (!isActive) {
                     targetContent.classList.add('active');
                     button.classList.add('active');
-                    // 滚动到内容区
-                    targetContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    targetContent.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
