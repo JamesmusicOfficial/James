@@ -22,32 +22,26 @@
             position: relative;
         }
 
-        /* 顶部真人照片区域（替换为清晰照片+移除右上角入口） */
+        /* 顶部James标题区域（替代原照片位置，居中设计） */
         .profile-header {
             max-width: 700px;
             margin: 0 auto 20px;
-            /* 你认可的清晰照片链接 */
-            background-image: url('https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc_gen_image/b557bb60a0d04f9aabe4636d19434dce.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 280px;
+            padding: 80px 0;
+            background-color: #f8fafc;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             position: relative;
-            background-color: rgba(255,255,255,0.1);
-            background-blend-mode: overlay;
         }
-        /* 照片左上角 James 标题 */
+        /* James标题样式（手写风+主色调，适配官网氛围） */
         .profile-title {
-            position: absolute;
-            top: 120px;
-            left: 50px;
-            font-size: 48px;
+            font-size: 80px;
             font-weight: 900;
-            font-family: "Comic Sans MS", cursive;
-            color: #000;
-            text-shadow: 2px 2px 3px rgba(255,255,255,0.9);
+            font-family: "Brush Script MT", cursive;
+            color: #1a5276;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin: 0;
+            line-height: 1;
         }
 
         /* 中间导航按钮区域（保持匀称排版） */
@@ -332,23 +326,33 @@
             color: #475569;
             margin-bottom: 25px;
         }
+
+        /* 适配手机端（避免标题过大） */
+        @media (max-width: 500px) {
+            .profile-title {
+                font-size: 60px;
+            }
+            .mv-title {
+                font-size: 32px;
+            }
+        }
     </style>
     <!-- 引入外部字体（确保标题/按钮字体正常显示） -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Georgia:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 背景装饰元素 -->
+    <!-- 背景装饰元素（保持官网轻松氛围） -->
     <div class="pattern cloud1">☁️</div>
     <div class="pattern note1">🎵</div>
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <!-- 顶部真人照片区域（无右上角入口） -->
+    <!-- 顶部James标题区域（完全替代原照片，居中显示） -->
     <div class="profile-header">
-        <div class="profile-title">James</div>
+        <h1 class="profile-title">James</h1>
     </div>
 
-    <!-- 中间导航按钮 -->
+    <!-- 中间导航按钮（6个按钮匀称排列，点击正常切换板块） -->
     <div class="entry-buttons">
         <button class="entry-btn" data-target="shop">Shop</button>
         <button class="entry-btn" data-target="info">Info</button>
@@ -358,7 +362,7 @@
         <button class="entry-btn" data-target="tour">Tour</button>
     </div>
 
-    <!-- 歌曲列表 -->
+    <!-- 歌曲列表（专辑+单曲分类，保持原样式） -->
     <div class="tracklist">
         <h3 class="section-title">Album (James)</h3>
         <ol>
@@ -380,9 +384,10 @@
         </ol>
     </div>
 
+    <!-- 提示文本（引导用户关注新歌） -->
     <p class="hint-text">More new songs are on the way — Wait and see!</p>
 
-    <!-- Shop 板块内容 -->
+    <!-- Shop 板块内容（专辑购买信息，保持原数据） -->
     <div id="shop" class="content-area">
         <h3>James' Music Shop</h3>
         <p><strong>Debut Album of James</strong></p>
@@ -395,7 +400,7 @@
         <p>To order: Send an email to <strong>James03010@icloud.com</strong> with your name, product name, and quantity. We’ll reply with payment details within 24 hours.</p>
     </div>
 
-    <!-- Info 板块内容 -->
+    <!-- Info 板块内容（个人留言，保持原文案） -->
     <div id="info" class="content-area">
         <h3>Message from James</h3>
         <p>This debut album has 8 tracks that tell small stories from my life — from dealing with workplace gossip to cherishing friendship, and even a gentle tribute to winter days.</p>
@@ -403,24 +408,24 @@
         <p>I hope my songs can be a little companion for your daily moments! Whether you’re commuting, working, or just relaxing.</p>
     </div>
 
-    <!-- Contact 板块内容 -->
+    <!-- Contact 板块内容（联系邮箱，保持原信息） -->
     <div id="contact" class="content-area">
         <h3>Get in Touch with James</h3>
         <p>The best way to reach me is via email — I read every message and try to reply as soon as possible!</p>
         <p><strong>Official Email</strong>: James03010@icloud.com</p>    
     </div>
 
-    <!-- About 板块内容 -->
+    <!-- About 板块内容（Jimmy Land介绍，保持原文案） -->
     <div id="about" class="content-area">
-        <h3>About Jimmy Land</h3>
-        <p>Welcome to Jimmy Land.</p>
+        <h3>About Jimmyland</h3>
+        <p>Welcome to Jimmyland.</p>
         <p>Inhabited by James and J-Stars.</p>
         <p>Jimmyland isn’t just a collection of my songs — it’s a space where you can <strong>connect with the music</strong> and <strong>find a little peace</strong>. Think of it as a cozy corner where you can slow down, let the melodies sink in, and maybe even share how the songs make you feel.</p>
         <p>Whether you’re listening to "Slow Days" while sipping morning coffee, or letting "Brighter Days" chase away a tough evening, this place is for you to relax and be yourself. No rush, no noise — just music and quiet moments.</p>
         <p>Thank you for stepping into Jimmyland. I’m glad we’re here together.</p>
     </div>
 
-    <!-- Videos 板块内容（MV标题+播放按钮） -->
+    <!-- Videos 板块内容（MV播放按钮，链接正常跳转） -->
     <div id="videos" class="content-area">
         <h3>Videos</h3>
         <div class="mv-section">
@@ -435,7 +440,7 @@
         <p style="text-align: center;"><strong>Email for updates</strong>: James03010@icloud.com</p>
     </div>
 
-    <!-- Tour 板块内容 -->
+    <!-- Tour 板块内容（2025直播信息，保持原文案） -->
     <div id="tour" class="content-area">
         <h3>James Live 2025</h3>
         <p>Ready for my livestream in 2025? "James Live 2025" will bring you performances — including "Slow Days," "Brighter Days," and even a few unreleased tracks I’ve been working on.</p>
@@ -443,7 +448,7 @@
         <p>This live stream will be interesting! Just like Jimmyland — So don’t miss the chance to experience the music live with me!</p>
     </div>
 
-    <!-- 歌词云区域 -->
+    <!-- 歌词云区域（歌词展示，hover效果正常） -->
     <div class="lyric-clouds">
         <div class="lyric-cloud">No noise around can pull us apart</div>
         <div class="lyric-cloud">Life small things they make the sense</div>
@@ -454,7 +459,7 @@
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
     </div>
 
-    <!-- 粉丝留言墙区域 -->
+    <!-- 粉丝留言墙区域（留言发布、展示功能正常） -->
     <div class="fan-wall">
         <h3>Fan Message Wall</h3>
         <div class="fan-comments" id="fanCommentsContainer">
@@ -479,32 +484,31 @@
         </div>
     </div>
 
-    <!-- 底部版权区域 -->
+    <!-- 底部版权区域（保持原样式） -->
     <div class="footer-james">James</div>
     <div class="footer-copyright">© 2025 James</div>
 
-    <!-- 交互脚本（导航切换+留言功能） -->
+    <!-- 交互脚本（所有功能正常运行） -->
     <script>
-        // 1. 导航按钮切换逻辑
+        // 1. 导航按钮切换逻辑（点击按钮显示对应板块，添加active样式）
         const navButtons = document.querySelectorAll('.entry-btn');
         const contentAreas = document.querySelectorAll('.content-area');
 
         navButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // 获取目标板块ID
                 const targetId = button.getAttribute('data-target');
-                // 移除所有板块的active状态
+                // 移除所有板块和按钮的active状态
                 contentAreas.forEach(area => area.classList.remove('active'));
                 navButtons.forEach(btn => btn.classList.remove('active'));
                 // 给目标板块和当前按钮添加active状态
                 document.getElementById(targetId).classList.add('active');
                 button.classList.add('active');
-                // 滚动到目标板块
+                // 平滑滚动到目标板块
                 document.getElementById(targetId).scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // 2. 粉丝留言发布逻辑
+        // 2. 粉丝留言发布逻辑（验证输入、添加留言、显示提示）
         const postButton = document.getElementById('postCommentBtn');
         const nameInput = document.getElementById('fanNameInput');
         const messageInput = document.getElementById('fanMessageInput');
@@ -515,7 +519,7 @@
             const userName = nameInput.value.trim();
             const userMessage = messageInput.value.trim();
 
-            // 验证输入
+            // 验证输入不为空
             if (!userName) {
                 alert('Please enter your name!');
                 nameInput.focus();
@@ -527,21 +531,17 @@
                 return;
             }
 
-            // 创建新留言元素
+            // 创建新留言元素并添加到列表顶部
             const newComment = document.createElement('div');
             newComment.className = 'fan-comment';
             newComment.innerHTML = `
                 <div class="fan-name">${userName}</div>
                 <div class="fan-text">${userMessage}</div>
             `;
-
-            // 添加到留言列表顶部
             commentsContainer.insertBefore(newComment, commentsContainer.firstChild);
 
-            // 显示成功提示
+            // 显示成功提示并清空输入框
             successHint.style.display = 'block';
-
-            // 清空输入框
             nameInput.value = '';
             messageInput.value = '';
 
