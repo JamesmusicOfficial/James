@@ -22,7 +22,7 @@
             position: relative;
         }
 
-        /* 顶部James标题区域（新增轻量元素） */
+        /* 顶部James标题区域（核心优化：移除虚线、新增晃动动画、简化字体） */
         .profile-header {
             max-width: 700px;
             margin: 0 auto 20px;
@@ -31,9 +31,9 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             position: relative;
-            overflow: hidden; /* 防止装饰元素溢出 */
+            overflow: hidden;
         }
-        /* 标题背景轻量纹理（不突兀的音乐符号底纹） */
+        /* 保留背景纹理 */
         .profile-header::before {
             content: "";
             position: absolute;
@@ -44,38 +44,43 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath fill='%23e3f2fd' fill-opacity='0.6' d='M0 0h20v20H0V0zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm20 0a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM10 37a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm10-17h20v20H20V20zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14z'%3E%3C/path%3E%3C/svg%3E");
             z-index: 1;
         }
-        /* 标题两侧小装饰（音符图标） */
+        /* 标题容器：保留音符装饰，与字体适配 */
         .title-decor {
             position: relative;
             z-index: 2;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px; /* 音符与文字间距 */
+            gap: 20px;
         }
         .title-decor::before,
         .title-decor::after {
-            content: "♪"; /* 音乐符号 */
+            content: "♪";
             font-size: 40px;
             color: #3498db;
             opacity: 0.7;
         }
-        /* James标题样式（保持核心设计，叠加元素） */
+        /* 核心：James字体优化 + 左右晃动动画 */
         .profile-title {
             font-size: 80px;
-            font-weight: 900;
-            font-family: "Brush Script MT", cursive;
+            font-weight: 700; /* 降低粗度，避免"花"感 */
+            font-family: "Arial Rounded MT Bold", "Helvetica Rounded", sans-serif; /* 替换为简洁圆润字体，无多余装饰 */
             color: #1a5276;
             letter-spacing: 5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* 弱化阴影，更简洁 */
             margin: 0;
             line-height: 1;
             position: relative;
             z-index: 2;
-            /* 标题底部细线条装饰 */
-            padding-bottom: 10px;
-            border-bottom: 2px dashed #3498db;
-            display: inline-block;
+            /* 移除底部虚线：删除原border-bottom属性 */
+            /* 新增左右晃动动画：持续循环，幅度适中不突兀 */
+            animation: shake 2s ease-in-out infinite;
+        }
+        /* 左右晃动动画关键帧：控制晃动幅度（±5px），节奏舒缓 */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
         }
 
         /* 中间导航按钮区域 */
@@ -280,7 +285,7 @@
             background: #f8fafc;
         }
 
-        /* 粉丝留言墙区域 */
+        /* 粉丝留言墙区域（保留Public/Secret功能） */
         .fan-wall {
             max-width: 720px;
             margin: 0 auto 40px;
@@ -292,21 +297,54 @@
         .fan-wall h3 {
             color: #1a5276;
             font-size: 22px;
-            margin-bottom: 25px;
-            font-weight: 600;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e3f2fd;
+            padding-bottom: 10px;
+        }
+        /* 公开/隐藏选项样式 */
+        .visibility-options {
+            margin: 15px 0;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .visibility-options label {
+            font-size: 14px;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .visibility-options input[type="radio"] {
+            accent-color: #4a6fa5;
+            cursor: pointer;
         }
         .fan-comments {
             text-align: left;
-            margin-bottom: 30px;
+            margin: 20px 0 30px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
         .fan-comment {
-            padding: 18px;
+            padding: 15px;
             background: #f8fafc;
             border-radius: 8px;
             border-left: 3px solid #4a6fa5;
+            position: relative;
+        }
+        /* 公开留言标记 */
+        .fan-comment.public::after {
+            content: "Public";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 12px;
+            color: #27ae60;
+            background-color: #e8f5e9;
+            padding: 2px 6px;
+            border-radius: 3px;
         }
         .fan-name {
             font-weight: 600;
@@ -360,7 +398,7 @@
             transform: translateY(-2px);
         }
         .success-hint {
-            color: #2c3e50;
+            color: #27ae60;
             font-size: 14px;
             display: none;
             margin-top: 10px;
@@ -385,6 +423,12 @@
         @media (max-width: 500px) {
             .profile-title {
                 font-size: 60px;
+                animation: shake 2.5s ease-in-out infinite; /* 手机端放缓动画节奏 */
+            }
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-3px); }
+                75% { transform: translateX(3px); }
             }
             .title-decor::before,
             .title-decor::after {
@@ -392,6 +436,11 @@
             }
             .mv-title {
                 font-size: 32px;
+            }
+            .visibility-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
             }
         }
     </style>
@@ -405,7 +454,7 @@
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <!-- 顶部James标题区域（带新增元素） -->
+    <!-- 顶部James标题区域（优化后：晃动动画+简洁字体+无虚线） -->
     <div class="profile-header">
         <div class="title-decor">
             <h1 class="profile-title">James</h1>
@@ -452,12 +501,12 @@
         <h3>James' Music Shop</h3>
         <p><strong>Debut Album of James</strong></p>
         <p><strong>Album Price</strong>: 125 HKD (Includes 8 original tracks)</p>
-        <p><strong>Single Price</strong>: 99 HKD (Collabs with Jessica)</p>
+        <p><strong>Single Price</strong>: 99 HKD (collabs with Jessica)</p>
         <ul>
             <li>Brighter Days (feat. Jessica)</li>
             <li>Swinging Bells (feat. Jessica)</li>
         </ul>
-        <p>To order: Send an email to <strong>James03010@icloud.com</strong> with your name, product name, and quantity. We’ll reply with payment details within 24 hours.</p>
+        <p>To order: Send an email to <strong>James03010@icloud.com</strong> with your name, product name, and quantity. We’ll reply with payment asap.</p>
     </div>
 
     <!-- Info 板块 -->
@@ -479,10 +528,10 @@
     <!-- About 板块 -->
     <div id="about" class="content-area">
         <button class="return-btn">Return</button>
-        <h3>About Jimmyland</h3>
+        <h3>About Jimmy Land</h3>
         <p>Welcome to Jimmyland.</p>
         <p>Inhabited by James and J-Stars.</p>
-        <p>Jimmyland isn’t just a collection of my songs — it’s a space where you can <strong>connect with the music</strong> and <strong>find a little peace</strong>. Think of it as a cozy corner where you can slow down, and maybe even share how the songs make you feel.</p>
+        <p>Jimmyland isn’t just a collection of my songs — it’s a space where you can <strong>connect with the music</strong> and <strong>find a little peace</strong>. Think of it as a cozy corner where you can slow down.</p>
         <p>Whether you’re listening to "Slow Days" while sipping morning coffee, or letting "Brighter Days" chase away a tough evening, this place is for you to relax and be yourself.</p>
         <p>Thank you for stepping into Jimmyland. I’m glad we’re here together.</p>
     </div>
@@ -507,8 +556,9 @@
     <div id="tour" class="content-area">
         <button class="return-btn">Return</button>
         <h3>James Live 2025</h3>
-        <p>Ready for my livestream in 2025? "James Live 2025" will bring you performances — Including "Slow Days," "Brighter Days," and a few unreleased tracks I’ve been working on.</p>
-        <p>This live stream will be interesting! Just like Jimmyland — So don’t miss the chance to experience the music live with me!</p>
+        <p>Ready for my livestream in 2025? "James Live 2025" will bring you performances — including "Slow Days," "Brighter Days," and even a few unreleased tracks I’ve been working on.</p>
+        <p>To be the first to know, sign up for updates via email (James03010@icloud.com) with "James Live 2025 Updates" in the subject line.</p>
+        <p>This livestream will be interesting!</p>
     </div>
 
     <!-- 歌词云区域 -->
@@ -522,36 +572,33 @@
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
     </div>
 
-    <!-- 粉丝留言墙区域 -->
+    <!-- 粉丝留言墙区域（带Public/Secret选项 + 永久保存） -->
     <div class="fan-wall">
-        <h3>Fan Message Wall</h3>
-        <div class="fan-comments" id="fanCommentsContainer">
-            <div class="fan-comment">
-                <div class="fan-name">Sophia L.</div>
-                <div class="fan-text">"I will hit repeat on the good days we made" — this line stuck with me the second I heard it. Your music turns ordinary moments into something special. Thank you for sharing your voice!</div>
-            </div>
-            <div class="fan-comment">
-                <div class="fan-name">Jack M.</div>
-                <div class="fan-text">Been listening to "Slow Days" every morning while I make coffee. It’s so calm and warm — exactly what I need to start my day right. Any chance you’ll release a live version someday?</div>
-            </div>
-            <div class="fan-comment">
-                <div class="fan-name">Olivia T.</div>
-                <div class="fan-text">The collab with Jessica on "Brighter Days" is *chef’s kiss*! Your voices blend so well. I’ve been recommending it to all my friends — they love it too. Can’t wait for what’s next!</div>
-            </div>
-        </div>
+        <h3>J-Stars Corner</h3>
         <div class="comment-input">
             <input type="text" id="fanNameInput" placeholder="Your Name" required>
-            <textarea id="fanMessageInput" placeholder="What do my songs mean to you? Share your story here..." required></textarea>
-            <button class="comment-btn" id="postCommentBtn">Post Your Message</button>
-            <div class="success-hint" id="successHint">Message posted successfully! Thank you for your support!</div>
+            <textarea id="fanMessageInput" placeholder="Share your thoughts..." required></textarea>
+            <!-- 公开/隐藏选项 -->
+            <div class="visibility-options">
+                <label>
+                    <input type="radio" name="visibility" value="public" checked> Public (Permanent)
+                </label>
+                <label>
+                    <input type="radio" name="visibility" value="secret"> Secret (Temporary)
+                </label>
+            </div>
+            <button class="comment-btn" id="postCommentBtn">Post Message</button>
+            <div class="success-hint" id="successHint">Message posted successfully!</div>
         </div>
+        <!-- 留言展示区 -->
+        <div class="fan-comments" id="fanCommentsContainer"></div>
     </div>
 
     <!-- 底部版权区域 -->
     <div class="footer-james">James</div>
     <div class="footer-copyright">© 2025 James</div>
 
-    <!-- 交互脚本 -->
+    <!-- 交互脚本（保留所有功能：导航+Return+留言永久保存） -->
     <script>
         // 1. 导航按钮切换逻辑
         const navButtons = document.querySelectorAll('.entry-btn');
@@ -579,44 +626,89 @@
             });
         });
 
-        // 3. 粉丝留言发布逻辑
+        // 3. 粉丝留言逻辑（Public永久保存/Secret临时显示）
         const postButton = document.getElementById('postCommentBtn');
         const nameInput = document.getElementById('fanNameInput');
         const messageInput = document.getElementById('fanMessageInput');
         const commentsContainer = document.getElementById('fanCommentsContainer');
         const successHint = document.getElementById('successHint');
+        const COMMENT_KEY = 'james_fan_comments'; // 本地存储键名
 
+        // 初始化：加载本地存储的公开留言
+        function initComments() {
+            const savedComments = localStorage.getItem(COMMENT_KEY);
+            if (savedComments) {
+                const comments = JSON.parse(savedComments);
+                comments.forEach(comment => renderComment(comment));
+            }
+        }
+
+        // 渲染单条留言
+        function renderComment(comment) {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = `fan-comment ${comment.visibility}`;
+            commentDiv.innerHTML = `
+                <div class="fan-name">${comment.name}</div>
+                <div class="fan-text">${comment.message}</div>
+            `;
+            commentsContainer.prepend(commentDiv); // 新留言放最前面
+
+            // Secret留言：5秒后自动删除（临时显示）
+            if (comment.visibility === 'secret') {
+                setTimeout(() => {
+                    commentDiv.remove();
+                }, 5000);
+            }
+        }
+
+        // 保存公开留言到本地存储
+        function savePublicComment(comment) {
+            const savedComments = localStorage.getItem(COMMENT_KEY) || '[]';
+            const comments = JSON.parse(savedComments);
+            comments.push(comment);
+            localStorage.setItem(COMMENT_KEY, JSON.stringify(comments));
+        }
+
+        // 发布留言事件
         postButton.addEventListener('click', () => {
             const userName = nameInput.value.trim();
             const userMessage = messageInput.value.trim();
+            const selectedVisibility = document.querySelector('input[name="visibility"]:checked').value;
 
-            if (!userName) {
-                alert('Please enter your name!');
-                nameInput.focus();
-                return;
-            }
-            if (!userMessage) {
-                alert('Please enter your message!');
-                messageInput.focus();
+            if (!userName || !userMessage) {
+                alert('Please enter your name and message!');
                 return;
             }
 
-            const newComment = document.createElement('div');
-            newComment.className = 'fan-comment';
-            newComment.innerHTML = `
-                <div class="fan-name">${userName}</div>
-                <div class="fan-text">${userMessage}</div>
-            `;
-            commentsContainer.insertBefore(newComment, commentsContainer.firstChild);
+            // 构建留言对象
+            const newComment = {
+                name: userName,
+                message: userMessage,
+                visibility: selectedVisibility,
+                time: new Date().getTime() // 记录时间（用于后续扩展）
+            };
 
+            // 渲染留言
+            renderComment(newComment);
+
+            // 公开留言：保存到本地存储
+            if (selectedVisibility === 'public') {
+                savePublicComment(newComment);
+            }
+
+            // 显示成功提示 + 清空输入框
             successHint.style.display = 'block';
             nameInput.value = '';
             messageInput.value = '';
 
+            // 3秒后隐藏成功提示
             setTimeout(() => {
                 successHint.style.display = 'none';
             }, 3000);
         });
+
+        // 页面加载时初始化留言
+        window.addEventListener('load', initComments);
     </script>
 </body>
 </html>
