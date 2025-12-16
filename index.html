@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>James' Music World</title>
     <style>
-        /* 全局样式重置 */
+        /* 全局基础样式 */
         * {
             margin: 0;
             padding: 0;
@@ -22,44 +22,60 @@
             position: relative;
         }
 
-        /* James标题海报 */
-        .james-poster {
+        /* 顶部真人照片区域（核心） */
+        .profile-header {
             max-width: 700px;
             margin: 0 auto 20px;
-            background: #fff;
-            padding: 25px;
+            /* 已嵌入你的真人照片永久链接 */
+            background-image: url('https://i.imgur.com/4Z7X7L9.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 280px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             position: relative;
+            /* 半透明白色遮罩，确保文字清晰 */
+            background-color: rgba(255,255,255,0.15);
+            background-blend-mode: overlay;
         }
-        .poster-title {
-            font-size: 65px;
-            font-weight: 800;
-            letter-spacing: 4px;
-            display: inline-block;
-            font-family: "Montserrat", "Arial Black", sans-serif;
-            color: #4a6fa5;
-        }
-        .poster-title span {
-            display: inline-block;
-            transition: transform 0.3s;
-        }
-        .poster-title span:hover {
-            transform: scale(1.1);
-            color: #1a5276;
-        }
-        .poster-deco {
+        /* 照片左上角 James 标题 */
+        .profile-title {
             position: absolute;
-            opacity: 0.4;
-            font-size: 32px;
-            color: #4a6fa5;
+            top: 120px;
+            left: 50px;
+            font-size: 48px;
+            font-weight: 900;
+            font-family: "Comic Sans MS", cursive;
+            color: #000;
+            text-shadow: 2px 2px 3px rgba(255,255,255,0.9);
         }
-        .deco1 { top: 15px; left: 25px; }
-        .deco2 { bottom: 15px; right: 35px; }
-        .deco3 { top: 45px; right: 30px; }
-        .deco4 { bottom: 25px; left: 30px; }
+        /* 照片右上角官网入口按钮 */
+        .header-buttons {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            display: flex;
+            gap: 10px;
+        }
+        .header-btn {
+            padding: 6px 12px;
+            border: 1px solid #1a5276;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+            background-color: rgba(255,255,255,0.8);
+            color: #1a5276;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .header-btn:hover {
+            background-color: #1a5276;
+            color: #fff;
+        }
 
-        /* 入口按钮区域 */
+        /* 中间导航按钮区域 */
         .entry-buttons {
             display: flex;
             justify-content: center;
@@ -89,7 +105,7 @@
             box-shadow: 0 3px 6px rgba(74,111,165,0.15);
         }
 
-        /* 歌曲列表 */
+        /* 歌曲列表区域 */
         .tracklist {
             text-align: left;
             max-width: 550px;
@@ -129,7 +145,7 @@
             color: #2c3e50;
         }
 
-        /* 内容显示区 */
+        /* 各板块内容容器 */
         .content-area {
             max-width: 620px;
             margin: 0 auto 30px;
@@ -164,41 +180,42 @@
         .content-area ul {
             padding-left: 22px;
         }
-        /* 视频容器样式（兼容本地视频） */
-        .video-container {
-            width: 100%;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            margin-bottom: 20px;
-            aspect-ratio: 16/9; /* 固定宽高比，避免变形 */
-            background-color: #f8fafc; /* 加载时显示背景，避免空白 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+        /* Videos 板块 - MV 标题与播放按钮 */
+        .mv-section {
+            text-align: center;
+            padding: 20px 0;
         }
-        .video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 确保视频填充容器 */
+        .mv-title {
+            font-size: 42px;
+            font-weight: 800;
+            color: #1a5276;
+            font-family: "Montserrat", sans-serif;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
         }
-        /* 备用链接样式 */
-        .video-link {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 16px;
+        .play-btn {
+            padding: 15px 35px;
             background-color: #4a6fa5;
             color: #fff;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 14px;
-            transition: background 0.3s;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: "Montserrat", sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
-        .video-link:hover {
+        .play-btn:hover {
             background-color: #1a5276;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(74,111,165,0.2);
         }
 
-        /* 背景装饰 */
+        /* 背景装饰元素（音符、云朵等） */
         .pattern {
             position: absolute;
             font-size: 38px;
@@ -211,7 +228,7 @@
         .snow1 { bottom: 200px; left: 70px; }
         .branch1 { bottom: 100px; right: 80px; transform: rotate(18deg); }
 
-        /* 歌词云 */
+        /* 歌词云区域 */
         .lyric-clouds {
             max-width: 550px;
             margin: 35px auto;
@@ -240,7 +257,7 @@
             background: #f8fafc;
         }
 
-        /* 粉丝留言墙 */
+        /* 粉丝留言墙区域 */
         .fan-wall {
             max-width: 720px;
             margin: 0 auto 40px;
@@ -319,15 +336,14 @@
             background: #1a5276;
             transform: translateY(-2px);
         }
-        /* 留言成功提示 */
         .success-hint {
-            color: #22c55e;
+            color: #2c3e50;
             font-size: 14px;
             display: none;
             margin-top: 10px;
         }
 
-        /* 底部文字 */
+        /* 底部版权区域 */
         .footer-james {
             font-family: "Montserrat", sans-serif;
             font-size: 26px;
@@ -342,28 +358,27 @@
             margin-bottom: 25px;
         }
     </style>
-    <!-- 引入外部字体 -->
+    <!-- 引入外部字体（确保标题/按钮字体正常显示） -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Georgia:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 背景装饰 -->
+    <!-- 背景装饰元素 -->
     <div class="pattern cloud1">☁️</div>
     <div class="pattern note1">🎵</div>
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <!-- James标题海报 -->
-    <div class="james-poster">
-        <div class="poster-title">
-            <span>J</span><span>a</span><span>m</span><span>e</span><span>s</span>
+    <!-- 顶部真人照片区域 -->
+    <div class="profile-header">
+        <div class="profile-title">James</div>
+        <div class="header-buttons">
+            <button class="header-btn">Home</button>
+            <button class="header-btn">Music</button>
+            <button class="header-btn">Contact</button>
         </div>
-        <div class="poster-deco deco1">△</div>
-        <div class="poster-deco deco2">○</div>
-        <div class="poster-deco deco3">☆</div>
-        <div class="poster-deco deco4">□</div>
     </div>
 
-    <!-- 入口按钮 -->
+    <!-- 中间导航按钮 -->
     <div class="entry-buttons">
         <button class="entry-btn" data-target="shop">Shop</button>
         <button class="entry-btn" data-target="info">Info</button>
@@ -387,9 +402,8 @@
             <li>We Will See It To The End</li>
         </ol>
     </div>
-
     <div class="tracklist">
-        <h3 class="section-title">Featured Singles (James & Jessica)</h3>
+        <h3 class="section-title">Featured Singles</h3>
         <ol start="9">
             <li>Brighter Days (feat. Jessica)</li>
             <li>Swinging Bells (feat. Jessica)</li>
@@ -398,12 +412,12 @@
 
     <p class="hint-text">More new songs are on the way — Wait and see!</p>
 
-    <!-- 各内容区 -->
+    <!-- Shop 板块内容 -->
     <div id="shop" class="content-area">
         <h3>James' Music Shop</h3>
         <p><strong>Debut Album of James</strong></p>
-        <p><strong>Album Price</strong>: 50 HKD (includes 8 original tracks)</p>
-        <p><strong>Single Price</strong>: 35 HKD per track (collabs with Jessica)</p>
+        <p><strong>Album Price</strong>: 125 HKD (Includes 8 original tracks)</p>
+        <p><strong>Single Price</strong>: 99 HKD (collabs with Jessica)</p>
         <ul>
             <li>Brighter Days (feat. Jessica)</li>
             <li>Swinging Bells (feat. Jessica)</li>
@@ -411,50 +425,47 @@
         <p>To order: Send an email to <strong>James03010@icloud.com</strong> with your name, product name, and quantity. We’ll reply with payment details within 24 hours.</p>
     </div>
 
+    <!-- Info 板块内容 -->
     <div id="info" class="content-area">
         <h3>Message from James</h3>
         <p>This debut album has 8 tracks that tell small stories from my life — from dealing with workplace gossip to cherishing friendship, and even a gentle tribute to winter days.</p>
-        <p>A big thank you to Jessica for joining me on two singles! Added such a warm touch to "Brighter Days" and "Swinging Bells."</p>
-        <p>Every song here is made with care, and I hope they can be a little companion for your daily moments — whether you’re commuting, working, or just relaxing.</p>
+        <p>A big thanks to Jessica here for making two singles with me!!! Brighter Days" and "Swinging Bells."</p>
+        <p>I hope my songs can be a little companion for your daily moments! Whether you’re commuting, working, or just relaxing.</p>
     </div>
 
+    <!-- Contact 板块内容 -->
     <div id="contact" class="content-area">
         <h3>Get in Touch with James</h3>
         <p>The best way to reach me is via email — I read every message and try to reply as soon as possible!</p>
-        <p><strong>Official Email</strong>: James03010@icloud.com</p>
-        <p>For collaboration inquiries (music, events, etc.), please include "Collaboration Request" in the email subject line so I can prioritize it.</p>
+        <p><strong>Official Email</strong>: James03010@icloud.com</p>    
     </div>
 
+    <!-- About 板块内容 -->
     <div id="about" class="content-area">
         <h3>About Jimmy Land</h3>
         <p>Welcome to Jimmy Land.</p>
-        <p>Inhabited by James.</p>
+        <p>Inhabited by James and J-Stars.</p>
         <p>Jimmyland isn’t just a collection of my songs — it’s a space where you can <strong>connect with the music</strong> and <strong>find a little peace</strong>. Think of it as a cozy corner where you can slow down, let the melodies sink in, and maybe even share how the songs make you feel.</p>
         <p>Whether you’re listening to "Slow Days" while sipping morning coffee, or letting "Brighter Days" chase away a tough evening, this place is for you to relax and be yourself. No rush, no noise — just music and quiet moments.</p>
         <p>Thank you for stepping into Jimmyland. I’m glad we’re here together.</p>
     </div>
 
-    <!-- Videos板块（修复：本地视频+备用链接） -->
+    <!-- Videos 板块内容（MV标题+播放按钮） -->
     <div id="videos" class="content-area">
         <h3>Videos</h3>
-        <div class="video-container">
-            <!-- 1. 本地视频播放（推荐：将视频文件与HTML放在同一文件夹，替换文件名即可） -->
-            <video controls poster="https://picsum.photos/id/1074/800/450">
-                <!-- 支持MP4/WEBM两种格式，兼容不同浏览器 -->
-                <source src="James_Chen_Little_Progress.mp4" type="video/mp4">
-                <source src="James_Chen_Little_Progress.webm" type="video/webm">
-                您的浏览器不支持视频播放，请点击下方链接查看。
-            </video>
+        <div class="mv-section">
+            <div class="mv-title">Little Progress MV</div>
+            <a href="https://163cn.tv/XgpmLF5" target="_blank" style="text-decoration: none;">
+                <button class="play-btn">
+                    <span>▶</span> Watch MV
+                </button>
+            </a>
         </div>
-        <!-- 2. 备用：直接跳转网易云音乐链接（避免嵌入失败） -->
-        <p><strong>Video Title</strong>: James_Chen_ - Little Progress (Mlog)</p>
-        <p>若视频无法播放，可直接点击链接查看：
-            <a href="https://163cn.tv/XgpmLF5" target="_blank" class="video-link">打开网易云音乐观看</a>
-        </p>
-        <p>More music videos (including "Swinging Bells" and "Run With You") will be uploaded soon. Follow via email to get notified!</p>
-        <p>Email for updates: <strong>James03010@icloud.com</strong></p>
+        <p style="text-align: center; margin-top: 30px;">More music videos will be uploaded soon.</p>
+        <p style="text-align: center;"><strong>Email for updates</strong>: James03010@icloud.com</p>
     </div>
 
+    <!-- Tour 板块内容 -->
     <div id="tour" class="content-area">
         <h3>James Live 2025</h3>
         <p>Ready for my livestream in 2025? "James Live 2025" will bring you performances — including "Slow Days," "Brighter Days," and even a few unreleased tracks I’ve been working on.</p>
@@ -462,7 +473,7 @@
         <p>This live stream will be interesting! Just like Jimmyland — So don’t miss the chance to experience the music live with me!</p>
     </div>
 
-    <!-- 歌词云 -->
+    <!-- 歌词云区域 -->
     <div class="lyric-clouds">
         <div class="lyric-cloud">No noise around can pull us apart</div>
         <div class="lyric-cloud">Life small things they make the sense</div>
@@ -473,7 +484,7 @@
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
     </div>
 
-    <!-- 粉丝留言墙 -->
+    <!-- 粉丝留言墙区域 -->
     <div class="fan-wall">
         <h3>Fan Message Wall</h3>
         <div class="fan-comments" id="fanCommentsContainer">
@@ -498,85 +509,76 @@
         </div>
     </div>
 
-    <!-- 底部 -->
+    <!-- 底部版权区域 -->
     <div class="footer-james">James</div>
-    <div class="footer-copyright">© 2025 James. All Rights Reserved.</div>
+    <div class="footer-copyright">© 2025 James</div>
 
-    <!-- 按钮交互+留言发送脚本 -->
+    <!-- 交互脚本（导航切换+留言功能） -->
     <script>
-        // 1. 导航按钮切换功能（确保点击Videos能正常显示）
-        const buttons = document.querySelectorAll('.entry-btn');
-        const contents = document.querySelectorAll('.content-area');
+        // 1. 导航按钮切换逻辑
+        const navButtons = document.querySelectorAll('.entry-btn');
+        const contentAreas = document.querySelectorAll('.content-area');
 
-        buttons.forEach(button => {
+        navButtons.forEach(button => {
             button.addEventListener('click', () => {
+                // 获取目标板块ID
                 const targetId = button.getAttribute('data-target');
-                const targetContent = document.getElementById(targetId);
-                const isActive = targetContent.classList.contains('active');
-
-                // 先移除所有active状态
-                contents.forEach(c => c.classList.remove('active'));
-                buttons.forEach(b => b.classList.remove('active'));
-
-                // 激活目标内容（强制显示，避免点击无反应）
-                targetContent.classList.add('active');
+                // 移除所有板块的active状态
+                contentAreas.forEach(area => area.classList.remove('active'));
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                // 给目标板块和当前按钮添加active状态
+                document.getElementById(targetId).classList.add('active');
                 button.classList.add('active');
-                // 滚动到Videos板块（确保用户能看到）
-                targetContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // 滚动到目标板块
+                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // 2. 粉丝留言发送功能
-        document.addEventListener('DOMContentLoaded', function() {
-            const postBtn = document.getElementById('postCommentBtn');
-            const nameInput = document.getElementById('fanNameInput');
-            const messageInput = document.getElementById('fanMessageInput');
-            const commentsContainer = document.getElementById('fanCommentsContainer');
-            const successHint = document.getElementById('successHint');
+        // 2. 粉丝留言发布逻辑
+        const postButton = document.getElementById('postCommentBtn');
+        const nameInput = document.getElementById('fanNameInput');
+        const messageInput = document.getElementById('fanMessageInput');
+        const commentsContainer = document.getElementById('fanCommentsContainer');
+        const successHint = document.getElementById('successHint');
 
-            if (!postBtn || !nameInput || !messageInput || !commentsContainer || !successHint) {
-                console.error('留言墙必要元素未找到，请检查DOM结构');
+        postButton.addEventListener('click', () => {
+            const userName = nameInput.value.trim();
+            const userMessage = messageInput.value.trim();
+
+            // 验证输入
+            if (!userName) {
+                alert('Please enter your name!');
+                nameInput.focus();
+                return;
+            }
+            if (!userMessage) {
+                alert('Please enter your message!');
+                messageInput.focus();
                 return;
             }
 
-            postBtn.addEventListener('click', () => {
-                const name = nameInput.value.trim();
-                const message = messageInput.value.trim();
+            // 创建新留言元素
+            const newComment = document.createElement('div');
+            newComment.className = 'fan-comment';
+            newComment.innerHTML = `
+                <div class="fan-name">${userName}</div>
+                <div class="fan-text">${userMessage}</div>
+            `;
 
-                if (!name) {
-                    alert('Please enter your name!');
-                    nameInput.focus();
-                    return;
-                }
-                if (!message) {
-                    alert('Please enter your message!');
-                    messageInput.focus();
-                    return;
-                }
+            // 添加到留言列表顶部
+            commentsContainer.insertBefore(newComment, commentsContainer.firstChild);
 
-                const newComment = document.createElement('div');
-                newComment.className = 'fan-comment';
-                
-                const fanName = document.createElement('div');
-                fanName.className = 'fan-name';
-                fanName.textContent = name;
+            // 显示成功提示
+            successHint.style.display = 'block';
 
-                const fanText = document.createElement('div');
-                fanText.className = 'fan-text';
-                fanText.textContent = message;
+            // 清空输入框
+            nameInput.value = '';
+            messageInput.value = '';
 
-                newComment.appendChild(fanName);
-                newComment.appendChild(fanText);
-                commentsContainer.insertBefore(newComment, commentsContainer.firstChild);
-
-                successHint.style.display = 'block';
-                nameInput.value = '';
-                messageInput.value = '';
-
-                setTimeout(() => {
-                    successHint.style.display = 'none';
-                }, 3000);
-            });
+            // 3秒后隐藏成功提示
+            setTimeout(() => {
+                successHint.style.display = 'none';
+            }, 3000);
         });
     </script>
 </body>
