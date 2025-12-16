@@ -22,7 +22,7 @@
             position: relative;
         }
 
-        /* 顶部James标题区域（替代原照片位置，居中设计） */
+        /* 顶部James标题区域（新增轻量元素） */
         .profile-header {
             max-width: 700px;
             margin: 0 auto 20px;
@@ -31,8 +31,36 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             position: relative;
+            overflow: hidden; /* 防止装饰元素溢出 */
         }
-        /* James标题样式（手写风+主色调，适配官网氛围） */
+        /* 标题背景轻量纹理（不突兀的音乐符号底纹） */
+        .profile-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath fill='%23e3f2fd' fill-opacity='0.6' d='M0 0h20v20H0V0zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm20 0a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM10 37a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm10-17h20v20H20V20zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14z'%3E%3C/path%3E%3C/svg%3E");
+            z-index: 1;
+        }
+        /* 标题两侧小装饰（音符图标） */
+        .title-decor {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px; /* 音符与文字间距 */
+        }
+        .title-decor::before,
+        .title-decor::after {
+            content: "♪"; /* 音乐符号 */
+            font-size: 40px;
+            color: #3498db;
+            opacity: 0.7;
+        }
+        /* James标题样式（保持核心设计，叠加元素） */
         .profile-title {
             font-size: 80px;
             font-weight: 900;
@@ -42,9 +70,15 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             margin: 0;
             line-height: 1;
+            position: relative;
+            z-index: 2;
+            /* 标题底部细线条装饰 */
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #3498db;
+            display: inline-block;
         }
 
-        /* 中间导航按钮区域（保持匀称排版） */
+        /* 中间导航按钮区域 */
         .entry-buttons {
             display: flex;
             justify-content: center;
@@ -114,7 +148,7 @@
             color: #2c3e50;
         }
 
-        /* 各板块内容容器 */
+        /* 各板块内容容器 + Return按钮样式 */
         .content-area {
             max-width: 620px;
             margin: 0 auto 30px;
@@ -125,6 +159,26 @@
             text-align: left;
             display: none;
             border-top: 3px solid #4a6fa5;
+            position: relative;
+        }
+        .return-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 6px 12px;
+            border: 1px solid #e74c3c;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #e74c3c;
+            background-color: #fff;
+            transition: all 0.2s;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+        }
+        .return-btn:hover {
+            background-color: #e74c3c;
+            color: #fff;
         }
         .content-area.active {
             display: block;
@@ -184,7 +238,7 @@
             box-shadow: 0 4px 12px rgba(74,111,165,0.2);
         }
 
-        /* 背景装饰元素（音符、云朵等） */
+        /* 背景装饰元素 */
         .pattern {
             position: absolute;
             font-size: 38px;
@@ -327,32 +381,38 @@
             margin-bottom: 25px;
         }
 
-        /* 适配手机端（避免标题过大） */
+        /* 适配手机端 */
         @media (max-width: 500px) {
             .profile-title {
                 font-size: 60px;
+            }
+            .title-decor::before,
+            .title-decor::after {
+                font-size: 30px;
             }
             .mv-title {
                 font-size: 32px;
             }
         }
     </style>
-    <!-- 引入外部字体（确保标题/按钮字体正常显示） -->
+    <!-- 引入外部字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Georgia:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 背景装饰元素（保持官网轻松氛围） -->
+    <!-- 背景装饰元素 -->
     <div class="pattern cloud1">☁️</div>
     <div class="pattern note1">🎵</div>
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <!-- 顶部James标题区域（完全替代原照片，居中显示） -->
+    <!-- 顶部James标题区域（带新增元素） -->
     <div class="profile-header">
-        <h1 class="profile-title">James</h1>
+        <div class="title-decor">
+            <h1 class="profile-title">James</h1>
+        </div>
     </div>
 
-    <!-- 中间导航按钮（6个按钮匀称排列，点击正常切换板块） -->
+    <!-- 中间导航按钮 -->
     <div class="entry-buttons">
         <button class="entry-btn" data-target="shop">Shop</button>
         <button class="entry-btn" data-target="info">Info</button>
@@ -362,7 +422,7 @@
         <button class="entry-btn" data-target="tour">Tour</button>
     </div>
 
-    <!-- 歌曲列表（专辑+单曲分类，保持原样式） -->
+    <!-- 歌曲列表 -->
     <div class="tracklist">
         <h3 class="section-title">Album (James)</h3>
         <ol>
@@ -384,15 +444,15 @@
         </ol>
     </div>
 
-    <!-- 提示文本（引导用户关注新歌） -->
     <p class="hint-text">More new songs are on the way — Wait and see!</p>
 
-    <!-- Shop 板块内容（专辑购买信息，保持原数据） -->
+    <!-- Shop 板块 -->
     <div id="shop" class="content-area">
+        <button class="return-btn">Return</button>
         <h3>James' Music Shop</h3>
         <p><strong>Debut Album of James</strong></p>
         <p><strong>Album Price</strong>: 125 HKD (Includes 8 original tracks)</p>
-        <p><strong>Single Price</strong>: 99 HKD (collabs with Jessica)</p>
+        <p><strong>Single Price</strong>: 99 HKD (Collabs with Jessica)</p>
         <ul>
             <li>Brighter Days (feat. Jessica)</li>
             <li>Swinging Bells (feat. Jessica)</li>
@@ -400,33 +460,36 @@
         <p>To order: Send an email to <strong>James03010@icloud.com</strong> with your name, product name, and quantity. We’ll reply with payment details within 24 hours.</p>
     </div>
 
-    <!-- Info 板块内容（个人留言，保持原文案） -->
+    <!-- Info 板块 -->
     <div id="info" class="content-area">
+        <button class="return-btn">Return</button>
         <h3>Message from James</h3>
         <p>This debut album has 8 tracks that tell small stories from my life — from dealing with workplace gossip to cherishing friendship, and even a gentle tribute to winter days.</p>
         <p>A big thanks to Jessica here for making two singles with me!!! Brighter Days" and "Swinging Bells."</p>
         <p>I hope my songs can be a little companion for your daily moments! Whether you’re commuting, working, or just relaxing.</p>
     </div>
 
-    <!-- Contact 板块内容（联系邮箱，保持原信息） -->
+    <!-- Contact 板块 -->
     <div id="contact" class="content-area">
+        <button class="return-btn">Return</button>
         <h3>Get in Touch with James</h3>
-        <p>The best way to reach me is via email — I read every message and try to reply as soon as possible!</p>
         <p><strong>Official Email</strong>: James03010@icloud.com</p>    
     </div>
 
-    <!-- About 板块内容（Jimmy Land介绍，保持原文案） -->
+    <!-- About 板块 -->
     <div id="about" class="content-area">
+        <button class="return-btn">Return</button>
         <h3>About Jimmyland</h3>
         <p>Welcome to Jimmyland.</p>
         <p>Inhabited by James and J-Stars.</p>
-        <p>Jimmyland isn’t just a collection of my songs — it’s a space where you can <strong>connect with the music</strong> and <strong>find a little peace</strong>. Think of it as a cozy corner where you can slow down, let the melodies sink in, and maybe even share how the songs make you feel.</p>
-        <p>Whether you’re listening to "Slow Days" while sipping morning coffee, or letting "Brighter Days" chase away a tough evening, this place is for you to relax and be yourself. No rush, no noise — just music and quiet moments.</p>
+        <p>Jimmyland isn’t just a collection of my songs — it’s a space where you can <strong>connect with the music</strong> and <strong>find a little peace</strong>. Think of it as a cozy corner where you can slow down, and maybe even share how the songs make you feel.</p>
+        <p>Whether you’re listening to "Slow Days" while sipping morning coffee, or letting "Brighter Days" chase away a tough evening, this place is for you to relax and be yourself.</p>
         <p>Thank you for stepping into Jimmyland. I’m glad we’re here together.</p>
     </div>
 
-    <!-- Videos 板块内容（MV播放按钮，链接正常跳转） -->
+    <!-- Videos 板块 -->
     <div id="videos" class="content-area">
+        <button class="return-btn">Return</button>
         <h3>Videos</h3>
         <div class="mv-section">
             <div class="mv-title">Little Progress MV</div>
@@ -440,15 +503,15 @@
         <p style="text-align: center;"><strong>Email for updates</strong>: James03010@icloud.com</p>
     </div>
 
-    <!-- Tour 板块内容（2025直播信息，保持原文案） -->
+    <!-- Tour 板块 -->
     <div id="tour" class="content-area">
+        <button class="return-btn">Return</button>
         <h3>James Live 2025</h3>
-        <p>Ready for my livestream in 2025? "James Live 2025" will bring you performances — including "Slow Days," "Brighter Days," and even a few unreleased tracks I’ve been working on.</p>
-        <p>To be the first to know, sign up for updates via email (James03010@icloud.com) with "James Live 2025 Updates" in the subject line.</p>
+        <p>Ready for my livestream in 2025? "James Live 2025" will bring you performances — Including "Slow Days," "Brighter Days," and a few unreleased tracks I’ve been working on.</p>
         <p>This live stream will be interesting! Just like Jimmyland — So don’t miss the chance to experience the music live with me!</p>
     </div>
 
-    <!-- 歌词云区域（歌词展示，hover效果正常） -->
+    <!-- 歌词云区域 -->
     <div class="lyric-clouds">
         <div class="lyric-cloud">No noise around can pull us apart</div>
         <div class="lyric-cloud">Life small things they make the sense</div>
@@ -459,7 +522,7 @@
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
     </div>
 
-    <!-- 粉丝留言墙区域（留言发布、展示功能正常） -->
+    <!-- 粉丝留言墙区域 -->
     <div class="fan-wall">
         <h3>Fan Message Wall</h3>
         <div class="fan-comments" id="fanCommentsContainer">
@@ -484,31 +547,39 @@
         </div>
     </div>
 
-    <!-- 底部版权区域（保持原样式） -->
+    <!-- 底部版权区域 -->
     <div class="footer-james">James</div>
     <div class="footer-copyright">© 2025 James</div>
 
-    <!-- 交互脚本（所有功能正常运行） -->
+    <!-- 交互脚本 -->
     <script>
-        // 1. 导航按钮切换逻辑（点击按钮显示对应板块，添加active样式）
+        // 1. 导航按钮切换逻辑
         const navButtons = document.querySelectorAll('.entry-btn');
         const contentAreas = document.querySelectorAll('.content-area');
+        const returnButtons = document.querySelectorAll('.return-btn');
 
         navButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const targetId = button.getAttribute('data-target');
-                // 移除所有板块和按钮的active状态
                 contentAreas.forEach(area => area.classList.remove('active'));
                 navButtons.forEach(btn => btn.classList.remove('active'));
-                // 给目标板块和当前按钮添加active状态
                 document.getElementById(targetId).classList.add('active');
                 button.classList.add('active');
-                // 平滑滚动到目标板块
                 document.getElementById(targetId).scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // 2. 粉丝留言发布逻辑（验证输入、添加留言、显示提示）
+        // 2. Return按钮逻辑
+        returnButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const parentArea = button.closest('.content-area');
+                parentArea.classList.remove('active');
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // 3. 粉丝留言发布逻辑
         const postButton = document.getElementById('postCommentBtn');
         const nameInput = document.getElementById('fanNameInput');
         const messageInput = document.getElementById('fanMessageInput');
@@ -519,7 +590,6 @@
             const userName = nameInput.value.trim();
             const userMessage = messageInput.value.trim();
 
-            // 验证输入不为空
             if (!userName) {
                 alert('Please enter your name!');
                 nameInput.focus();
@@ -531,7 +601,6 @@
                 return;
             }
 
-            // 创建新留言元素并添加到列表顶部
             const newComment = document.createElement('div');
             newComment.className = 'fan-comment';
             newComment.innerHTML = `
@@ -540,12 +609,10 @@
             `;
             commentsContainer.insertBefore(newComment, commentsContainer.firstChild);
 
-            // 显示成功提示并清空输入框
             successHint.style.display = 'block';
             nameInput.value = '';
             messageInput.value = '';
 
-            // 3秒后隐藏成功提示
             setTimeout(() => {
                 successHint.style.display = 'none';
             }, 3000);
