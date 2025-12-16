@@ -22,12 +22,12 @@
             position: relative;
         }
 
-        /* 顶部真人照片区域（核心） */
+        /* 顶部真人照片区域（替换为清晰照片+移除右上角入口） */
         .profile-header {
             max-width: 700px;
             margin: 0 auto 20px;
-            /* 已嵌入你的真人照片永久链接 */
-            background-image: url('https://i.imgur.com/4Z7X7L9.png');
+            /* 你认可的清晰照片链接 */
+            background-image: url('https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc_gen_image/b557bb60a0d04f9aabe4636d19434dce.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -35,8 +35,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             position: relative;
-            /* 半透明白色遮罩，确保文字清晰 */
-            background-color: rgba(255,255,255,0.15);
+            background-color: rgba(255,255,255,0.1);
             background-blend-mode: overlay;
         }
         /* 照片左上角 James 标题 */
@@ -50,32 +49,8 @@
             color: #000;
             text-shadow: 2px 2px 3px rgba(255,255,255,0.9);
         }
-        /* 照片右上角官网入口按钮 */
-        .header-buttons {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            display: flex;
-            gap: 10px;
-        }
-        .header-btn {
-            padding: 6px 12px;
-            border: 1px solid #1a5276;
-            border-radius: 4px;
-            font-size: 13px;
-            cursor: pointer;
-            background-color: rgba(255,255,255,0.8);
-            color: #1a5276;
-            font-family: "Montserrat", sans-serif;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-        .header-btn:hover {
-            background-color: #1a5276;
-            color: #fff;
-        }
 
-        /* 中间导航按钮区域 */
+        /* 中间导航按钮区域（保持匀称排版） */
         .entry-buttons {
             display: flex;
             justify-content: center;
@@ -368,14 +343,9 @@
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <!-- 顶部真人照片区域 -->
+    <!-- 顶部真人照片区域（无右上角入口） -->
     <div class="profile-header">
         <div class="profile-title">James</div>
-        <div class="header-buttons">
-            <button class="header-btn">Home</button>
-            <button class="header-btn">Music</button>
-            <button class="header-btn">Contact</button>
-        </div>
     </div>
 
     <!-- 中间导航按钮 -->
