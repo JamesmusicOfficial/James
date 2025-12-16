@@ -59,68 +59,6 @@
         .deco3 { top: 45px; right: 30px; }
         .deco4 { bottom: 25px; left: 30px; }
 
-        /* 核心：James标题下的轮播图（中等尺寸+6秒切换） */
-        .james-slider {
-            width: 100%;
-            max-width: 700px; /* 中等宽度，适配页面 */
-            height: 350px; /* 中等高度，不遮挡内容 */
-            overflow: hidden;
-            position: relative;
-            margin: 0 auto 20px; /* 上下留白，与标题/按钮区分 */
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-        .slider-wrapper {
-            display: flex;
-            width: 500%; /* 5张图 → 宽度500% */
-            /* 动画：30秒一轮（5张×6秒），ease让切换更丝滑 */
-            animation: slide 30s infinite ease-in-out;
-        }
-        .slider-wrapper img {
-            width: 20%; /* 单张图占20%宽度 */
-            height: 100%;
-            object-fit: cover; /* 保持图片比例，避免变形 */
-        }
-        /* 轮播图文字叠加样式 */
-        .slide-text {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255,255,255,0.9);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-family: "Montserrat", sans-serif;
-            font-weight: 600;
-            color: #1a5276;
-            z-index: 10;
-        }
-        .slide-subtext {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(74,111,165,0.8);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            z-index: 10;
-        }
-        /* 左右切换动画关键帧：每张停留6秒 */
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            20% { transform: translateX(0); }   /* 第1张停留6秒 */
-            20% { transform: translateX(-20%); }
-            40% { transform: translateX(-20%); } /* 第2张停留6秒 */
-            40% { transform: translateX(-40%); }
-            60% { transform: translateX(-40%); } /* 第3张停留6秒 */
-            60% { transform: translateX(-60%); }
-            80% { transform: translateX(-60%); } /* 第4张停留6秒 */
-            80% { transform: translateX(-80%); }
-            100% { transform: translateX(-80%); } /* 第5张停留6秒 */
-        }
-
         /* 入口按钮区域 */
         .entry-buttons {
             display: flex;
@@ -225,6 +163,19 @@
         }
         .content-area ul {
             padding-left: 22px;
+        }
+        /* 视频容器样式，适配页面 */
+        .video-container {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* 背景装饰 */
@@ -392,39 +343,6 @@
         <div class="poster-deco deco4">□</div>
     </div>
 
-    <!-- James标题下的轮播图（5张图+6秒切换） -->
-    <div class="james-slider">
-        <div class="slider-wrapper">
-            <!-- 第1张：newest single with Jessica（1:1尺寸，含装饰） -->
-            <div style="position: relative; width: 20%; height: 100%;">
-                <img src="https://picsum.photos/id/1025/800/800" alt="Newest Single with Jessica" style="object-fit: cover;">
-                <div class="slide-subtext">Newest Single</div>
-                <div class="slide-text">with Jessica</div>
-            </div>
-            <!-- 第2张：Brighter Days（1:1尺寸，含装饰） -->
-            <div style="position: relative; width: 20%; height: 100%;">
-                <img src="https://picsum.photos/id/1024/800/800" alt="Brighter Days" style="object-fit: cover;">
-                <div class="slide-text">Brighter Days</div>
-            </div>
-            <!-- 第3张：Swinging Bells + a Christmas song（1:1尺寸，含装饰） -->
-            <div style="position: relative; width: 20%; height: 100%;">
-                <img src="https://picsum.photos/id/1082/800/800" alt="Swinging Bells" style="object-fit: cover;">
-                <div class="slide-subtext">a Christmas song</div>
-                <div class="slide-text">Swinging Bells</div>
-            </div>
-            <!-- 第4张：Little Progress（1:1尺寸，含装饰） -->
-            <div style="position: relative; width: 20%; height: 100%;">
-                <img src="https://picsum.photos/id/1074/800/800" alt="Little Progress" style="object-fit: cover;">
-                <div class="slide-text">Little Progress</div>
-            </div>
-            <!-- 第5张：Run with you（1:1尺寸，含装饰） -->
-            <div style="position: relative; width: 20%; height: 100%;">
-                <img src="https://picsum.photos/id/1069/800/800" alt="Run with you" style="object-fit: cover;">
-                <div class="slide-text">Run with you</div>
-            </div>
-        </div>
-    </div>
-
     <!-- 入口按钮 -->
     <div class="entry-buttons">
         <button class="entry-btn" data-target="shop">Shop</button>
@@ -435,7 +353,7 @@
         <button class="entry-btn" data-target="tour">Tour</button>
     </div>
 
-    <!-- 歌曲列表（补充Winter is coming） -->
+    <!-- 歌曲列表 -->
     <div class="tracklist">
         <h3 class="section-title">Album (James)</h3>
         <ol>
@@ -496,17 +414,26 @@
         <p>Thank you for stepping into Jimmyland. I’m glad we’re here together.</p>
     </div>
 
+    <!-- Videos板块（含视频播放器） -->
     <div id="videos" class="content-area">
         <h3>Videos</h3>
-        <p>Currently, there are no music videos or performance clips available here</p>
-        <p>Follow me via email (James03010@icloud.com) to get notified when new videos are uploaded. Stay tuned — more visual content is coming!</p>
+        <div class="video-container">
+            <!-- 替换src为你的视频链接，当前用示例视频演示 -->
+            <video controls poster="https://picsum.photos/id/1074/800/450">
+                <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4" type="video/mp4">
+                您的浏览器不支持视频播放，请更新浏览器版本。
+            </video>
+        </div>
+        <p><strong>Video Title</strong>: Brighter Days (Official Music Video)</p>
+        <p>More music videos (including "Swinging Bells" and "Run With You") will be uploaded soon. Follow via email to get notified!</p>
+        <p>Email for updates: <strong>James03010@icloud.com</strong></p>
     </div>
 
     <div id="tour" class="content-area">
         <h3>James Live 2025</h3>
         <p>Ready for my livestream in 2025? "James Live 2025" will bring you performances — including "Slow Days," "Brighter Days," and even a few unreleased tracks I’ve been working on.</p>
         <p>To be the first to know, sign up for updates via email (James03010@icloud.com) with "James Live 2025 Updates" in the subject line.</p>
-        <p>This live stream will be interesting! Just like Jimmyland — So don’t miss the chance to experience the music live with me!</p>
+        <p>This livestream will be interesting! Just like Jimmyland — So don’t miss the chance to experience the music with me!</p>
     </div>
 
     <!-- 歌词云 -->
@@ -520,7 +447,7 @@
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
     </div>
 
-    <!-- 粉丝留言墙（修复发送功能） -->
+    <!-- 粉丝留言墙（核心修复区域） -->
     <div class="fan-wall">
         <h3>Fan Message Wall</h3>
         <div class="fan-comments" id="fanCommentsContainer">
@@ -549,7 +476,7 @@
     <div class="footer-james">James</div>
     <div class="footer-copyright">© 2025 James. All Rights Reserved.</div>
 
-    <!-- 按钮交互+留言发送脚本 -->
+    <!-- 按钮交互+留言发送脚本（核心修复处已标注） -->
     <script>
         // 1. 导航按钮切换功能
         const buttons = document.querySelectorAll('.entry-btn');
@@ -574,45 +501,66 @@
             });
         });
 
-        // 2. 修复粉丝留言发送功能
-        const postBtn = document.getElementById('postCommentBtn');
-        const nameInput = document.getElementById('fanNameInput');
-        const messageInput = document.getElementById('fanMessageInput');
-        const commentsContainer = document.getElementById('fanCommentsContainer');
-        const successHint = document.getElementById('successHint');
+        // 2. 粉丝留言发送功能（核心修复）
+        document.addEventListener('DOMContentLoaded', function() {
+            // 修复1：确保DOM加载完成后再获取元素，避免元素未渲染导致的获取失败
+            const postBtn = document.getElementById('postCommentBtn');
+            const nameInput = document.getElementById('fanNameInput');
+            const messageInput = document.getElementById('fanMessageInput');
+            const commentsContainer = document.getElementById('fanCommentsContainer');
+            const successHint = document.getElementById('successHint');
 
-        postBtn.addEventListener('click', () => {
-            const name = nameInput.value.trim();
-            const message = messageInput.value.trim();
-
-            // 验证输入不为空
-            if (!name || !message) {
-                alert('Please enter your name and message!');
+            if (!postBtn || !nameInput || !messageInput || !commentsContainer || !successHint) {
+                console.error('留言墙必要元素未找到，请检查DOM结构');
                 return;
             }
 
-            // 创建新留言元素
-            const newComment = document.createElement('div');
-            newComment.className = 'fan-comment';
-            newComment.innerHTML = `
-                <div class="fan-name">${name}</div>
-                <div class="fan-text">${message}</div>
-            `;
+            postBtn.addEventListener('click', () => {
+                // 修复2：优化输入验证，确保空格不被视为有效输入
+                const name = nameInput.value.trim();
+                const message = messageInput.value.trim();
 
-            // 添加到留言列表顶部
-            commentsContainer.prepend(newComment);
+                if (!name) {
+                    alert('Please enter your name!');
+                    nameInput.focus(); // 聚焦到未填写的输入框，提升用户体验
+                    return;
+                }
+                if (!message) {
+                    alert('Please enter your message!');
+                    messageInput.focus();
+                    return;
+                }
 
-            // 显示成功提示
-            successHint.style.display = 'block';
+                // 修复3：使用textContent避免XSS风险，同时确保留言格式正确
+                const newComment = document.createElement('div');
+                newComment.className = 'fan-comment';
+                
+                const fanName = document.createElement('div');
+                fanName.className = 'fan-name';
+                fanName.textContent = name; // 安全设置文本内容
 
-            // 清空输入框
-            nameInput.value = '';
-            messageInput.value = '';
+                const fanText = document.createElement('div');
+                fanText.className = 'fan-text';
+                fanText.textContent = message; // 安全设置文本内容
 
-            // 3秒后隐藏成功提示
-            setTimeout(() => {
-                successHint.style.display = 'none';
-            }, 3000);
+                newComment.appendChild(fanName);
+                newComment.appendChild(fanText);
+
+                // 修复4：确保新留言添加到列表顶部，且样式与原有留言一致
+                commentsContainer.insertBefore(newComment, commentsContainer.firstChild);
+
+                // 显示成功提示
+                successHint.style.display = 'block';
+
+                // 清空输入框
+                nameInput.value = '';
+                messageInput.value = '';
+
+                // 3秒后隐藏成功提示
+                setTimeout(() => {
+                    successHint.style.display = 'none';
+                }, 3000);
+            });
         });
     </script>
 </body>
