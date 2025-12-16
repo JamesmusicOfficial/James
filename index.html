@@ -22,7 +22,7 @@
             position: relative;
         }
 
-        /* 顶部James标题区域（核心优化：移除虚线、新增晃动动画、简化字体） */
+        /* 顶部James标题区域（核心：取消动画+更换优雅字体） */
         .profile-header {
             max-width: 700px;
             margin: 0 auto 20px;
@@ -44,7 +44,7 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath fill='%23e3f2fd' fill-opacity='0.6' d='M0 0h20v20H0V0zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm20 0a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM10 37a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm10-17h20v20H20V20zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14z'%3E%3C/path%3E%3C/svg%3E");
             z-index: 1;
         }
-        /* 标题容器：保留音符装饰，与字体适配 */
+        /* 保留音符装饰，与新字体适配 */
         .title-decor {
             position: relative;
             z-index: 2;
@@ -60,27 +60,19 @@
             color: #3498db;
             opacity: 0.7;
         }
-        /* 核心：James字体优化 + 左右晃动动画 */
+        /* 核心优化：取消动画 + 更换为优雅圆润字体（Cormorant Garamond，衬线字体显高级，贴合音乐主题） */
         .profile-title {
             font-size: 80px;
-            font-weight: 700; /* 降低粗度，避免"花"感 */
-            font-family: "Arial Rounded MT Bold", "Helvetica Rounded", sans-serif; /* 替换为简洁圆润字体，无多余装饰 */
+            font-weight: 600; /* 适中粗度，优雅不厚重 */
+            font-family: "Cormorant Garamond", "Times New Roman", serif; /* 衬线字体，兼具优雅与正式感，与官网柔和风格匹配 */
             color: #1a5276;
-            letter-spacing: 5px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* 弱化阴影，更简洁 */
+            letter-spacing: 3px; /* 缩小字间距，更紧凑精致 */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.08); /* 弱化阴影，更显干净 */
             margin: 0;
             line-height: 1;
             position: relative;
             z-index: 2;
-            /* 移除底部虚线：删除原border-bottom属性 */
-            /* 新增左右晃动动画：持续循环，幅度适中不突兀 */
-            animation: shake 2s ease-in-out infinite;
-        }
-        /* 左右晃动动画关键帧：控制晃动幅度（±5px），节奏舒缓 */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+            /* 取消原晃动动画：删除animation属性 */
         }
 
         /* 中间导航按钮区域 */
@@ -285,7 +277,7 @@
             background: #f8fafc;
         }
 
-        /* 粉丝留言墙区域（保留Public/Secret功能） */
+        /* 粉丝留言墙区域（保留Public/Secret权限功能） */
         .fan-wall {
             max-width: 720px;
             margin: 0 auto 40px;
@@ -300,6 +292,13 @@
             margin-bottom: 20px;
             border-bottom: 2px solid #e3f2fd;
             padding-bottom: 10px;
+        }
+        /* 权限选项说明文字 */
+        .visibility-note {
+            font-size: 12px;
+            color: #666;
+            margin: -10px 0 15px;
+            text-align: left;
         }
         /* 公开/隐藏选项样式 */
         .visibility-options {
@@ -331,18 +330,35 @@
             padding: 15px;
             background: #f8fafc;
             border-radius: 8px;
-            border-left: 3px solid #4a6fa5;
             position: relative;
         }
-        /* 公开留言标记 */
+        /* Public留言：绿色边框+所有人可见标记 */
+        .fan-comment.public {
+            border-left: 3px solid #27ae60;
+        }
         .fan-comment.public::after {
-            content: "Public";
+            content: "Public • Visible to everyone";
             position: absolute;
             top: 10px;
             right: 15px;
             font-size: 12px;
             color: #27ae60;
             background-color: #e8f5e9;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        /* Secret留言：灰色边框+仅自己可见标记 */
+        .fan-comment.secret {
+            border-left: 3px solid #999;
+        }
+        .fan-comment.secret::after {
+            content: "Secret • Only you can see";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 12px;
+            color: #666;
+            background-color: #f5f5f5;
             padding: 2px 6px;
             border-radius: 3px;
         }
@@ -422,13 +438,7 @@
         /* 适配手机端 */
         @media (max-width: 500px) {
             .profile-title {
-                font-size: 60px;
-                animation: shake 2.5s ease-in-out infinite; /* 手机端放缓动画节奏 */
-            }
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-3px); }
-                75% { transform: translateX(3px); }
+                font-size: 60px; /* 手机端缩小字体，避免溢出 */
             }
             .title-decor::before,
             .title-decor::after {
@@ -442,10 +452,17 @@
                 align-items: flex-start;
                 gap: 8px;
             }
+            .fan-comment.public::after,
+            .fan-comment.secret::after {
+                content: "";
+                display: none; /* 手机端隐藏标记文字，避免拥挤 */
+            }
         }
     </style>
-    <!-- 引入外部字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Georgia:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- 引入Google字体：Cormorant Garamond（优雅衬线字体，确保显示效果） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@600;800&family=Georgia:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- 背景装饰元素 -->
@@ -454,7 +471,7 @@
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <!-- 顶部James标题区域（优化后：晃动动画+简洁字体+无虚线） -->
+    <!-- 顶部James标题区域（无动画+新字体） -->
     <div class="profile-header">
         <div class="title-decor">
             <h1 class="profile-title">James</h1>
@@ -473,7 +490,7 @@
 
     <!-- 歌曲列表 -->
     <div class="tracklist">
-        <h3 class="section-title">Album (James)</h3>
+        <h3 class="section-title">Album James</h3>
         <ol>
             <li>Little Progress</li>
             <li>No More Hurry</li>
@@ -506,7 +523,7 @@
             <li>Brighter Days (feat. Jessica)</li>
             <li>Swinging Bells (feat. Jessica)</li>
         </ul>
-        <p>To order: Send an email to <strong>James03010@icloud.com</strong> with your name, product name, and quantity. We’ll reply with payment asap.</p>
+        <p>To order: Send an email to <strong>James03010@icloud.com</strong> with your name, product name, and quantity. We’ll reply with payment details asap.</p>
     </div>
 
     <!-- Info 板块 -->
@@ -528,7 +545,7 @@
     <!-- About 板块 -->
     <div id="about" class="content-area">
         <button class="return-btn">Return</button>
-        <h3>About Jimmy Land</h3>
+        <h3>About Jimmyland</h3>
         <p>Welcome to Jimmyland.</p>
         <p>Inhabited by James and J-Stars.</p>
         <p>Jimmyland isn’t just a collection of my songs — it’s a space where you can <strong>connect with the music</strong> and <strong>find a little peace</strong>. Think of it as a cozy corner where you can slow down.</p>
@@ -557,7 +574,6 @@
         <button class="return-btn">Return</button>
         <h3>James Live 2025</h3>
         <p>Ready for my livestream in 2025? "James Live 2025" will bring you performances — including "Slow Days," "Brighter Days," and even a few unreleased tracks I’ve been working on.</p>
-        <p>To be the first to know, sign up for updates via email (James03010@icloud.com) with "James Live 2025 Updates" in the subject line.</p>
         <p>This livestream will be interesting!</p>
     </div>
 
@@ -570,21 +586,23 @@
         <div class="lyric-cloud">Don't be afraid of the nights coming</div>
         <div class="lyric-cloud">The things that I want to, the things that I like to</div>
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
+        <div class="lyric-cloud">Your heartbeat,warm an low</div>
     </div>
 
-    <!-- 粉丝留言墙区域（带Public/Secret选项 + 永久保存） -->
+    <!-- 粉丝留言墙区域（带Public/Secret权限功能） -->
     <div class="fan-wall">
         <h3>J-Stars Corner</h3>
         <div class="comment-input">
             <input type="text" id="fanNameInput" placeholder="Your Name" required>
             <textarea id="fanMessageInput" placeholder="Share your thoughts..." required></textarea>
-            <!-- 公开/隐藏选项 -->
+            <!-- 公开/隐藏选项 + 说明 -->
+            <div class="visibility-note">Choose visibility: Public (all can see) / Secret (only you can see)</div>
             <div class="visibility-options">
                 <label>
-                    <input type="radio" name="visibility" value="public" checked> Public (Permanent)
+                    <input type="radio" name="visibility" value="public" checked> Public
                 </label>
                 <label>
-                    <input type="radio" name="visibility" value="secret"> Secret (Temporary)
+                    <input type="radio" name="visibility" value="secret"> Secret
                 </label>
             </div>
             <button class="comment-btn" id="postCommentBtn">Post Message</button>
@@ -598,7 +616,7 @@
     <div class="footer-james">James</div>
     <div class="footer-copyright">© 2025 James</div>
 
-    <!-- 交互脚本（保留所有功能：导航+Return+留言永久保存） -->
+    <!-- 交互脚本（保留所有功能：导航+Return+留言权限） -->
     <script>
         // 1. 导航按钮切换逻辑
         const navButtons = document.querySelectorAll('.entry-btn');
@@ -626,21 +644,36 @@
             });
         });
 
-        // 3. 粉丝留言逻辑（Public永久保存/Secret临时显示）
+        // 3. 粉丝留言逻辑（Public所有人可见/Secret仅自己可见，均永久保存）
         const postButton = document.getElementById('postCommentBtn');
         const nameInput = document.getElementById('fanNameInput');
         const messageInput = document.getElementById('fanMessageInput');
         const commentsContainer = document.getElementById('fanCommentsContainer');
         const successHint = document.getElementById('successHint');
-        const COMMENT_KEY = 'james_fan_comments'; // 本地存储键名
+        const PUBLIC_KEY = 'james_public_comments'; // 公开留言存储键
+        const SECRET_KEY = 'james_secret_comments'; // 私密留言存储键（基于设备唯一标识）
 
-        // 初始化：加载本地存储的公开留言
-        function initComments() {
-            const savedComments = localStorage.getItem(COMMENT_KEY);
-            if (savedComments) {
-                const comments = JSON.parse(savedComments);
-                comments.forEach(comment => renderComment(comment));
+        // 生成设备唯一标识（用于区分不同设备的私密留言）
+        function getDeviceId() {
+            let deviceId = localStorage.getItem('james_device_id');
+            if (!deviceId) {
+                deviceId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+                localStorage.setItem('james_device_id', deviceId);
             }
+            return deviceId;
+        }
+        const deviceId = getDeviceId();
+        const userSecretKey = `${SECRET_KEY}_${deviceId}`; // 每个设备的私密留言键
+
+        // 初始化：加载所有可见留言（公开留言+当前设备的私密留言）
+        function initComments() {
+            // 加载公开留言（所有人可见）
+            const publicComments = localStorage.getItem(PUBLIC_KEY) || '[]';
+            JSON.parse(publicComments).forEach(comment => renderComment(comment));
+            
+            // 加载当前设备的私密留言（仅自己可见）
+            const secretComments = localStorage.getItem(userSecretKey) || '[]';
+            JSON.parse(secretComments).forEach(comment => renderComment(comment));
         }
 
         // 渲染单条留言
@@ -652,21 +685,6 @@
                 <div class="fan-text">${comment.message}</div>
             `;
             commentsContainer.prepend(commentDiv); // 新留言放最前面
-
-            // Secret留言：5秒后自动删除（临时显示）
-            if (comment.visibility === 'secret') {
-                setTimeout(() => {
-                    commentDiv.remove();
-                }, 5000);
-            }
-        }
-
-        // 保存公开留言到本地存储
-        function savePublicComment(comment) {
-            const savedComments = localStorage.getItem(COMMENT_KEY) || '[]';
-            const comments = JSON.parse(savedComments);
-            comments.push(comment);
-            localStorage.setItem(COMMENT_KEY, JSON.stringify(comments));
         }
 
         // 发布留言事件
@@ -680,21 +698,27 @@
                 return;
             }
 
-            // 构建留言对象
+            // 构建留言对象（包含时间戳，用于排序）
             const newComment = {
                 name: userName,
                 message: userMessage,
                 visibility: selectedVisibility,
-                time: new Date().getTime() // 记录时间（用于后续扩展）
+                timestamp: new Date().getTime()
             };
 
-            // 渲染留言
-            renderComment(newComment);
-
-            // 公开留言：保存到本地存储
+            // 保存留言 + 渲染
             if (selectedVisibility === 'public') {
-                savePublicComment(newComment);
+                // 公开留言：存入公共存储键
+                const publicComments = JSON.parse(localStorage.getItem(PUBLIC_KEY) || '[]');
+                publicComments.push(newComment);
+                localStorage.setItem(PUBLIC_KEY, JSON.stringify(publicComments));
+            } else {
+                // 私密留言：存入当前设备的专属存储键
+                const secretComments = JSON.parse(localStorage.getItem(userSecretKey) || '[]');
+                secretComments.push(newComment);
+                localStorage.setItem(userSecretKey, JSON.stringify(secretComments));
             }
+            renderComment(newComment);
 
             // 显示成功提示 + 清空输入框
             successHint.style.display = 'block';
