@@ -164,19 +164,38 @@
         .content-area ul {
             padding-left: 22px;
         }
-        /* 视频容器样式（适配网易云音乐iframe） */
+        /* 视频容器样式（兼容本地视频） */
         .video-container {
             width: 100%;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             margin-bottom: 20px;
-            aspect-ratio: 16/9; /* 保持视频标准宽高比 */
+            aspect-ratio: 16/9; /* 固定宽高比，避免变形 */
+            background-color: #f8fafc; /* 加载时显示背景，避免空白 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .video-container iframe {
+        .video-container video {
             width: 100%;
             height: 100%;
-            border: none; /* 移除iframe默认边框 */
+            object-fit: cover; /* 确保视频填充容器 */
+        }
+        /* 备用链接样式 */
+        .video-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4a6fa5;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .video-link:hover {
+            background-color: #1a5276;
         }
 
         /* 背景装饰 */
@@ -415,14 +434,23 @@
         <p>Thank you for stepping into Jimmyland. I’m glad we’re here together.</p>
     </div>
 
-    <!-- Videos板块（已插入@James_Chen_的网易云音乐Mlog） -->
+    <!-- Videos板块（修复：本地视频+备用链接） -->
     <div id="videos" class="content-area">
         <h3>Videos</h3>
         <div class="video-container">
-            <!-- 插入@James_Chen_的网易云音乐Mlog视频（iframe格式适配） -->
-            <iframe src="https://163cn.tv/XgpmLF5" allowfullscreen></iframe>
+            <!-- 1. 本地视频播放（推荐：将视频文件与HTML放在同一文件夹，替换文件名即可） -->
+            <video controls poster="https://picsum.photos/id/1074/800/450">
+                <!-- 支持MP4/WEBM两种格式，兼容不同浏览器 -->
+                <source src="James_Chen_Little_Progress.mp4" type="video/mp4">
+                <source src="James_Chen_Little_Progress.webm" type="video/webm">
+                您的浏览器不支持视频播放，请点击下方链接查看。
+            </video>
         </div>
+        <!-- 2. 备用：直接跳转网易云音乐链接（避免嵌入失败） -->
         <p><strong>Video Title</strong>: James_Chen_ - Little Progress (Mlog)</p>
+        <p>若视频无法播放，可直接点击链接查看：
+            <a href="https://163cn.tv/XgpmLF5" target="_blank" class="video-link">打开网易云音乐观看</a>
+        </p>
         <p>More music videos (including "Swinging Bells" and "Run With You") will be uploaded soon. Follow via email to get notified!</p>
         <p>Email for updates: <strong>James03010@icloud.com</strong></p>
     </div>
@@ -476,7 +504,7 @@
 
     <!-- 按钮交互+留言发送脚本 -->
     <script>
-        // 1. 导航按钮切换功能
+        // 1. 导航按钮切换功能（确保点击Videos能正常显示）
         const buttons = document.querySelectorAll('.entry-btn');
         const contents = document.querySelectorAll('.content-area');
 
@@ -486,16 +514,15 @@
                 const targetContent = document.getElementById(targetId);
                 const isActive = targetContent.classList.contains('active');
 
-                // 隐藏所有内容+移除按钮active
+                // 先移除所有active状态
                 contents.forEach(c => c.classList.remove('active'));
                 buttons.forEach(b => b.classList.remove('active'));
 
-                // 显示目标内容+添加按钮active
-                if (!isActive) {
-                    targetContent.classList.add('active');
-                    button.classList.add('active');
-                    targetContent.scrollIntoView({ behavior: 'smooth' });
-                }
+                // 激活目标内容（强制显示，避免点击无反应）
+                targetContent.classList.add('active');
+                button.classList.add('active');
+                // 滚动到Videos板块（确保用户能看到）
+                targetContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
@@ -513,7 +540,6 @@
             }
 
             postBtn.addEventListener('click', () => {
-                // 输入验证（去除空格）
                 const name = nameInput.value.trim();
                 const message = messageInput.value.trim();
 
@@ -528,7 +554,6 @@
                     return;
                 }
 
-                // 创建新留言元素（避免XSS风险）
                 const newComment = document.createElement('div');
                 newComment.className = 'fan-comment';
                 
@@ -542,18 +567,12 @@
 
                 newComment.appendChild(fanName);
                 newComment.appendChild(fanText);
-
-                // 添加新留言到顶部
                 commentsContainer.insertBefore(newComment, commentsContainer.firstChild);
 
-                // 显示成功提示
                 successHint.style.display = 'block';
-
-                // 清空输入框
                 nameInput.value = '';
                 messageInput.value = '';
 
-                // 3秒后隐藏提示
                 setTimeout(() => {
                     successHint.style.display = 'none';
                 }, 3000);
