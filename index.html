@@ -101,7 +101,7 @@
             box-shadow: 0 3px 6px rgba(74,111,165,0.15);
         }
 
-        /* 歌曲列表区域 */
+        /* 歌曲列表区域 - 样式保留不变 */
         .tracklist {
             text-align: left;
             max-width: 550px;
@@ -231,7 +231,7 @@
             box-shadow: 0 4px 12px rgba(74,111,165,0.2);
         }
 
-        /* 背景装饰元素 */
+        /* 背景装饰元素 - 调整云朵到顶部 */
         .pattern {
             position: absolute;
             font-size: 38px;
@@ -239,12 +239,12 @@
             pointer-events: none;
             color: #b0c4de;
         }
-        .cloud1 { top: 120px; left: 40px; }
+        .cloud1 { top: 20px; left: 40px; }
         .note1 { top: 320px; right: 60px; }
         .snow1 { bottom: 200px; left: 70px; }
         .branch1 { bottom: 100px; right: 80px; transform: rotate(18deg); }
 
-        /* 歌词云区域 */
+        /* 歌词云区域 - 改为云朵形状 */
         .lyric-clouds {
             max-width: 550px;
             margin: 35px auto;
@@ -257,7 +257,8 @@
             width: 180px;
             height: 110px;
             background: rgba(255,255,255,0.9);
-            border-radius: 50%;
+            /* 云朵形状 - 多个圆角组合 */
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -413,6 +414,24 @@
             color: #475569;
             line-height: 1.6;
         }
+        /* 新增删除按钮样式 */
+        .delete-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            padding: 3px 8px;
+            font-size: 12px;
+            color: #e74c3c;
+            background: transparent;
+            border: 1px solid #e74c3c;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .delete-btn:hover {
+            background: #e74c3c;
+            color: #fff;
+        }
 
         /* 底部版权区域 */
         .footer-james {
@@ -458,7 +477,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@600;800&family=Georgia:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 背景装饰元素 -->
+    <!-- 背景装饰元素 - 云朵移到顶部 -->
     <div class="pattern cloud1">☁️</div>
     <div class="pattern note1">🎵</div>
     <div class="pattern snow1">❄️</div>
@@ -474,33 +493,11 @@
     <!-- 导航按钮 -->
     <div class="entry-buttons">
         <button class="entry-btn" data-target="shop">Shop</button>
-        <button class="entry-btn" data-target="info">Info</button>
+        <button class="entry-btn" data-target="videos">Videos</button>
         <button class="entry-btn" data-target="contact">Contact</button>
         <button class="entry-btn" data-target="about">About</button>
-        <button class="entry-btn" data-target="videos">Videos</button>
+        <button class="entry-btn" data-target="oldvideos">OldVideos</button>
         <button class="entry-btn" data-target="tour">Tour</button>
-    </div>
-
-    <!-- 歌曲列表 -->
-    <div class="tracklist">
-        <h3 class="section-title">Album (James)</h3>
-        <ol>
-            <li>Little Progress</li>
-            <li>No More Hurry</li>
-            <li>Chase Stars</li>
-            <li>Everything I Want</li>
-            <li>Slow Days</li>
-            <li>Winter is Coming</li>
-            <li>Run With You</li>
-            <li>We Will See It To The End</li>
-        </ol>
-    </div>
-    <div class="tracklist">
-        <h3 class="section-title">Featured Singles</h3>
-        <ol start="9">
-            <li>Brighter Days (feat. Jessica)</li>
-            <li>Swinging Bells (feat. Jessica)</li>
-        </ol>
     </div>
 
     <p class="hint-text">More new songs are on the way — Wait and see!</p>
@@ -519,13 +516,35 @@
         <p>To order: Send an email to <strong>James03010@icloud.com</strong> with your name, product name, and quantity. We’ll reply with payment details asap</p>
     </div>
 
-    <!-- Info 板块 -->
-    <div id="info" class="content-area">
+    <!-- 原Info板块改名Videos，保留原内容 + 加入歌曲列表 -->
+    <div id="videos" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Message from James</h3>
         <p>This debut album has 8 tracks that tell small stories from my life — from dealing with workplace gossip to cherishing friendship, and even a gentle tribute to winter days.</p>
         <p>A big thanks to Jessica here for making two singles with me!!! Brighter Days" and "Swinging Bells."</p>
         <p>I hope my songs can be a little companion for your daily moments! Whether you’re commuting, working, or just relaxing.</p>
+        
+        <!-- 迁移进来的歌曲列表 -->
+        <div class="tracklist">
+            <h3 class="section-title">Album (James)</h3>
+            <ol>
+                <li>Little Progress</li>
+                <li>No More Hurry</li>
+                <li>Chase Stars</li>
+                <li>Everything I Want</li>
+                <li>Slow Days</li>
+                <li>Winter is Coming</li>
+                <li>Run With You</li>
+                <li>We Will See It To The End</li>
+            </ol>
+        </div>
+        <div class="tracklist">
+            <h3 class="section-title">Featured Singles</h3>
+            <ol start="9">
+                <li>Brighter Days (feat. Jessica)</li>
+                <li>Swinging Bells (feat. Jessica)</li>
+            </ol>
+        </div>
     </div>
 
     <!-- Contact 板块 -->
@@ -546,8 +565,8 @@
         <p>Thank you for stepping into Jimmyland. I’m glad we’re here together.</p>
     </div>
 
-    <!-- Videos 板块 -->
-    <div id="videos" class="content-area">
+    <!-- 原Videos板块改名OldVideos -->
+    <div id="oldvideos" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Videos</h3>
         <div class="mv-section">
@@ -571,7 +590,7 @@
         <p>This livestream will be interesting! Just like Jimmyland — So don’t miss the chance to experience the music live with me!</p>
     </div>
 
-    <!-- 歌词云区域 -->
+    <!-- 歌词云区域 - 改为云朵形状 -->
     <div class="lyric-clouds">
         <div class="lyric-cloud">No noise around can pull us apart</div>
         <div class="lyric-cloud">Life small things they make the sense</div>
@@ -608,7 +627,7 @@
     <div class="footer-james">James</div>
     <div class="footer-copyright">© 2025 James</div>
 
-    <!-- 所有交互逻辑（导航+留言墙） -->
+    <!-- 所有交互逻辑（导航+留言墙+删除功能） -->
     <script>
         // 1. 导航按钮切换
         const navButtons = document.querySelectorAll('.entry-btn');
@@ -635,7 +654,7 @@
             });
         });
 
-        // 2. 粉丝留言墙核心逻辑
+        // 2. 粉丝留言墙核心逻辑 + 删除功能
         const postButton = document.getElementById('postCommentBtn');
         const nameInput = document.getElementById('fanNameInput');
         const messageInput = document.getElementById('fanMessageInput');
@@ -660,6 +679,7 @@
 
         // 初始化留言（加载公开+当前设备私密留言）
         function initComments() {
+            commentsContainer.innerHTML = '';
             // 加载公开留言（所有人可见）
             const publicComments = JSON.parse(localStorage.getItem(PUBLIC_KEY) || '[]');
             publicComments.sort((a, b) => b.timestamp - a.timestamp);
@@ -671,15 +691,39 @@
             secretComments.forEach(comment => renderComment(comment));
         }
 
-        // 渲染留言
+        // 渲染留言 + 添加删除按钮
         function renderComment(comment) {
             const commentDiv = document.createElement('div');
             commentDiv.className = `fan-comment ${comment.visibility}`;
+            // 给留言添加唯一标识
+            commentDiv.dataset.timestamp = comment.timestamp;
+            commentDiv.dataset.visibility = comment.visibility;
             commentDiv.innerHTML = `
                 <div class="fan-name">${comment.name}</div>
                 <div class="fan-text">${comment.message}</div>
+                <button class="delete-btn">Delete</button>
             `;
             commentsContainer.prepend(commentDiv);
+
+            // 绑定删除按钮事件
+            commentDiv.querySelector('.delete-btn').addEventListener('click', () => {
+                deleteComment(comment.timestamp, comment.visibility);
+                commentDiv.remove();
+            });
+        }
+
+        // 删除留言函数
+        function deleteComment(timestamp, visibility) {
+            let comments;
+            if (visibility === 'public') {
+                comments = JSON.parse(localStorage.getItem(PUBLIC_KEY) || '[]');
+                comments = comments.filter(comment => comment.timestamp !== timestamp);
+                localStorage.setItem(PUBLIC_KEY, JSON.stringify(comments));
+            } else {
+                comments = JSON.parse(localStorage.getItem(userSecretKey) || '[]');
+                comments = comments.filter(comment => comment.timestamp !== timestamp);
+                localStorage.setItem(userSecretKey, JSON.stringify(comments));
+            }
         }
 
         // 发布留言
