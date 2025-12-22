@@ -148,7 +148,6 @@
             margin-bottom: 20px;
             border-bottom: 2px solid #e3f2fd;
             padding-bottom: 10px;
-            /* 板块标题统一全大写 */
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -232,7 +231,6 @@
             font-family: "Montserrat", sans-serif;
             margin-bottom: 30px;
             letter-spacing: 2px;
-            /* MV标题也改为全大写 */
             text-transform: uppercase;
         }
         .play-btn {
@@ -379,7 +377,7 @@
         .comment-btn {
             align-self: flex-start;
             padding: 12px 28px;
-            background: #4a6fa5;
+            background-color: #4a6fa5;
             color: white;
             border: none;
             border-radius: 8px;
@@ -388,7 +386,7 @@
             font-size: 15px;
         }
         .comment-btn:hover {
-            background: #1a5276;
+            background-color: #1a5276;
             transform: translateY(-2px);
         }
         .success-hint {
@@ -505,38 +503,33 @@
             }
         }
     </style>
-    <!-- 引入优雅字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@600;800&family=Georgia:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 背景装饰元素 -->
     <div class="pattern cloud1">☁️</div>
     <div class="pattern note1">🎵</div>
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <!-- 顶部标题 -->
     <div class="profile-header">
         <div class="title-decor">
             <h1 class="profile-title">James</h1>
         </div>
     </div>
 
-    <!-- 导航按钮 -->
     <div class="entry-buttons">
         <button class="entry-btn" data-target="shop">Shop</button>
         <button class="entry-btn" data-target="video">Video</button>
         <button class="entry-btn" data-target="contact">Contact</button>
         <button class="entry-btn" data-target="about">About</button>
-        <button class="entry-btn" data-target="albumsInfo">Music Play/button>
+        <button class="entry-btn" data-target="albumsInfo">Albums</button>
         <button class="entry-btn" data-target="tour">Tour</button>
     </div>
 
     <p class="hint-text">More new songs are on the way — Wait and see!</p>
 
-    <!-- Shop 板块 -->
     <div id="shop" class="content-area">
         <button class="return-btn">Return</button>
         <h3>James' Music Shop</h3>
@@ -550,14 +543,14 @@
         <p>To order: Send an email to <strong>James03010@icloud.com</strong> with your name, product name, and quantity. We’ll reply with payment details asap</p>
     </div>
 
-    <!-- Video 板块（带新1:1 MV封面） -->
+    <!-- Video 板块（已替换为无标识的封面图） -->
     <div id="video" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Videos</h3>
         <div class="mv-section">
             <div class="mv-title">We Will See It To The End MV</div>
-            <!-- 替换为1:1比例的新MV封面 -->
-            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc_gen_image/ab546c783405482496084d9149e677b8.jpeg~tplv-a9rns2rl98-image_dld_watermark_1_6.png?rcl=20251223002422CDEA4808882288AE2D78&rk3s=8e244e95&rrcfp=827586d3&x-expires=2081780674&x-signature=1EnVGdsZNwShowVJa%2Boo1CDpQtI%3D" alt="We Will See It To The End MV Cover" class="mv-cover">
+            <!-- 替换为你那张无豆包AI标识的封面图链接 -->
+            <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc_gen_image/ebe83f27284644799fb4cddde26a09a0.jpeg~tplv-a9rns2rl98-image_dld_watermark_1_5.png?rcl=202512230036299BDEBA9D6FD413AED2BD&rk3s=8e244e95&rrcfp=ddbb2dc7&x-expires=2081781405&x-signature=cNuHsdvYOfwnOkns7Qu85WDfEDo%3D" alt="We Will See It To The End MV Cover" class="mv-cover">
             <a href="https://163cn.tv/X1KMM3g" target="_blank" style="text-decoration: none;">
                 <button class="play-btn">
                     <span>▶</span> Watch MV
@@ -568,14 +561,12 @@
         <p style="text-align: center;"><strong>Email for updates</strong>: James03010@icloud.com</p>
     </div>
 
-    <!-- Contact 板块 -->
     <div id="contact" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Get in Touch with James</h3>
         <p><strong>Official Email</strong>: James03010@icloud.com</p>    
     </div>
 
-    <!-- About 板块 -->
     <div id="about" class="content-area">
         <button class="return-btn">Return</button>
         <h3>About Jimmyland</h3>
@@ -586,7 +577,6 @@
         <p>Thank you for stepping into Jimmyland. I’m glad we’re here together.</p>
     </div>
 
-    <!-- Albums Info 板块（已将“试听”改为“Listen”） -->
     <div id="albumsInfo" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Albums Info</h3>
@@ -594,7 +584,6 @@
         <p>A big thanks to Jessica here for making two singles with me!!! Brighter Days" and "Swinging Bells."</p>
         <p>I hope my songs can be a little companion for your daily moments! Whether you’re commuting, working, or just relaxing.</p>
         
-        <!-- 歌曲列表（试听已改为Listen） -->
         <div class="tracklist">
             <h3 class="section-title">Album (James)</h3>
             <ol>
@@ -643,7 +632,6 @@
         </div>
     </div>
 
-    <!-- Tour 板块 -->
     <div id="tour" class="content-area">
         <button class="return-btn">Return</button>
         <h3>James Live 2025</h3>
@@ -652,7 +640,6 @@
         <p>This livestream will be interesting! Just like Jimmyland — So don’t miss the chance to experience the music live with me!</p>
     </div>
 
-    <!-- 歌词云区域 -->
     <div class="lyric-clouds">
         <div class="lyric-cloud">No noise around can pull us apart</div>
         <div class="lyric-cloud">Life small things they make the sense</div>
@@ -664,7 +651,6 @@
         <div class="lyric-cloud">Your heartbeat,warm and slow</div>
     </div>
 
-    <!-- 粉丝留言墙 -->
     <div class="fan-wall">
         <h3>J-Stars Corner</h3>
         <div class="comment-input">
@@ -685,13 +671,10 @@
         <div class="fan-comments" id="fanCommentsContainer"></div>
     </div>
 
-    <!-- 底部版权区域 -->
     <div class="footer-james">James</div>
     <div class="footer-copyright">© 2025 James</div>
 
-    <!-- 交互逻辑脚本 -->
     <script>
-        // 1. 导航按钮切换
         const navButtons = document.querySelectorAll('.entry-btn');
         const contentAreas = document.querySelectorAll('.content-area');
         const returnButtons = document.querySelectorAll('.return-btn');
@@ -716,7 +699,6 @@
             });
         });
 
-        // 2. 粉丝留言墙核心逻辑 + 删除功能
         const postButton = document.getElementById('postCommentBtn');
         const nameInput = document.getElementById('fanNameInput');
         const messageInput = document.getElementById('fanMessageInput');
@@ -793,7 +775,7 @@
                 name: userName,
                 message: userMessage,
                 visibility: visibility,
-                timestamp: new Date().getTime()
+ timestamp: new Date().getTime()
             };
 
             if (visibility === 'public') {
