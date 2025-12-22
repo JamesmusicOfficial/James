@@ -58,7 +58,6 @@
             line-height: 1;
             position: relative;
             z-index: 2;
-            /* 添加标题动效 */
             animation: titleFloat 3s ease-in-out infinite;
         }
         @keyframes titleFloat {
@@ -94,53 +93,6 @@
         .entry-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 3px 6px rgba(74,111,165,0.15);
-        }
-
-        /* 歌曲列表区域 - 更换字体 */
-        .tracklist {
-            text-align: left;
-            max-width: 550px;
-            margin: 0 auto 25px;
-            background: rgba(255,255,255,0.9);
-            padding: 22px 30px;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-        }
-        .section-title {
-            font-size: 24px;
-            color: #1a5276;
-            text-decoration: underline wavy #3498db;
-            margin-bottom: 18px;
-            font-weight: 600;
-        }
-        .tracklist ol {
-            padding-left: 22px;
-        }
-        .tracklist li {
-            font-size: 18px;
-            margin: 11px 0;
-            padding: 6px 12px;
-            border-radius: 5px;
-            transition: background 0.3s;
-            /* 更换为更优雅的字体 */
-            font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-        }
-        .tracklist li:hover {
-            background: #e3f2fd;
-            color: #1a5276;
-        }
-        /* 试听链接样式 */
-        .tracklist li a {
-            font-size: 14px;
-            color: #4a6fa5;
-            margin-left: 10px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .tracklist li a:hover {
-            text-decoration: underline;
         }
 
         /* 提示文本 */
@@ -196,6 +148,9 @@
             margin-bottom: 20px;
             border-bottom: 2px solid #e3f2fd;
             padding-bottom: 10px;
+            /* 板块标题统一全大写 */
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .content-area p, .content-area li {
             font-size: 16px;
@@ -204,6 +159,65 @@
         }
         .content-area ul {
             padding-left: 22px;
+        }
+
+        /* ========== Albums Info 板块 字体&动效 核心修改 ========== */
+        .tracklist {
+            text-align: left;
+            max-width: 550px;
+            margin: 0 auto 25px;
+            background: rgba(255,255,255,0.9);
+            padding: 22px 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+        }
+        /* 歌曲列表标题：全大写 + 简洁字体 */
+        .tracklist .section-title {
+            font-size: 24px;
+            color: #1a5276;
+            text-decoration: underline wavy #3498db;
+            margin-bottom: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: "Montserrat", sans-serif;
+        }
+        .tracklist ol {
+            padding-left: 22px;
+        }
+        /* 歌曲名：简洁无衬线字体 + hover左右晃动 */
+        .tracklist li {
+            font-size: 18px;
+            margin: 11px 0;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-family: "Segoe UI", "Roboto", sans-serif;
+            transition: all 0.3s ease;
+        }
+        /* 左右晃动动画 */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
+        }
+        .tracklist li:hover {
+            background: #e3f2fd;
+            color: #1a5276;
+            animation: shake 0.5s ease-in-out;
+        }
+        /* 试听链接样式 */
+        .tracklist li a {
+            font-size: 14px;
+            color: #4a6fa5;
+            margin-left: 10px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-family: "Segoe UI", "Roboto", sans-serif;
+        }
+        .tracklist li a:hover {
+            text-decoration: underline;
         }
 
         /* Videos板块 - MV播放 */
@@ -218,6 +232,8 @@
             font-family: "Montserrat", sans-serif;
             margin-bottom: 30px;
             letter-spacing: 2px;
+            /* MV标题也改为全大写 */
+            text-transform: uppercase;
         }
         .play-btn {
             padding: 15px 35px;
@@ -238,6 +254,15 @@
             background-color: #1a5276;
             transform: translateY(-3px);
             box-shadow: 0 4px 12px rgba(74,111,165,0.2);
+        }
+        /* MV封面图样式 */
+        .mv-cover {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         /* 背景装饰元素 - 云朵移到顶部 */
@@ -266,7 +291,6 @@
             width: 180px;
             height: 110px;
             background: rgba(255,255,255,0.9);
-            /* 云朵形状 - 多个圆角组合 */
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             display: flex;
             align-items: center;
@@ -299,6 +323,8 @@
             border-bottom: 2px solid #e3f2fd;
             padding-bottom: 10px;
             text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .visibility-note {
             font-size: 12px;
@@ -423,7 +449,6 @@
             color: #475569;
             line-height: 1.6;
         }
-        /* 新增删除按钮样式 */
         .delete-btn {
             position: absolute;
             bottom: 10px;
@@ -438,7 +463,7 @@
             transition: all 0.2s;
         }
         .delete-btn:hover {
-            background: #e74c3c;
+            background-color: #e74c3c;
             color: #fff;
         }
 
@@ -486,20 +511,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@600;800&family=Georgia:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 背景装饰元素 - 云朵移到顶部 -->
+    <!-- 背景装饰元素 -->
     <div class="pattern cloud1">☁️</div>
     <div class="pattern note1">🎵</div>
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <!-- 顶部James标题（移除花纹+添加动效） -->
+    <!-- 顶部标题 -->
     <div class="profile-header">
         <div class="title-decor">
             <h1 class="profile-title">James</h1>
         </div>
     </div>
 
-    <!-- 导航按钮（修改板块名称：OldVideos→Video，新增Albums Info） -->
+    <!-- 导航按钮 -->
     <div class="entry-buttons">
         <button class="entry-btn" data-target="shop">Shop</button>
         <button class="entry-btn" data-target="video">Video</button>
@@ -525,13 +550,14 @@
         <p>To order: Send an email to <strong>James03010@icloud.com</strong> with your name, product name, and quantity. We’ll reply with payment details asap</p>
     </div>
 
-    <!-- Video 板块（替换为《We Will See It To The End》MV） -->
+    <!-- Video 板块（带MV封面） -->
     <div id="video" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Videos</h3>
         <div class="mv-section">
             <div class="mv-title">We Will See It To The End MV</div>
-            <!-- 替换为新MV链接，点击直接跳转网易云音乐查看 -->
+            <!-- MV封面图 -->
+            <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc_gen_image/b692244bda824e8d90aaaf980b0bc5db.jpeg~tplv-a9rns2rl98-image_dld_watermark_1_5.png?rcl=202512222351278D39D4F1E35DB1AF61B3&rk3s=8e244e95&rrcfp=ddbb2dc7&x-expires=2081778707&x-signature=FMWfo38OwVWQ0usYrfv3rTsDyZY%3D" alt="We Will See It To The End MV Cover" class="mv-cover">
             <a href="https://163cn.tv/X1KMM3g" target="_blank" style="text-decoration: none;">
                 <button class="play-btn">
                     <span>▶</span> Watch MV
@@ -560,7 +586,7 @@
         <p>Thank you for stepping into Jimmyland. I’m glad we’re here together.</p>
     </div>
 
-    <!-- Albums Info 板块（保留歌曲列表与试听链接） -->
+    <!-- Albums Info 板块（修改后） -->
     <div id="albumsInfo" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Albums Info</h3>
@@ -568,41 +594,37 @@
         <p>A big thanks to Jessica here for making two singles with me!!! Brighter Days" and "Swinging Bells."</p>
         <p>I hope my songs can be a little companion for your daily moments! Whether you’re commuting, working, or just relaxing.</p>
         
-        <!-- 歌曲列表（带试听链接） -->
+        <!-- 歌曲列表 -->
         <div class="tracklist">
             <h3 class="section-title">Album (James)</h3>
             <ol>
                 <li>
-                    Little Progress
-                    <a href="https://163cn.tv/XgpmLF5" target="_blank">▶ 试听</a>
-                </li>
-                <li>
                     No More Hurry
-                    <a href="https://163cn.tv/X1Kkpvj" target="_blank">▶ 试听</a>
+                    <a href="https://163cn.tv/X1Kkpvj" target="_blank">▶ Listen</a>
                 </li>
                 <li>
                     Chase Stars
-                    <a href="https://163cn.tv/X1JM48S" target="_blank">▶ 试听</a>
+                    <a href="https://163cn.tv/X1JM48S" target="_blank">▶ Listen</a>
                 </li>
                 <li>
                     Everything I Want
-                    <a href="https://163cn.tv/X1J1PwA" target="_blank">▶ 试听</a>
+                    <a href="https://163cn.tv/X1J1PwA" target="_blank">▶ Listen</a>
                 </li>
                 <li>
                     Slow Days
-                    <a href="https://163cn.tv/X1Jwjet" target="_blank">▶ 试听</a>
+                    <a href="https://163cn.tv/X1Jwjet" target="_blank">▶ Listen</a>
                 </li>
                 <li>
                     Winter is Coming
-                    <a href="https://163cn.tv/X1J91Wt" target="_blank">▶ 试听</a>
+                    <a href="https://163cn.tv/X1J91Wt" target="_blank">▶ Listen</a>
                 </li>
                 <li>
                     Run With You
-                    <a href="https://163cn.tv/X1JbkTI" target="_blank">▶ 试听</a>
+                    <a href="https://163cn.tv/X1JbkTl" target="_blank">▶ Listen</a>
                 </li>
                 <li>
                     We Will See It To The End
-                    <a href="https://163cn.tv/X1KMM3g" target="_blank">▶ 试听</a>
+                    <a href="https://163cn.tv/X1JrW2s" target="_blank">▶ Listen</a>
                 </li>
             </ol>
         </div>
@@ -611,11 +633,11 @@
             <ol start="9">
                 <li>
                     Brighter Days (feat. Jessica)
-                    <a href="https://163cn.tv/X1Kf7xq" target="_blank">▶ 试听</a>
+                    <a href="https://163cn.tv/X1J1W9Z" target="_blank">▶ Listen</a>
                 </li>
                 <li>
                     Swinging Bells (feat. Jessica)
-                    <a href="https://163cn.tv/X1Kg9zr" target="_blank">▶ 试听</a>
+                    <a href="https://163cn.tv/X1Kg9zr" target="_blank">▶ Listen</a>
                 </li>
             </ol>
         </div>
@@ -630,7 +652,7 @@
         <p>This livestream will be interesting! Just like Jimmyland — So don’t miss the chance to experience the music live with me!</p>
     </div>
 
-    <!-- 歌词云区域 - 改为云朵形状 -->
+    <!-- 歌词云区域 -->
     <div class="lyric-clouds">
         <div class="lyric-cloud">No noise around can pull us apart</div>
         <div class="lyric-cloud">Life small things they make the sense</div>
@@ -642,7 +664,7 @@
         <div class="lyric-cloud">Your heartbeat,warm and slow</div>
     </div>
 
-    <!-- 粉丝留言墙（核心功能区） -->
+    <!-- 粉丝留言墙 -->
     <div class="fan-wall">
         <h3>J-Stars Corner</h3>
         <div class="comment-input">
@@ -667,7 +689,7 @@
     <div class="footer-james">James</div>
     <div class="footer-copyright">© 2025 James</div>
 
-    <!-- 所有交互逻辑（导航+留言墙+删除功能） -->
+    <!-- 交互逻辑脚本 -->
     <script>
         // 1. 导航按钮切换
         const navButtons = document.querySelectorAll('.entry-btn');
@@ -701,13 +723,11 @@
         const commentsContainer = document.getElementById('fanCommentsContainer');
         const successHint = document.getElementById('successHint');
 
-        // 存储键名（公开留言所有人共享，私密留言按设备区分）
         const PUBLIC_KEY = 'james_public_comments';
         const SECRET_KEY = 'james_secret_comments';
         const deviceId = getDeviceId();
         const userSecretKey = `${SECRET_KEY}_${deviceId}`;
 
-        // 生成设备唯一标识
         function getDeviceId() {
             let id = localStorage.getItem('fan_wall_device_id');
             if (!id) {
@@ -717,25 +737,20 @@
             return id;
         }
 
-        // 初始化留言（加载公开+当前设备私密留言）
         function initComments() {
             commentsContainer.innerHTML = '';
-            // 加载公开留言（所有人可见）
             const publicComments = JSON.parse(localStorage.getItem(PUBLIC_KEY) || '[]');
             publicComments.sort((a, b) => b.timestamp - a.timestamp);
             publicComments.forEach(comment => renderComment(comment));
 
-            // 加载当前设备私密留言（仅自己可见）
             const secretComments = JSON.parse(localStorage.getItem(userSecretKey) || '[]');
             secretComments.sort((a, b) => b.timestamp - a.timestamp);
             secretComments.forEach(comment => renderComment(comment));
         }
 
-        // 渲染留言 + 添加删除按钮
         function renderComment(comment) {
             const commentDiv = document.createElement('div');
             commentDiv.className = `fan-comment ${comment.visibility}`;
-            // 给留言添加唯一标识
             commentDiv.dataset.timestamp = comment.timestamp;
             commentDiv.dataset.visibility = comment.visibility;
             commentDiv.innerHTML = `
@@ -745,14 +760,12 @@
             `;
             commentsContainer.prepend(commentDiv);
 
-            // 绑定删除按钮事件
             commentDiv.querySelector('.delete-btn').addEventListener('click', () => {
                 deleteComment(comment.timestamp, comment.visibility);
                 commentDiv.remove();
             });
         }
 
-        // 删除留言函数
         function deleteComment(timestamp, visibility) {
             let comments;
             if (visibility === 'public') {
@@ -766,7 +779,6 @@
             }
         }
 
-        // 发布留言
         postButton.addEventListener('click', () => {
             const userName = nameInput.value.trim();
             const userMessage = messageInput.value.trim();
@@ -784,7 +796,6 @@
                 timestamp: new Date().getTime()
             };
 
-            // 保存留言
             if (visibility === 'public') {
                 const publicComments = JSON.parse(localStorage.getItem(PUBLIC_KEY) || '[]');
                 publicComments.push(newComment);
@@ -803,7 +814,6 @@
             setTimeout(() => successHint.style.display = 'none', 3000);
         });
 
-        // 页面加载时初始化
         window.addEventListener('load', initComments);
     </script>
 </body>
