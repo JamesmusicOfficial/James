@@ -22,7 +22,7 @@
             position: relative;
         }
 
-        /* 顶部James标题（静态+优雅字体，无动画） */
+        /* 顶部James标题（添加动效+移除花纹） */
         .profile-header {
             max-width: 700px;
             margin: 0 auto 20px;
@@ -31,17 +31,6 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             position: relative;
-            overflow: hidden;
-        }
-        .profile-header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath fill='%23e3f2fd' fill-opacity='0.6' d='M0 0h20v20H0V0zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm20 0a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM10 37a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm10-17h20v20H20V20zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14z'%3E%3C/path%3E%3C/svg%3E");
-            z-index: 1;
         }
         .title-decor {
             position: relative;
@@ -69,6 +58,12 @@
             line-height: 1;
             position: relative;
             z-index: 2;
+            /* 添加标题动效 */
+            animation: titleFloat 3s ease-in-out infinite;
+        }
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         /* 导航按钮区域 */
@@ -101,7 +96,7 @@
             box-shadow: 0 3px 6px rgba(74,111,165,0.15);
         }
 
-        /* 歌曲列表区域 - 样式保留不变 */
+        /* 歌曲列表区域 - 更换字体 */
         .tracklist {
             text-align: left;
             max-width: 550px;
@@ -127,11 +122,25 @@
             padding: 6px 12px;
             border-radius: 5px;
             transition: background 0.3s;
-            font-family: "Comic Sans MS", cursive;
+            /* 更换为更优雅的字体 */
+            font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
         }
         .tracklist li:hover {
             background: #e3f2fd;
             color: #1a5276;
+        }
+        /* 试听链接样式 */
+        .tracklist li a {
+            font-size: 14px;
+            color: #4a6fa5;
+            margin-left: 10px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .tracklist li a:hover {
+            text-decoration: underline;
         }
 
         /* 提示文本 */
@@ -231,7 +240,7 @@
             box-shadow: 0 4px 12px rgba(74,111,165,0.2);
         }
 
-        /* 背景装饰元素 - 调整云朵到顶部 */
+        /* 背景装饰元素 - 云朵移到顶部 */
         .pattern {
             position: absolute;
             font-size: 38px;
@@ -483,20 +492,20 @@
     <div class="pattern snow1">❄️</div>
     <div class="pattern branch1">🌿</div>
 
-    <!-- 顶部James标题 -->
+    <!-- 顶部James标题（移除花纹+添加动效） -->
     <div class="profile-header">
         <div class="title-decor">
             <h1 class="profile-title">James</h1>
         </div>
     </div>
 
-    <!-- 导航按钮 -->
+    <!-- 导航按钮（修改板块名称：OldVideos→Video，新增Albums Info） -->
     <div class="entry-buttons">
         <button class="entry-btn" data-target="shop">Shop</button>
-        <button class="entry-btn" data-target="videos">Albums Info</button>
+        <button class="entry-btn" data-target="video">Video</button>
         <button class="entry-btn" data-target="contact">Contact</button>
         <button class="entry-btn" data-target="about">About</button>
-        <button class="entry-btn" data-target="oldvideos">Videos</button>
+        <button class="entry-btn" data-target="albumsInfo">Albums Info</button>
         <button class="entry-btn" data-target="tour">Tour</button>
     </div>
 
@@ -516,35 +525,21 @@
         <p>To order: Send an email to <strong>James03010@icloud.com</strong> with your name, product name, and quantity. We’ll reply with payment details asap</p>
     </div>
 
-    <!-- 原Info板块改名Videos，保留原内容 + 加入歌曲列表 -->
-    <div id="videos" class="content-area">
+    <!-- Video 板块（替换为《We Will See It To The End》MV） -->
+    <div id="video" class="content-area">
         <button class="return-btn">Return</button>
-        <h3>Message from James</h3>
-        <p>This debut album has 8 tracks that tell small stories from my life — from dealing with workplace gossip to cherishing friendship, and even a gentle tribute to winter days.</p>
-        <p>A big thanks to Jessica here for making two singles with me!!! Brighter Days" and "Swinging Bells."</p>
-        <p>I hope my songs can be a little companion for your daily moments! Whether you’re commuting, working, or just relaxing.</p>
-        
-        <!-- 迁移进来的歌曲列表 -->
-        <div class="tracklist">
-            <h3 class="section-title">Album (James)</h3>
-            <ol>
-                <li>No More Hurry</li>
-                <li>Chase Stars</li>
-                <li>Everything I Want</li>
-                <li>Slow Days</li>
-                <li>Winter is Coming</li>
-                <li>Run With You</li>
-                <li>Not Daze</li>
-                <li>We Will See It To The End</li>
-            </ol>
+        <h3>Videos</h3>
+        <div class="mv-section">
+            <div class="mv-title">We Will See It To The End MV</div>
+            <!-- 替换为新MV链接，点击直接跳转网易云音乐查看 -->
+            <a href="https://163cn.tv/X1KMM3g" target="_blank" style="text-decoration: none;">
+                <button class="play-btn">
+                    <span>▶</span> Watch MV
+                </button>
+            </a>
         </div>
-        <div class="tracklist">
-            <h3 class="section-title">Featured Singles</h3>
-            <ol start="9">
-                <li>Brighter Days (feat. Jessica)</li>
-                <li>Swinging Bells (feat. Jessica)</li>
-            </ol>
-        </div>
+        <p style="text-align: center; margin-top: 30px;">More music videos will be uploaded soon.</p>
+        <p style="text-align: center;"><strong>Email for updates</strong>: James03010@icloud.com</p>
     </div>
 
     <!-- Contact 板块 -->
@@ -565,20 +560,65 @@
         <p>Thank you for stepping into Jimmyland. I’m glad we’re here together.</p>
     </div>
 
-    <!-- 原Videos板块改名OldVideos -->
-    <div id="oldvideos" class="content-area">
+    <!-- Albums Info 板块（保留歌曲列表与试听链接） -->
+    <div id="albumsInfo" class="content-area">
         <button class="return-btn">Return</button>
-        <h3>Videos</h3>
-        <div class="mv-section">
-            <div class="mv-title">Little Progress MV</div>
-            <a href="https://163cn.tv/XgpmLF5" target="_blank" style="text-decoration: none;">
-                <button class="play-btn">
-                    <span>▶</span> Watch MV
-                </button>
-            </a>
+        <h3>Albums Info</h3>
+        <p>This debut album has 8 tracks that tell small stories from my life — from dealing with workplace gossip to cherishing friendship, and even a gentle tribute to winter days.</p>
+        <p>A big thanks to Jessica here for making two singles with me!!! Brighter Days" and "Swinging Bells."</p>
+        <p>I hope my songs can be a little companion for your daily moments! Whether you’re commuting, working, or just relaxing.</p>
+        
+        <!-- 歌曲列表（带试听链接） -->
+        <div class="tracklist">
+            <h3 class="section-title">Album (James)</h3>
+            <ol>
+                <li>
+                    Little Progress
+                    <a href="https://163cn.tv/XgpmLF5" target="_blank">▶ 试听</a>
+                </li>
+                <li>
+                    No More Hurry
+                    <a href="https://163cn.tv/X1Kkpvj" target="_blank">▶ 试听</a>
+                </li>
+                <li>
+                    Chase Stars
+                    <a href="https://163cn.tv/X1JM48S" target="_blank">▶ 试听</a>
+                </li>
+                <li>
+                    Everything I Want
+                    <a href="https://163cn.tv/X1J1PwA" target="_blank">▶ 试听</a>
+                </li>
+                <li>
+                    Slow Days
+                    <a href="https://163cn.tv/X1Jwjet" target="_blank">▶ 试听</a>
+                </li>
+                <li>
+                    Winter is Coming
+                    <a href="https://163cn.tv/X1J91Wt" target="_blank">▶ 试听</a>
+                </li>
+                <li>
+                    Run With You
+                    <a href="https://163cn.tv/X1JbkTI" target="_blank">▶ 试听</a>
+                </li>
+                <li>
+                    We Will See It To The End
+                    <a href="https://163cn.tv/X1KMM3g" target="_blank">▶ 试听</a>
+                </li>
+            </ol>
         </div>
-        <p style="text-align: center; margin-top: 30px;">More music videos will be uploaded soon.</p>
-        <p style="text-align: center;"><strong>Email for updates</strong>: James03010@icloud.com</p>
+        <div class="tracklist">
+            <h3 class="section-title">Featured Singles</h3>
+            <ol start="9">
+                <li>
+                    Brighter Days (feat. Jessica)
+                    <a href="https://163cn.tv/X1Kf7xq" target="_blank">▶ 试听</a>
+                </li>
+                <li>
+                    Swinging Bells (feat. Jessica)
+                    <a href="https://163cn.tv/X1Kg9zr" target="_blank">▶ 试听</a>
+                </li>
+            </ol>
+        </div>
     </div>
 
     <!-- Tour 板块 -->
@@ -599,7 +639,7 @@
         <div class="lyric-cloud">Don't be afraid of the nights coming</div>
         <div class="lyric-cloud">The things that I want to, the things that I like to</div>
         <div class="lyric-cloud">I will hit repeat on the good days we made</div>
-        <div class="lyric-cloud">This bond's our own, forever in heart</div>
+        <div class="lyric-cloud">Your heartbeat,warm and slow</div>
     </div>
 
     <!-- 粉丝留言墙（核心功能区） -->
