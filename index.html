@@ -3,148 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>James' Music World</title>
+    <title>James Music Official</title>
     <style>
-        /* 全局基础样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 30px 20px;
-            text-align: center;
-            font-family: "Georgia", "Microsoft YaHei", serif;
-            background-color: #f0f8ff;
+            font-family: "Segoe UI", Roboto, sans-serif;
+            background: #f7fafc;
             color: #2c3e50;
-            position: relative;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* 顶部James标题（添加动效+移除花纹） */
-        .profile-header {
-            max-width: 700px;
-            margin: 0 auto 20px;
-            padding: 80px 0;
-            background-color: #f8fafc;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            position: relative;
-        }
-        .title-decor {
-            position: relative;
-            z-index: 2;
+        /* 首页超大正方形大头贴头像区域 */
+        .hero-section {
+            width: 100%;
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-        }
-        .title-decor::before,
-        .title-decor::after {
-            content: "♪";
-            font-size: 40px;
-            color: #3498db;
-            opacity: 0.7;
-        }
-        .profile-title {
-            font-size: 80px;
-            font-weight: 600;
-            font-family: "Cormorant Garamond", "Times New Roman", serif;
-            color: #1a5276;
-            letter-spacing: 3px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.08);
-            margin: 0;
-            line-height: 1;
+            padding: 20px;
             position: relative;
-            z-index: 2;
-            animation: titleFloat 3s ease-in-out infinite;
         }
-        @keyframes titleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .square-avatar {
+            width: 320px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+            border: 3px solid #4a6fa5;
+        }
+        .hero-name {
+            font-size: 64px;
+            font-weight: 800;
+            color: #1a5276;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
         }
 
-        /* 导航按钮区域 */
+        /* 导航按钮 */
         .entry-buttons {
             display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin: 0 auto 35px;
             flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
             max-width: 700px;
         }
         .entry-btn {
-            padding: 10px 18px;
-            border: 1px solid #4a6fa5;
-            border-radius: 6px;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: #1a5276;
-            background-color: #e3f2fd;
-            font-family: "Montserrat", sans-serif;
+            padding: 14px 24px;
+            background: #4a6fa5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
             font-weight: 600;
-        }
-        .entry-btn.active {
-            background-color: #4a6fa5;
-            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
         }
         .entry-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 3px 6px rgba(74,111,165,0.15);
+            background: #1a5276;
+            transform: translateY(-3px);
+        }
+        .entry-btn.active {
+            background: #1a5276;
         }
 
-        /* 提示文本 */
-        .hint-text {
-            font-size: 16px;
-            margin: 20px 0 30px;
-            color: #2c3e50;
-        }
-
-        /* 各板块内容容器 + Return按钮 */
         .content-area {
-            max-width: 620px;
-            margin: 0 auto 30px;
-            padding: 30px;
-            background: rgba(255,255,255,0.95);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            text-align: left;
             display: none;
-            border-top: 3px solid #4a6fa5;
-            position: relative;
-        }
-        .return-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            padding: 6px 12px;
-            border: 1px solid #e74c3c;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
-            color: #e74c3c;
-            background-color: #fff;
-            transition: all 0.2s;
-            font-family: "Montserrat", sans-serif;
-            font-weight: 600;
-        }
-        .return-btn:hover {
-            background-color: #e74c3c;
-            color: #fff;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
         }
         .content-area.active {
             display: block;
-            animation: fadeIn 0.5s ease;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .return-btn {
+            padding: 10px 20px;
+            background: #e3f2fd;
+            border: 1px solid #4a6fa5;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
         .content-area h3 {
+            font-size: 28px;
             color: #1a5276;
-            font-size: 22px;
             margin-bottom: 20px;
             border-bottom: 2px solid #e3f2fd;
             padding-bottom: 10px;
@@ -160,7 +113,7 @@
             padding-left: 22px;
         }
 
-        /* ========== Albums Info 板块 字体&动效 核心修改 ========== */
+        /* Albums 折叠面板 */
         .tracklist {
             text-align: left;
             max-width: 550px;
@@ -170,7 +123,6 @@
             border-radius: 10px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.06);
         }
-        /* 专辑展开按钮样式 */
         .album-toggle-btn {
             width: 100%;
             padding: 12px 20px;
@@ -180,7 +132,6 @@
             font-size: 20px;
             color: #1a5276;
             font-weight: 600;
-            font-family: "Montserrat", sans-serif;
             text-transform: uppercase;
             letter-spacing: 2px;
             cursor: pointer;
@@ -200,7 +151,6 @@
         .album-toggle-btn.active .arrow {
             transform: rotate(180deg);
         }
-        /* 专辑内容隐藏容器 */
         .album-content {
             display: none;
             padding: 15px;
@@ -212,77 +162,56 @@
             display: block;
             animation: fadeIn 0.3s ease;
         }
-        /* 歌曲列表标题：全大写 + 简洁字体 */
         .tracklist .section-title {
             font-size: 24px;
             color: #1a5276;
-            text-decoration: underline wavy #3498db;
             margin-bottom: 18px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-family: "Montserrat", sans-serif;
         }
         .tracklist ol {
             padding-left: 22px;
         }
-        /* 歌曲名：简洁无衬线字体 + hover左右晃动 */
         .tracklist li {
             font-size: 18px;
             margin: 11px 0;
             padding: 6px 12px;
             border-radius: 5px;
-            font-family: "Segoe UI", "Roboto", sans-serif;
             transition: all 0.3s ease;
-        }
-        /* 左右晃动动画 */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-3px); }
-            75% { transform: translateX(3px); }
         }
         .tracklist li:hover {
             background: #e3f2fd;
             color: #1a5276;
-            animation: shake 0.5s ease-in-out;
         }
-        /* 试听链接样式（已改为Listen） */
         .tracklist li a {
             font-size: 14px;
             color: #4a6fa5;
             margin-left: 10px;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-family: "Segoe UI", "Roboto", sans-serif;
         }
         .tracklist li a:hover {
             text-decoration: underline;
         }
 
-        /* Videos板块 - 按钮组样式（核心修改） */
+        /* Video 按钮 */
         .mv-section {
             text-align: center;
             padding: 20px 0;
         }
         .mv-title {
-            font-size: 42px;
+            font-size: 32px;
             font-weight: 800;
             color: #1a5276;
-            font-family: "Montserrat", sans-serif;
             margin-bottom: 30px;
-            letter-spacing: 2px;
             text-transform: uppercase;
         }
-        /* 视频/链接按钮组 - 横向排列 */
         .video-buttons {
             display: flex;
             justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
             margin: 0 auto 30px;
-            max-width: 550px;
         }
         .video-btn {
             padding: 15px 25px;
@@ -294,26 +223,16 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: "Montserrat", sans-serif;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            white-space: nowrap;
         }
         .video-btn:hover {
             background-color: #1a5276;
             transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(74,111,165,0.2);
-        }
-        /* 按钮图标区分 */
-        .video-btn.mv-icon span {
-            content: "▶";
-        }
-        .video-btn.note-icon span {
-            content: "🔗";
         }
 
-        /* 背景装饰元素 - 云朵移到顶部 */
+        /* 装饰 */
         .pattern {
             position: absolute;
             font-size: 38px;
@@ -323,44 +242,13 @@
         }
         .cloud1 { top: 20px; left: 40px; }
         .note1 { top: 320px; right: 60px; }
-        .snow1 { bottom: 200px; left: 70px; }
-        .branch1 { bottom: 100px; right: 80px; transform: rotate(18deg); }
 
-        /* 歌词云区域 - 改为云朵形状 */
-        .lyric-clouds {
-            max-width: 550px;
-            margin: 35px auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-        .lyric-cloud {
-            width: 180px;
-            height: 110px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-            font-size: 14px;
-            line-height: 1.5;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            border: 1px solid #e3f2fd;
-        }
-        .lyric-cloud:hover {
-            transform: scale(1.05);
-            background: #f8fafc;
-        }
-
-        /* 粉丝留言墙（核心：Public所有人可见，Secret仅自己可见） */
+        /* 粉丝留言 */
         .fan-wall {
             max-width: 720px;
-            margin: 0 auto 40px;
+            margin: 40px auto;
             padding: 28px;
-            background: rgba(255,255,255,0.95);
+            background: white;
             border-radius: 12px;
             box-shadow: 0 3px 12px rgba(0,0,0,0.06);
         }
@@ -370,34 +258,7 @@
             margin-bottom: 20px;
             border-bottom: 2px solid #e3f2fd;
             padding-bottom: 10px;
-            text-align: left;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .visibility-note {
-            font-size: 12px;
-            color: #666;
-            margin: -10px 0 15px;
-            text-align: left;
-        }
-        .visibility-options {
-            margin: 15px 0;
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            text-align: left;
-        }
-        .visibility-options label {
-            font-size: 14px;
-            color: #2c3e50;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .visibility-options input[type="radio"] {
-            accent-color: #4a6fa5;
-            cursor: pointer;
         }
         .comment-input {
             display: flex;
@@ -410,19 +271,7 @@
             padding: 14px 18px;
             border: 1px solid #e2e8f0;
             border-radius: 8px;
-            font-family: "Georgia", sans-serif;
             font-size: 14px;
-            transition: border 0.3s;
-        }
-        .comment-input input:focus,
-        .comment-input textarea:focus {
-            outline: none;
-            border-color: #4a6fa5;
-            box-shadow: 0 0 0 2px rgba(74,111,165,0.1);
-        }
-        .comment-input textarea {
-            height: 120px;
-            resize: none;
         }
         .comment-btn {
             align-self: flex-start;
@@ -432,105 +281,31 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s;
-            font-size: 15px;
         }
         .comment-btn:hover {
             background-color: #1a5276;
-            transform: translateY(-2px);
         }
         .success-hint {
             color: #27ae60;
-            font-size: 14px;
             display: none;
-            margin-top: 10px;
-        }
-        .fan-comments {
-            text-align: left;
-            margin: 20px 0 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .fan-comment {
-            padding: 15px;
-            background: #f8fafc;
-            border-radius: 8px;
-            position: relative;
-        }
-        .fan-comment.public {
-            border-left: 3px solid #27ae60;
-        }
-        .fan-comment.public::after {
-            content: "Public • All can see";
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 12px;
-            color: #27ae60;
-            background-color: #e8f5e9;
-            padding: 2px 6px;
-            border-radius: 3px;
-        }
-        .fan-comment.secret {
-            border-left: 3px solid #999;
-        }
-        .fan-comment.secret::after {
-            content: "Secret • Only you";
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 12px;
-            color: #666;
-            background-color: #f5f5f5;
-            padding: 2px 6px;
-            border-radius: 3px;
-        }
-        .fan-name {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
-        .fan-text {
-            font-size: 14.5px;
-            color: #475569;
-            line-height: 1.6;
-        }
-        .delete-btn {
-            position: absolute;
-            bottom: 10px;
-            right: 15px;
-            padding: 3px 8px;
-            font-size: 12px;
-            color: #e74c3c;
-            background: transparent;
-            border: 1px solid #e74c3c;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .delete-btn:hover {
-            background-color: #e74c3c;
-            color: #fff;
         }
 
-        /* 底部版权区域 */
+        /* 底部 */
         .footer-james {
-            font-family: "Montserrat", sans-serif;
+            text-align: center;
             font-size: 26px;
             font-weight: 700;
             color: #4a6fa5;
-            margin: 15px 0 8px;
+            margin: 15px 0;
         }
         .footer-copyright {
-            font-family: "Georgia", serif;
+            text-align: center;
             font-size: 16px;
             color: #475569;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
-        /* Shop板块购买表单样式 */
+        /* Shop 购买表单 */
         .purchase-form {
             max-width: 500px;
             margin: 20px 0;
@@ -543,19 +318,14 @@
             color: #1a5276;
             font-size: 18px;
             margin-bottom: 15px;
-            font-family: "Montserrat", sans-serif;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
         .form-group {
             margin-bottom: 15px;
-            text-align: left;
         }
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #2c3e50;
-            font-size: 14px;
             font-weight: 600;
         }
         .form-group input, .form-group select, .form-group textarea {
@@ -563,13 +333,6 @@
             padding: 10px 12px;
             border: 1px solid #e2e8f0;
             border-radius: 6px;
-            font-family: "Georgia", sans-serif;
-            font-size: 14px;
-        }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: #4a6fa5;
-            box-shadow: 0 0 0 2px rgba(74,111,165,0.1);
         }
         .submit-btn {
             padding: 12px 24px;
@@ -577,366 +340,280 @@
             color: #fff;
             border: none;
             border-radius: 6px;
-            font-size: 15px;
             font-weight: 600;
-            font-family: "Montserrat", sans-serif;
             cursor: pointer;
-            transition: all 0.2s;
             margin-top: 10px;
         }
         .submit-btn:hover {
             background-color: #1a5276;
-            transform: translateY(-2px);
-            box-shadow: 0 3px 6px rgba(74,111,165,0.15);
         }
-        .form-hint {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
-            font-style: italic;
+        .payment-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 6px;
+            font-size: 15px;
+            color: #856404;
         }
 
-        /* 手机端适配 */
+        /* 手机适配 */
         @media (max-width: 500px) {
-            .profile-title {
-                font-size: 60px;
+            .square-avatar {
+                width: 240px;
+                height: 240px;
             }
-            .title-decor::before,
-            .title-decor::after {
-                font-size: 30px;
+            .hero-name {
+                font-size: 48px;
             }
-            .mv-title {
-                font-size: 32px;
-            }
-            .visibility-options {
+            .entry-buttons {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-            .fan-comment.public::after,
-            .fan-comment.secret::after {
-                display: none;
-            }
-            .purchase-form {
-                padding: 15px;
-            }
-            .video-buttons {
-                flex-direction: column;
-                gap: 12px;
-            }
-            .video-btn {
                 width: 100%;
-                justify-content: center;
+            }
+            .entry-btn {
+                width: 100%;
             }
         }
     </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@600;800&family=Georgia:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="pattern cloud1">☁️</div>
     <div class="pattern note1">🎵</div>
-    <div class="pattern snow1">❄️</div>
-    <div class="pattern branch1">🌿</div>
 
-    <div class="profile-header">
-        <div class="title-decor">
-            <h1 class="profile-title">James</h1>
+    <!-- 首页超大正方形大头贴头像 + James -->
+    <div class="hero-section">
+        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rlw6/86a82c659d9849018f982a22c8078551~tplv-a9rns2rlw6-image.image" alt="James" class="square-avatar">
+        <h1 class="hero-name">James</h1>
+
+        <!-- 导航按钮放在头像下方 -->
+        <div class="entry-buttons">
+            <button class="entry-btn" data-target="shop">Shop</button>
+            <button class="entry-btn" data-target="video">Video</button>
+            <button class="entry-btn" data-target="contact">Contact</button>
+            <button class="entry-btn" data-target="about">About</button>
+            <button class="entry-btn" data-target="albumsInfo">Albums</button>
+            <button class="entry-btn" data-target="tour">Tour</button>
         </div>
     </div>
 
-    <div class="entry-buttons">
-        <button class="entry-btn" data-target="shop">Shop</button>
-        <button class="entry-btn" data-target="video">Video</button>
-        <button class="entry-btn" data-target="contact">Contact</button>
-        <button class="entry-btn" data-target="about">About</button>
-        <button class="entry-btn" data-target="albumsInfo">Albums</button>
-        <button class="entry-btn" data-target="tour">Tour</button>
-    </div>
-
-    <p class="hint-text">More new songs are on the way — Wait and see!</p>
-
+    <!-- Shop 完善版：Twofold150HKD+10首+信用卡信息 -->
     <div id="shop" class="content-area">
         <button class="return-btn">Return</button>
         <h3>James' Music Shop</h3>
-        <p><strong>Debut Album of James</strong></p>
-        <p><strong>Album Price</strong>: 125 HKD (Includes 8 original tracks)</p>
-        <p><strong>Single Price</strong>: 99 HKD (collabs with Jessica)</p>
+        <p><strong>Debut Album</strong>: 125 HKD (Includes 8 original tracks)</p>
+        <p><strong>Twofold Album</strong>: 150 HKD (Includes 10 original tracks)</p>
+        <p><strong>Featured Singles</strong>: 99 HKD each (collabs with Jessica)</p>
         <ul>
             <li>Brighter Days (feat. Jessica)</li>
             <li>Swinging Bells (feat. Jessica)</li>
         </ul>
-        <p>Fill in the form below to place your order, we will contact you soon!</p>
-        
-        <!-- 新增购买表单 -->
+
         <div class="purchase-form">
             <h4>Order Form</h4>
             <div class="form-group">
-                <label for="orderName">Full Name</label>
-                <input type="text" id="orderName" placeholder="Enter your full name" required>
+                <label>Full Name</label>
+                <input type="text" id="orderName" required placeholder="Enter your full name">
             </div>
             <div class="form-group">
-                <label for="orderPhone">Phone Number</label>
-                <input type="tel" id="orderPhone" placeholder="Enter your phone number" required>
+                <label>Phone Number</label>
+                <input type="tel" id="orderPhone" required placeholder="Enter your phone number">
             </div>
             <div class="form-group">
-                <label for="orderEmail">Email Address</label>
-                <input type="email" id="orderEmail" placeholder="Enter your email" required>
+                <label>Email Address</label>
+                <input type="email" id="orderEmail" required placeholder="Enter your email">
             </div>
             <div class="form-group">
-                <label for="orderAddress">Shipping Address</label>
-                <textarea id="orderAddress" placeholder="Enter your full shipping address" rows="3" required></textarea>
+                <label>Shipping Address</label>
+                <textarea rows="3" id="orderAddress" required placeholder="Enter your full shipping address"></textarea>
             </div>
             <div class="form-group">
-                <label for="orderProduct">Select Product</label>
+                <label>Select Product</label>
                 <select id="orderProduct" required>
                     <option value="">-- Choose a product --</option>
-                    <option value="debut-album">Debut Album (125 HKD)</option>
-                    <option value="brighter-days">Brighter Days (feat. Jessica) (99 HKD)</option>
-                    <option value="swinging-bells">Swinging Bells (feat. Jessica) (99 HKD)</option>
-                    <option value="two-fold-album">Two Fold Album (150 HKD)</option>
+                    <option value="debut-album">Debut Album - 125 HKD</option>
+                    <option value="twofold-album">Twofold Album - 150 HKD</option>
+                    <option value="brighter">Brighter Days - 99 HKD</option>
+                    <option value="swinging">Swinging Bells - 99 HKD</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="orderQuantity">Quantity</label>
-                <input type="number" id="orderQuantity" min="1" value="1" required>
+                <label>Quantity</label>
+                <input type="number" min="1" value="1" id="orderQuantity" required>
             </div>
-            <button type="button" class="submit-btn" id="submitOrderBtn">Submit Order</button>
-            <p class="form-hint">We will send payment and delivery details to your email within 24 hours.</p>
+            <div class="form-group">
+                <label>Credit Card Number</label>
+                <input type="text" id="cardNum" placeholder="**** **** **** ****" required>
+            </div>
+            <button class="submit-btn" id="submitOrder">Submit Order</button>
+        </div>
+
+        <!-- 信用卡付款说明 -->
+        <div class="payment-info">
+            <strong>Payment Note</strong><br>
+            We will verify your credit card info and send payment confirmation to your email within 24 hours.
         </div>
     </div>
 
-    <!-- Video 板块（核心修改：移除封面图，保留按钮组） -->
+    <!-- Video 板块 -->
     <div id="video" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Videos</h3>
         <div class="mv-section">
             <div class="mv-title">Music Videos & Notes</div>
-            <!-- 视频/链接按钮组 - 横向排列 -->
             <div class="video-buttons">
-                <!-- 原有MV按钮（移除封面图，仅保留按钮） -->
-                <a href="http://music.163.com/mv/34717680/?userid=17258050740" target="_blank" style="text-decoration: none;">
-                    <button class="video-btn mv-icon">
-                        <span>▶</span> We Will See It To The End MV
-                    </button>
+                <a href="http://music.163.com/mv/34717680/" target="_blank" style="text-decoration: none;">
+                    <button class="video-btn">▶ We Will See It To The End MV</button>
                 </a>
-                <!-- 新增Brighter Days MV按钮 -->
-                <a href="http://music.163.com/mv/34708015/?userid=17258050740" target="_blank" style="text-decoration: none;">
-                    <button class="video-btn mv-icon">
-                        <span>▶</span> Brighter Days MV
-                    </button>
+                <a href="http://music.163.com/mv/34708015/" target="_blank" style="text-decoration: none;">
+                    <button class="video-btn">▶ Brighter Days MV</button>
                 </a>
-                <!-- @James_Chen_笔记链接按钮 -->
                 <a href="https://163cn.tv/Zfjrzqo" target="_blank" style="text-decoration: none;">
-                    <button class="video-btn note-icon">
-                        <span>🔗</span> James' Super Note
-                    </button>
+                    <button class="video-btn">🔗 James' Super Note</button>
                 </a>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 30px;">More music videos will be uploaded soon.</p>
+        <p style="text-align:center; margin-top: 20px;">More MVs & Exclusive Content Coming Soon.</p>
     </div>
 
+    <!-- Contact 板块 -->
     <div id="contact" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Get in Touch with James</h3>
-        <p><strong>Official Email</strong>: James03010@icloud.com</p>    
+        <p><strong>Official Email</strong>: James03010@icloud.com</p>
+        <p>For collaboration, booking & all inquiries, send an email with detailed information.</p>
     </div>
 
+    <!-- About 板块 -->
     <div id="about" class="content-area">
         <button class="return-btn">Return</button>
         <h3>About Jimmyland</h3>
-        <p>Welcome to Jimmyland.</p>
-        <p>Inhabited by James and J-Stars.</p>
-        <p>Jimmyland isn’t just a collection of my songs — it’s a space where you can <strong>connect with the music</strong> and <strong>find a little peace</strong>. Think of it as a cozy corner where you can slow down.</p>
+        <p>Welcome to Jimmyland — Inhabited by James and J-Stars.</p>
+        <p>Jimmyland isn’t just a collection of my songs — it’s a space where you can connect with the music and find a little peace. Think of it as a cozy corner where you can slow down.</p>
         <p>Whether you’re listening to "Slow Days" while sipping morning coffee, or letting "Brighter Days" chase away a tough evening, this place is for you to relax and be yourself.</p>
         <p>Thank you for stepping into Jimmyland. I’m glad we’re here together.</p>
     </div>
 
+    <!-- Albums Info 核心更新：Twofold专辑全QQ音乐真实链接 -->
     <div id="albumsInfo" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Albums Info</h3>
-        <p>This debut album has 8 tracks that tell small stories from my life — from dealing with workplace gossip to cherishing friendship, and even a gentle tribute to winter days.</p>
-        <p>A big thanks to Jessica here for making two singles with me!!! Brighter Days" and "Swinging Bells."</p>
-        <p>I hope my songs can be a little companion for your daily moments! Whether you’re commuting, working, or just relaxing.</p>
-        
+        <p>This debut album has 8 tracks that tell small stories from my life — from dealing with noise to cherishing friendship, and even a gentle tribute to winter days.</p>
+        <p>A big thanks to Jessica here for making two singles with me: "Brighter Days" and "Swinging Bells."</p>
+        <p>Twofold Album with 10 original tracks is now online — hope you like it!</p>
+
         <div class="tracklist">
-            <!-- 专辑展开按钮 -->
-            <button class="album-toggle-btn" data-target="james-album">
-                Album (James) <span class="arrow">▼</span>
+            <!-- 首张专辑 -->
+            <button class="album-toggle-btn" data-target="album-debut">
+                Debut Album <span class="arrow">▼</span>
             </button>
-            <!-- 专辑内容容器 -->
-            <div class="album-content" id="james-album">
+            <div class="album-content" id="album-debut">
                 <ol>
-                    <li>
-                        No More Hurry
-                        <a href="https://163cn.tv/X1Kkpvj" target="_blank">▶ Listen</a>
-                    </li>
-                    <li>
-                        Chase Stars
-                        <a href="https://163cn.tv/X1JM48S" target="_blank">▶ Listen</a>
-                    </li>
-                    <li>
-                        Everything I Want
-                        <a href="https://163cn.tv/X1J1PwA" target="_blank">▶ Listen</a>
-                    </li>
-                    <li>
-                        Slow Days
-                        <a href="https://163cn.tv/X1Jwjet" target="_blank">▶ Listen</a>
-                    </li>
-                    <li>
-                        Winter is Coming
-                        <a href="https://163cn.tv/X1J91Wt" target="_blank">▶ Listen</a>
-                    </li>
-                    <li>
-                        Run With You
-                        <a href="https://163cn.tv/X1JbkTl" target="_blank">▶ Listen</a>
-                    </li>
-                    <li>
-                        We Will See It To The End
-                        <a href="https://163cn.tv/X1JrW2s" target="_blank">▶ Listen</a>
-                    <li>
-                        Not Daze
-                        <a href="http://music.163.com/song/3316304015/?userid=17258050740" target="_blank">▶ Listen</a>
-                    </li>
+                    <li>No More Hurry <a href="https://163cn.tv/X1Kkpvj" target="_blank">▶ Listen</a></li>
+                    <li>Chase Stars <a href="https://163cn.tv/X1JM48S" target="_blank">▶ Listen</a></li>
+                    <li>Everything I Want <a href="https://163cn.tv/X1J1PwA" target="_blank">▶ Listen</a></li>
+                    <li>Slow Days <a href="https://163cn.tv/X1Jwjet" target="_blank">▶ Listen</a></li>
+                    <li>Winter is Coming <a href="https://163cn.tv/X1J91Wt" target="_blank">▶ Listen</a></li>
+                    <li>Run With You <a href="https://163cn.tv/X1JbkTl" target="_blank">▶ Listen</a></li>
+                    <li>We Will See It To The End <a href="https://163cn.tv/X1JrW2s" target="_blank">▶ Listen</a></li>
+                    <li>Not Daze <a href="http://music.163.com/song/3316304015/?userid=17258050740" target="_blank">▶ Listen</a></li>
                 </ol>
             </div>
 
-            <!-- 单曲展开按钮 -->
-            <button class="album-toggle-btn" data-target="featured-singles">
+            <!-- 合作单曲 -->
+            <button class="album-toggle-btn" data-target="singles">
                 Featured Singles <span class="arrow">▼</span>
             </button>
-            <!-- 单曲内容容器 -->
-            <div class="album-content" id="featured-singles">
+            <div class="album-content" id="singles">
                 <ol start="9">
-                    <li>
-                        Brighter Days (feat. Jessica)
-                        <a href="https://163cn.tv/X1J1W9Z" target="_blank">▶ Listen</a>
-                    </li>
-                    <li>
-                        Swinging Bells (feat. Jessica)
-                        <a href="https://163cn.tv/X1Kg9zr" target="_blank">▶ Listen</a>
-                    </li>
+                    <li>Brighter Days (ft. Jessica) <a href="https://163cn.tv/X1J1W9Z" target="_blank">▶ Listen</a></li>
+                    <li>Swinging Bells (ft. Jessica) <a href="https://163cn.tv/X1Kg9zr" target="_blank">▶ Listen</a></li>
                 </ol>
             </div>
 
-            <!-- Twofold专辑展开按钮 -->
-            <button class="album-toggle-btn" data-target="two-fold-album">
-                Twofold <span class="arrow">▼</span>
+            <!-- Twofold专辑 10首全QQ音乐真实链接 -->
+            <button class="album-toggle-btn" data-target="twofold">
+                Twofold Album <span class="arrow">▼</span>
             </button>
-            <!-- Twofold专辑内容容器 -->
-            <div class="album-content" id="two-fold-album">
+            <div class="album-content" id="twofold">
                 <ol>
-                    <li>Twofold <a href="#" target="_blank">▶ Listen</a></li>
-                    <li>Stay Together <a href="#" target="_blank">▶ Listen</a></li>
-                    <li>Glow in the Calm <a href="#" target="_blank">▶ Listen</a></li>
-                    <li>Track 4 <a href="#" target="_blank">▶ Listen</a></li>
-                    <li>Track 5 <a href="#" target="_blank">▶ Listen</a></li>
-                    <li>Track 6 <a href="#" target="_blank">▶ Listen</a></li>
+                    <li>Twofold <a href="https://c6.y.qq.com/base/fcgi-bin/u?__=BY8rnfwtD5J1" target="_blank">▶ Listen</a></li>
+                    <li>Stay Together <a href="https://c6.y.qq.com/base/fcgi-bin/u?__=sxZOHcwtDiN4" target="_blank">▶ Listen</a></li>
+                    <li>Glow In The Calm <a href="https://c6.y.qq.com/base/fcgi-bin/u?__=3Tm1MdwtDoPg" target="_blank">▶ Listen</a></li>
+                    <li>Here With You <a href="https://c6.y.qq.com/base/fcgi-bin/u?__=Low4m8WtD6So" target="_blank">▶ Listen</a></li>
+                    <li>Haters <a href="https://c6.y.qq.com/base/fcgi-bin/u?__=307KgwwtDSaN" target="_blank">▶ Listen</a></li>
+                    <li>Out Of The Crowd <a href="https://c6.y.qq.com/base/fcgi-bin/u?__=vfVSv1wtDiDq" target="_blank">▶ Listen</a></li>
+                    <li>Sunshine Boy <a href="https://c6.y.qq.com/base/fcgi-bin/u?__=ZeIOymwtDpuI" target="_blank">▶ Listen</a></li>
+                    <li>Real Ones <a href="#" target="_blank">▶ Listen</a></li>
+                    <li>Nothing <a href="#" target="_blank">▶ Listen</a></li>
+                    <li>A Little Progress <a href="#" target="_blank">▶ Listen</a></li>
                 </ol>
             </div>
         </div>
     </div>
 
+    <!-- Tour 板块 -->
     <div id="tour" class="content-area">
         <button class="return-btn">Return</button>
         <h3>James Live 2026</h3>
-        <p>Ready for my livestream in 2026? "James Live 2026" will bring you performances — including "Slow Days," "Brighter Days," and even a few unreleased tracks I’ve been working on.</p>
-        <p>To be the first to know, sign up for updates via email (James03010@icloud.com) with "James Live 2026 Updates" in the subject line.</p>
-        <p>This livestream will be interesting! Just like Jimmyland — So don’t miss the chance to experience the music live with me!</p>
+        <p>Ready for my livestream in 2026? "James Live 2026" will bring you live performances — including "Slow Days," "Brighter Days," and even a few unreleased tracks I’ve been working on.</p>
+        <p>To be the first to know all details, sign up for updates via email (James03010@icloud.com) with "James Live 2026 Updates" in the subject line.</p>
+        <p>This livestream will be full of surprises! Just like Jimmyland — So don’t miss the chance to experience the music live with me!</p>
     </div>
 
-    <div class="lyric-clouds">
-        <div class="lyric-cloud">No noise around can pull us apart</div>
-        <div class="lyric-cloud">Life small things they make the sense</div>
-        <div class="lyric-cloud">Haters talking noise, but I don't give a damn</div>
-        <div class="lyric-cloud">I wanna have a break, from the noises all around</div>
-        <div class="lyric-cloud">Don't be afraid of the nights coming</div>
-        <div class="lyric-cloud">The things that I want to, the things that I like to</div>
-        <div class="lyric-cloud">I will hit repeat on the good days we made</div>
-        <div class="lyric-cloud">Your heartbeat,warm and slow</div>
-    </div>
-
-    <div class="fan-wall">
-        <h3>J-Stars Corner</h3>
-        <div class="comment-input">
-            <input type="text" id="fanNameInput" placeholder="Your Name" required>
-            <textarea id="fanMessageInput" placeholder="Share your thoughts..." required></textarea>
-            <div class="visibility-note">Choose visibility: Public (all visitors can see) / Secret (only you can see)</div>
-            <div class="visibility-options">
-                <label>
-                    <input type="radio" name="visibility" value="public" checked> Public
-                </label>
-                <label>
-                    <input type="radio" name="visibility" value="secret"> Secret
-                </label>
-            </div>
-            <button class="comment-btn" id="postCommentBtn">Post Message</button>
-            <div class="success-hint" id="successHint">Message posted successfully!</div>
-        </div>
-        <div class="fan-comments" id="fanCommentsContainer"></div>
-    </div>
-
+    <!-- 底部版权 -->
     <div class="footer-james">James</div>
-    <div class="footer-copyright">© 2026 James</div>
+    <div class="footer-copyright">© 2026 James Music All Rights Reserved</div>
 
     <script>
-        const navButtons = document.querySelectorAll('.entry-btn');
-        const contentAreas = document.querySelectorAll('.content-area');
-        const returnButtons = document.querySelectorAll('.return-btn');
-        // 专辑展开按钮
-        const albumToggleBtns = document.querySelectorAll('.album-toggle-btn');
-        const albumContents = document.querySelectorAll('.album-content');
-        // 订单提交按钮
-        const submitOrderBtn = document.getElementById('submitOrderBtn');
+        // 页面切换逻辑
+        const entryBtns = document.querySelectorAll('.entry-btn');
+        const contents = document.querySelectorAll('.content-area');
+        const returns = document.querySelectorAll('.return-btn');
 
-        navButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const targetId = button.getAttribute('data-target');
-                contentAreas.forEach(area => area.classList.remove('active'));
-                navButtons.forEach(btn => btn.classList.remove('active'));
-                document.getElementById(targetId).classList.add('active');
-                button.classList.add('active');
-                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        entryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = document.getElementById(btn.dataset.target);
+                contents.forEach(c => c.classList.remove('active'));
+                entryBtns.forEach(b => b.classList.remove('active'));
+                target.classList.add('active');
+                btn.classList.add('active');
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        returnButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const parentArea = button.closest('.content-area');
-                parentArea.classList.remove('active');
-                navButtons.forEach(btn => btn.classList.remove('active'));
+        returns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                contents.forEach(c => c.classList.remove('active'));
+                entryBtns.forEach(b => b.classList.remove('active'));
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
 
-        // 专辑展开/收起逻辑
-        albumToggleBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const targetId = btn.getAttribute('data-target');
-                const targetContent = document.getElementById(targetId);
-                // 切换按钮和内容的active状态
-                btn.classList.toggle('active');
-                targetContent.classList.toggle('active');
+        // 专辑折叠/展开逻辑
+        const toggles = document.querySelectorAll('.album-toggle-btn');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const target = document.getElementById(toggle.dataset.target);
+                toggle.classList.toggle('active');
+                target.classList.toggle('active');
             });
         });
 
-        // 订单提交提示
-        submitOrderBtn.addEventListener('click', () => {
-            const name = document.getElementById('orderName').value;
-            const phone = document.getElementById('orderPhone').value;
-            const email = document.getElementById('orderEmail').value;
-            const address = document.getElementById('orderAddress').value;
+        // 订单提交逻辑
+        document.getElementById('submitOrder').addEventListener('click', () => {
+            const name = document.getElementById('orderName').value.trim();
+            const phone = document.getElementById('orderPhone').value.trim();
+            const email = document.getElementById('orderEmail').value.trim();
+            const address = document.getElementById('orderAddress').value.trim();
             const product = document.getElementById('orderProduct').value;
             const quantity = document.getElementById('orderQuantity').value;
+            const cardNum = document.getElementById('cardNum').value.trim();
 
-            if (!name || !phone || !email || !address || !product || !quantity) {
+            if (!name || !phone || !email || !address || !product || !quantity || !cardNum) {
                 alert('Please fill in all required fields!');
                 return;
             }
 
-            alert(`Order submitted successfully! We will contact you at ${email} soon.`);
+            alert(`Order submitted successfully! We will contact you at ${email} within 24 hours.`);
             // 清空表单
             document.getElementById('orderName').value = '';
             document.getElementById('orderPhone').value = '';
@@ -944,106 +621,8 @@
             document.getElementById('orderAddress').value = '';
             document.getElementById('orderProduct').value = '';
             document.getElementById('orderQuantity').value = '1';
+            document.getElementById('cardNum').value = '';
         });
-
-        const postButton = document.getElementById('postCommentBtn');
-        const nameInput = document.getElementById('fanNameInput');
-        const messageInput = document.getElementById('fanMessageInput');
-        const commentsContainer = document.getElementById('fanCommentsContainer');
-        const successHint = document.getElementById('successHint');
-
-        const PUBLIC_KEY = 'james_public_comments';
-        const SECRET_KEY = 'james_secret_comments';
-        const deviceId = getDeviceId();
-        const userSecretKey = `${SECRET_KEY}_${deviceId}`;
-
-        function getDeviceId() {
-            let id = localStorage.getItem('fan_wall_device_id');
-            if (!id) {
-                id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-                localStorage.setItem('fan_wall_device_id', id);
-            }
-            return id;
-        }
-
-        function initComments() {
-            commentsContainer.innerHTML = '';
-            const publicComments = JSON.parse(localStorage.getItem(PUBLIC_KEY) || '[]');
-            publicComments.sort((a, b) => b.timestamp - a.timestamp);
-            publicComments.forEach(comment => renderComment(comment));
-
-            const secretComments = JSON.parse(localStorage.getItem(userSecretKey) || '[]');
-            secretComments.sort((a, b) => b.timestamp - a.timestamp);
-            secretComments.forEach(comment => renderComment(comment));
-        }
-
-        function renderComment(comment) {
-            const commentDiv = document.createElement('div');
-            commentDiv.className = `fan-comment ${comment.visibility}`;
-            commentDiv.dataset.timestamp = comment.timestamp;
-            commentDiv.dataset.visibility = comment.visibility;
-            commentDiv.innerHTML = `
-                <div class="fan-name">${comment.name}</div>
-                <div class="fan-text">${comment.message}</div>
-                <button class="delete-btn">Delete</button>
-            `;
-            commentsContainer.prepend(commentDiv);
-
-            commentDiv.querySelector('.delete-btn').addEventListener('click', () => {
-                deleteComment(comment.timestamp, comment.visibility);
-                commentDiv.remove();
-            });
-        }
-
-        function deleteComment(timestamp, visibility) {
-            let comments;
-            if (visibility === 'public') {
-                comments = JSON.parse(localStorage.getItem(PUBLIC_KEY) || '[]');
-                comments = comments.filter(comment => comment.timestamp !== timestamp);
-                localStorage.setItem(PUBLIC_KEY, JSON.stringify(comments));
-            } else {
-                comments = JSON.parse(localStorage.getItem(userSecretKey) || '[]');
-                comments = comments.filter(comment => comment.timestamp !== timestamp);
-                localStorage.setItem(userSecretKey, JSON.stringify(comments));
-            }
-        }
-
-        postButton.addEventListener('click', () => {
-            const userName = nameInput.value.trim();
-            const userMessage = messageInput.value.trim();
-            const visibility = document.querySelector('input[name="visibility"]:checked').value;
-
-            if (!userName || !userMessage) {
-                alert('Please enter your name and message!');
-                return;
-            }
-
-            const newComment = {
-                name: userName,
-                message: userMessage,
-                visibility: visibility,
-                timestamp: new Date().getTime()
-            };
-
-            if (visibility === 'public') {
-                const publicComments = JSON.parse(localStorage.getItem(PUBLIC_KEY) || '[]');
-                publicComments.push(newComment);
-                localStorage.setItem(PUBLIC_KEY, JSON.stringify(publicComments));
-            } else {
-                const secretComments = JSON.parse(localStorage.getItem(userSecretKey) || '[]');
-                secretComments.push(newComment);
-                localStorage.setItem(userSecretKey, JSON.stringify(secretComments));
-            }
-
-            renderComment(newComment);
-            successHint.style.display = 'block';
-            nameInput.value = '';
-            messageInput.value = '';
-
-            setTimeout(() => successHint.style.display = 'none', 3000);
-        });
-
-        window.addEventListener('load', initComments);
     </script>
 </body>
 </html>
