@@ -18,7 +18,7 @@
             overflow-x: hidden;
         }
 
-        /* 首页超大正方形大头贴头像区域 */
+        /* 只保留 James 大字，无照片 */
         .hero-section {
             width: 100%;
             min-height: 100vh;
@@ -28,15 +28,6 @@
             justify-content: center;
             padding: 20px;
             position: relative;
-        }
-        .square-avatar {
-            width: 320px;
-            height: 320px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            margin-bottom: 30px;
-            border: 3px solid #4a6fa5;
         }
         .hero-name {
             font-size: 64px;
@@ -162,14 +153,6 @@
             display: block;
             animation: fadeIn 0.3s ease;
         }
-        .tracklist .section-title {
-            font-size: 24px;
-            color: #1a5276;
-            margin-bottom: 18px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
         .tracklist ol {
             padding-left: 22px;
         }
@@ -232,64 +215,6 @@
             transform: translateY(-3px);
         }
 
-        /* 装饰 */
-        .pattern {
-            position: absolute;
-            font-size: 38px;
-            opacity: 0.3;
-            pointer-events: none;
-            color: #b0c4de;
-        }
-        .cloud1 { top: 20px; left: 40px; }
-        .note1 { top: 320px; right: 60px; }
-
-        /* 粉丝留言 */
-        .fan-wall {
-            max-width: 720px;
-            margin: 40px auto;
-            padding: 28px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-        }
-        .fan-wall h3 {
-            color: #1a5276;
-            font-size: 22px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #e3f2fd;
-            padding-bottom: 10px;
-            text-transform: uppercase;
-        }
-        .comment-input {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .comment-input input,
-        .comment-input textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-        .comment-btn {
-            align-self: flex-start;
-            padding: 12px 28px;
-            background-color: #4a6fa5;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .comment-btn:hover {
-            background-color: #1a5276;
-        }
-        .success-hint {
-            color: #27ae60;
-            display: none;
-        }
-
         /* 底部 */
         .footer-james {
             text-align: center;
@@ -297,12 +222,6 @@
             font-weight: 700;
             color: #4a6fa5;
             margin: 15px 0;
-        }
-        .footer-copyright {
-            text-align: center;
-            font-size: 16px;
-            color: #475569;
-            margin-bottom: 30px;
         }
 
         /* Shop 购买表单 */
@@ -358,10 +277,6 @@
 
         /* 手机适配 */
         @media (max-width: 500px) {
-            .square-avatar {
-                width: 240px;
-                height: 240px;
-            }
             .hero-name {
                 font-size: 48px;
             }
@@ -376,15 +291,10 @@
     </style>
 </head>
 <body>
-    <div class="pattern cloud1">☁️</div>
-    <div class="pattern note1">🎵</div>
-
-    <!-- 首页超大正方形大头贴头像 + James -->
+    <!-- 只留 James 大字，无任何图片 -->
     <div class="hero-section">
-        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rlw6/86a82c659d9849018f982a22c8078551~tplv-a9rns2rlw6-image.image" alt="James" class="square-avatar">
         <h1 class="hero-name">James</h1>
 
-        <!-- 导航按钮放在头像下方 -->
         <div class="entry-buttons">
             <button class="entry-btn" data-target="shop">Shop</button>
             <button class="entry-btn" data-target="video">Video</button>
@@ -395,7 +305,7 @@
         </div>
     </div>
 
-    <!-- Shop 完善版：Twofold150HKD+10首+信用卡信息 -->
+    <!-- Shop -->
     <div id="shop" class="content-area">
         <button class="return-btn">Return</button>
         <h3>James' Music Shop</h3>
@@ -439,21 +349,16 @@
                 <label>Quantity</label>
                 <input type="number" min="1" value="1" id="orderQuantity" required>
             </div>
-            <div class="form-group">
-                <label>Credit Card Number</label>
-                <input type="text" id="cardNum" placeholder="**** **** **** ****" required>
-            </div>
             <button class="submit-btn" id="submitOrder">Submit Order</button>
         </div>
 
-        <!-- 信用卡付款说明 -->
         <div class="payment-info">
             <strong>Payment Note</strong><br>
-            We will verify your credit card info and send payment confirmation to your email within 24 hours.
+            We will verify your info and send payment confirmation to your email within 24 hours.
         </div>
     </div>
 
-    <!-- Video 板块 -->
+    <!-- Video -->
     <div id="video" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Videos</h3>
@@ -474,7 +379,7 @@
         <p style="text-align:center; margin-top: 20px;">More MVs & Exclusive Content Coming Soon.</p>
     </div>
 
-    <!-- Contact 板块 -->
+    <!-- Contact -->
     <div id="contact" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Get in Touch with James</h3>
@@ -482,26 +387,22 @@
         <p>For collaboration, booking & all inquiries, send an email with detailed information.</p>
     </div>
 
-    <!-- About 板块 -->
+    <!-- About -->
     <div id="about" class="content-area">
         <button class="return-btn">Return</button>
         <h3>About Jimmyland</h3>
         <p>Welcome to Jimmyland — Inhabited by James and J-Stars.</p>
-        <p>Jimmyland isn’t just a collection of my songs — it’s a space where you can connect with the music and find a little peace. Think of it as a cozy corner where you can slow down.</p>
-        <p>Whether you’re listening to "Slow Days" while sipping morning coffee, or letting "Brighter Days" chase away a tough evening, this place is for you to relax and be yourself.</p>
+        <p>Jimmyland isn’t just a collection of my songs — it’s a space where you can connect with the music and find a little peace.</p>
         <p>Thank you for stepping into Jimmyland. I’m glad we’re here together.</p>
     </div>
 
-    <!-- Albums Info 核心更新：Twofold专辑全QQ音乐真实链接 -->
+    <!-- Albums Info -->
     <div id="albumsInfo" class="content-area">
         <button class="return-btn">Return</button>
         <h3>Albums Info</h3>
-        <p>This debut album has 8 tracks that tell small stories from my life — from dealing with noise to cherishing friendship, and even a gentle tribute to winter days.</p>
-        <p>A big thanks to Jessica here for making two singles with me: "Brighter Days" and "Swinging Bells."</p>
-        <p>Twofold Album with 10 original tracks is now online — hope you like it!</p>
+        <p>Debut Album (8 tracks) & Twofold Album (10 tracks) are available now.</p>
 
         <div class="tracklist">
-            <!-- 首张专辑 -->
             <button class="album-toggle-btn" data-target="album-debut">
                 Debut Album <span class="arrow">▼</span>
             </button>
@@ -514,11 +415,10 @@
                     <li>Winter is Coming <a href="https://163cn.tv/X1J91Wt" target="_blank">▶ Listen</a></li>
                     <li>Run With You <a href="https://163cn.tv/X1JbkTl" target="_blank">▶ Listen</a></li>
                     <li>We Will See It To The End <a href="https://163cn.tv/X1JrW2s" target="_blank">▶ Listen</a></li>
-                    <li>Not Daze <a href="http://music.163.com/song/3316304015/?userid=17258050740" target="_blank">▶ Listen</a></li>
+                    <li>Not Daze <a href="http://music.163.com/song/3316304015/" target="_blank">▶ Listen</a></li>
                 </ol>
             </div>
 
-            <!-- 合作单曲 -->
             <button class="album-toggle-btn" data-target="singles">
                 Featured Singles <span class="arrow">▼</span>
             </button>
@@ -529,7 +429,6 @@
                 </ol>
             </div>
 
-            <!-- Twofold专辑 10首全QQ音乐真实链接 -->
             <button class="album-toggle-btn" data-target="twofold">
                 Twofold Album <span class="arrow">▼</span>
             </button>
@@ -550,21 +449,19 @@
         </div>
     </div>
 
-    <!-- Tour 板块 -->
+    <!-- Tour -->
     <div id="tour" class="content-area">
         <button class="return-btn">Return</button>
         <h3>James Live 2026</h3>
-        <p>Ready for my livestream in 2026? "James Live 2026" will bring you live performances — including "Slow Days," "Brighter Days," and even a few unreleased tracks I’ve been working on.</p>
-        <p>To be the first to know all details, sign up for updates via email (James03010@icloud.com) with "James Live 2026 Updates" in the subject line.</p>
-        <p>This livestream will be full of surprises! Just like Jimmyland — So don’t miss the chance to experience the music live with me!</p>
+        <p>Live performances including "Slow Days," "Brighter Days" & unreleased tracks.</p>
+        <p>Email James03010@icloud.com to get latest updates.</p>
     </div>
 
-    <!-- 底部版权 -->
+    <!-- 底部：只留 James，已删除 All Rights Reserved -->
     <div class="footer-james">James</div>
-    <div class="footer-copyright">© 2026 James Music All Rights Reserved</div>
 
     <script>
-        // 页面切换逻辑
+        // 页面切换
         const entryBtns = document.querySelectorAll('.entry-btn');
         const contents = document.querySelectorAll('.content-area');
         const returns = document.querySelectorAll('.return-btn');
@@ -576,7 +473,7 @@
                 entryBtns.forEach(b => b.classList.remove('active'));
                 target.classList.add('active');
                 btn.classList.add('active');
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                target.scrollIntoView({ behavior: 'smooth' });
             });
         });
 
@@ -588,7 +485,7 @@
             });
         });
 
-        // 专辑折叠/展开逻辑
+        // 专辑折叠
         const toggles = document.querySelectorAll('.album-toggle-btn');
         toggles.forEach(toggle => {
             toggle.addEventListener('click', () => {
@@ -598,30 +495,15 @@
             });
         });
 
-        // 订单提交逻辑
+        // 订单提交
         document.getElementById('submitOrder').addEventListener('click', () => {
             const name = document.getElementById('orderName').value.trim();
-            const phone = document.getElementById('orderPhone').value.trim();
-            const email = document.getElementById('orderEmail').value.trim();
-            const address = document.getElementById('orderAddress').value.trim();
-            const product = document.getElementById('orderProduct').value;
-            const quantity = document.getElementById('orderQuantity').value;
-            const cardNum = document.getElementById('cardNum').value.trim();
-
-            if (!name || !phone || !email || !address || !product || !quantity || !cardNum) {
+            if (!name) {
                 alert('Please fill in all required fields!');
                 return;
             }
-
-            alert(`Order submitted successfully! We will contact you at ${email} within 24 hours.`);
-            // 清空表单
-            document.getElementById('orderName').value = '';
-            document.getElementById('orderPhone').value = '';
-            document.getElementById('orderEmail').value = '';
-            document.getElementById('orderAddress').value = '';
-            document.getElementById('orderProduct').value = '';
-            document.getElementById('orderQuantity').value = '1';
-            document.getElementById('cardNum').value = '';
+            alert('Order submitted successfully! We will contact you soon.');
+            document.querySelectorAll('.purchase-form input, .purchase-form textarea, .purchase-form select').forEach(e => e.value = '');
         });
     </script>
 </body>
